@@ -5,10 +5,41 @@
  */
 package br.udesc.modelo.dao.jpa;
 
+import br.udesc.modelo.dao.core.OficinaDAO;
+import br.udesc.modelo.entidade.Oficina;
+import java.util.List;
+
 /**
  *
  * @author ignoi
  */
-public class JPAOficinaDAO {
+public class JPAOficinaDAO implements OficinaDAO{
+
+    @Override
+    public void inserir(Oficina a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editar(Oficina a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remover(Oficina a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Oficina pesquisar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Oficina> listar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
 }

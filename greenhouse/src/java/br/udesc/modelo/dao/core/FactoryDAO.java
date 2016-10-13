@@ -10,13 +10,15 @@ package br.udesc.modelo.dao.core;
  * @author ignoi
  */
 public abstract class FactoryDAO {
-    
+
     public abstract NoticiaDAO getNoticiaDAO();
-    
+
     public abstract OficinaDAO getOficinaDAO();
-    
+
     public abstract PeriodoDAO getPeridoDAO();
-    
-    //TODO OTHER GETDAOS;
-    
+
+    public abstract RegistroDAO getRegistroDAO();
+
+    public abstract UsuarioDAO getUsuarioDAO();
+
 }

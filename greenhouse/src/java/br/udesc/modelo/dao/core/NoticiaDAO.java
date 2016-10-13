@@ -5,10 +5,23 @@
  */
 package br.udesc.modelo.dao.core;
 
+import br.udesc.modelo.entidade.Noticia;
+import java.util.List;
+
 /**
  *
  * @author ignoi
  */
 public interface NoticiaDAO {
+    
+     public void inserir(Noticia a);
+
+    public void editar(Noticia a);
+
+    public void remover(Noticia a);
+
+    public Noticia pesquisar(int id);
+
+    public List<Noticia> listar();
     
 }

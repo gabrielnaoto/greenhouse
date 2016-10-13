@@ -5,10 +5,23 @@
  */
 package br.udesc.modelo.dao.core;
 
+import br.udesc.modelo.entidade.Periodo;
+import java.util.List;
+
 /**
  *
  * @author ignoi
  */
 public interface PeriodoDAO {
+    
+     public void inserir(Periodo a);
+
+    public void editar(Periodo a);
+
+    public void remover(Periodo a);
+
+    public Periodo pesquisar(int id);
+
+    public List<Periodo> listar();
     
 }

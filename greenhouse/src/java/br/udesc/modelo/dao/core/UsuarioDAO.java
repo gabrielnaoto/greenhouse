@@ -5,10 +5,23 @@
  */
 package br.udesc.modelo.dao.core;
 
+import br.udesc.modelo.entidade.Usuario;
+import java.util.List;
+
 /**
  *
  * @author ignoi
  */
 public interface UsuarioDAO {
-    
+
+    public void inserir(Usuario a);
+
+    public void editar(Usuario a);
+
+    public void remover(Usuario a);
+
+    public Usuario pesquisar(int id);
+
+    public List<Usuario> listar();
+
 }

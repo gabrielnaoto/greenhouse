@@ -5,10 +5,39 @@
  */
 package br.udesc.modelo.dao.jpa;
 
+import br.udesc.modelo.dao.core.RegistroDAO;
+import br.udesc.modelo.entidade.Registro;
+import java.util.List;
+
 /**
  *
  * @author ignoi
  */
-public class JPARegistroDAO {
-    
+public class JPARegistroDAO implements RegistroDAO {
+
+    @Override
+    public void inserir(Registro a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editar(Registro a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remover(Registro a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Registro pesquisar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Registro> listar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

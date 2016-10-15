@@ -2,8 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
@@ -17,6 +17,8 @@
         <link href="css/templatemo-style.css" rel="stylesheet"></link>
     </h:head>
     <h:body>
+
+
         <div class="templatemo-flex-row">
             <div class="templatemo-sidebar">
                 <header class="templatemo-site-header">
@@ -33,7 +35,7 @@
                         <li><a href="oficinas.jsf" ><i class="fa fa-wrench fa-fw"></i>Gerenciar Oficinas</a></li>
                         <li><a href="pagina.jsf" ><i class="fa fa-pencil fa-fw"></i>Gerenciar Página Incial</a></li>
                         <li><a href="atividades.jsf" ><i class="fa fa-calendar-o fa-fw"></i>Registro de Atividades</a></li>
-                        --><li><a href="../index.jsf"><i class="fa fa-eject fa-fw"></i>Sair</a></li>
+                        <li><a href="../index.jsf"><i class="fa fa-eject fa-fw"></i>Sair</a></li>
                     </ul>  
                 </nav>
             </div>
@@ -54,41 +56,88 @@
                     <div class="templatemo-content-widget white-bg">
                         <h2 class="margin-bottom-10">Gerenciar Usuários</h2>
                         <hr/>
-                        <h:form>
-                            <p:dataTable var="car" value="#{dtBasicView.cars}">
-
-                                <p:column headerText="Matrícula">
-                                    <h:outputText value="#{car.color}" />
+                        <h:form id="form">
+                            <h:panelGrid columns="3" styleClass="margin-bottom-10" >
+                                <p:commandButton id="inserir" value="Inserir"  icon="ui-icon-plus" type="button" onclick="PF('dlg1').show()" />
+                                <p:commandButton id="editar" value="Editar" type="button" icon="ui-icon-pencil" onclick="PF('dlg2').show()"/>
+                                <p:commandButton id="remover"  value="Remover" icon="ui-icon-closethick" actionListener="#{usuarioBean.remover}" update="form"/>
+                            </h:panelGrid>
+                            <p:growl id="usuariosGrowl" showDetail="true" life="2000"  />  
+                            <p:dataTable widgetVar="tabela" var="user" value="#{usuarioBean.usuarios}" emptyMessage="Não há nada para mostrar" selectionMode="single" selection="#{usuarioBean.selecionado}" rowKey="#{user.usuarioid}" filteredValue="#{usuarioBean.filtrados}">
+                                <p:ajax event="rowSelect" listener="#{usuarioBean.onRowSelect}" update="form:usuariosGrowl, dlg2Form" />
+                                <p:ajax event="rowUnselect" listener="#{usuarioBean.onRowUnselect}" update="form:usuariosGrowl, dlg2Form" />
+                                <f:facet name="header">
+                                    <p:outputPanel style="text-align: left !important">
+                                        <h:outputText value="Pesquisar:" styleClass="margin-right-15"/>
+                                        <p:inputText id="globalFilter" onkeyup="PF('tabela').filter()" style="width:200px; "  placeholder="Insira uma palavra-chave"/>
+                                    </p:outputPanel>
+                                </f:facet>
+                                <p:column headerText="Nome" filterMatchMode="contains" filterBy="#{user.nome}" filterStyle="display:none" >
+                                    <h:outputText value="#{user.nome}" />
                                 </p:column>
-                                <p:column headerText="Nome">
-                                    <h:outputText value="#{car.id}" />
+                                <p:column headerText="CPF" filterMatchMode="contains" filterBy="#{user.cpf}" filterStyle="display:none" >
+                                    <h:outputText value="#{user.cpf}"/>
                                 </p:column>
-
-                                <p:column headerText="Email">
-                                    <h:outputText value="#{car.year}" />
+                                <p:column headerText="Email" filterMatchMode="contains" filterBy="#{user.email}" filterStyle="display:none" >
+                                    <h:outputText value="#{user.email}" />
                                 </p:column>
-
-                                <p:column headerText="Celular">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-
-
-                            </p:dataTable>
-                            <p:button value="Inserir" icon="ui-icon-plus"/>
-                            <p:button value="Editar" icon="ui-icon-pencil"/>
-                            <p:button value="Remover" icon="ui-icon-closethick"/>
+                            </p:dataTable> 
                         </h:form>
-                    </div>
+                        <p:dialog header="Inserir Usuário" widgetVar="dlg1" modal="true" resizable="false">
+                            <h:form id="dlg1Form">
+                                <p:growl id="dlg1Growl" showDetail="true" life="2000"  />  
+                                <h:panelGrid columns="2" styleClass="margin-10">
+                                    <p:outputLabel value="Nome:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{usuarioBean.novo.nome}"/>
+
+                                    <p:outputLabel value="CPF:" styleClass="margin-bottom-10 margin-right-15" />
+                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{usuarioBean.novo.cpf}"/>
+
+                                    <p:outputLabel value="E-mail:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{usuarioBean.novo.email}"/>
+
+                                    <p:outputLabel value="Senha:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{usuarioBean.novo.senha}"/>
+                                </h:panelGrid>
+
+                                <p:commandButton id="salvar" value="Salvar"  icon="ui-icon-disk" actionListener="#{usuarioBean.inserir}" update="dlg1Growl, form" oncomplete="PF('dlg1').hide()"/>
+                            </h:form>
+                        </p:dialog> 
+                        <p:dialog header="Editar Usuário" widgetVar="dlg2" modal="true" resizable="false">
+                            <h:form id="dlg2Form">
+                                <p:growl id="dlg2Growl" showDetail="true" life="2000"  />  
+                                <h:panelGrid columns="2" styleClass="margin-10">
+                                    <p:outputLabel value="Nome:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{usuarioBean.selecionado.nome}"/>
+
+                                    <p:outputLabel value="CPF:" styleClass="margin-bottom-10 margin-right-15" />
+                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{usuarioBean.selecionado.cpf}"/>
+
+                                    <p:outputLabel value="E-mail:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{usuarioBean.selecionado.email}"/>
+
+                                    <p:outputLabel value="Senha:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{usuarioBean.selecionado.senha}"/>
+                                </h:panelGrid>
+                                <p:commandButton id="salvara" value="Salvar Alterações" icon="ui-icon-disk" actionListener="#{usuarioBean.editar}" update="dlg2Growl, form" oncomplete="PF('dlg2').hide()"/>
+                            </h:form>
+                        </p:dialog> 
+                    </div>  
                     <footer class="text-right">
                         <p>Copyright &copy; 2016 Green House - UDESC</p>
                     </footer>         
                 </div>
             </div>
         </div>
-        <script src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
-        <script src="js/jquery-migrate-1.2.1.min.js"></script> <!--  jQuery Migrate Plugin -->
-        <script src="https://www.google.com/jsapi"></script> <!-- Google Chart -->
-        <script type="text/javascript" src="js/templatemo-script.js"></script>  
+
+
+
+
+        <!-- <script src="js/jquery-1.11.2.min.js"></script>       jQuery 
+                <script src="js/jquery-migrate-1.2.1.min.js"></script>   jQuery Migrate Plugin 
+                <script src="https://www.google.com/jsapi"></script>  Google Chart 
+                <script type="text/javascript" src="js/templatemo-script.js"></script>  -->
+
     </h:body>
 </html>
 

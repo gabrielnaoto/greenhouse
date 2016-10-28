@@ -25,18 +25,18 @@ public class Noticia implements Serializable {
     @Id
     @GeneratedValue
     @Column
-    private int noticiaid;
+    private long noticiaid;
 
     @Column
     private String foto;
 
-    @Column
+    @Column(nullable = false)
     private String titulo;
 
     @Column
     private boolean fixada;
 
-    @Column
+    @Column(nullable = false)
     private String descricao;
 
     @Column
@@ -46,7 +46,7 @@ public class Noticia implements Serializable {
     public Noticia() {
     }
 
-    public Noticia(int noticiaid, String foto, String titulo, boolean fixada, String descricao, Date data) {
+    public Noticia(long noticiaid, String foto, String titulo, boolean fixada, String descricao, Date data) {
         this.noticiaid = noticiaid;
         this.foto = foto;
         this.titulo = titulo;
@@ -55,11 +55,11 @@ public class Noticia implements Serializable {
         this.data = data;
     }
 
-    public int getNoticiaid() {
+    public long getNoticiaid() {
         return noticiaid;
     }
 
-    public void setNoticiaid(int noticiaid) {
+    public void setNoticiaid(long noticiaid) {
         this.noticiaid = noticiaid;
     }
 

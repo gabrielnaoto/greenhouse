@@ -5,6 +5,7 @@
  */
 package br.udesc.greenhouse.modelo.entidade;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,46 +18,46 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "periodos")
-public class Periodo {
+public class Periodo implements Serializable {
 
     @Id
     @GeneratedValue
     @Column
-    private int periodoid;
+    private long periodoid;
 
-    @Column
-    private Dia semana;
+    @Column(nullable = false)
+    private String diaDaSemana;
 
-    @Column
+    @Column(nullable = false)
     private String horaInicio;
 
-    @Column
+    @Column(nullable = false)
     private String horaFim;
 
     public Periodo() {
     }
 
-    public Periodo(int periodoid, Dia semana, String horaInicio, String horaFim) {
+    public Periodo(long periodoid, String diaDaSemana, String horaInicio, String horaFim) {
         this.periodoid = periodoid;
-        this.semana = semana;
+        this.diaDaSemana = diaDaSemana;
         this.horaInicio = horaInicio;
         this.horaFim = horaFim;
     }
 
-    public int getPeriodoid() {
+    public long getPeriodoid() {
         return periodoid;
     }
 
-    public void setPeriodoid(int periodoid) {
+    public void setPeriodoid(long periodoid) {
         this.periodoid = periodoid;
     }
 
-    public Dia getSemana() {
-        return semana;
+    public String getDiaDaSemana() {
+        return diaDaSemana;
     }
 
-    public void setSemana(Dia semana) {
-        this.semana = semana;
+    public void setDiaDaSemana(String diaDaSemana) {
+        this.diaDaSemana = diaDaSemana;
     }
 
     public String getHoraInicio() {

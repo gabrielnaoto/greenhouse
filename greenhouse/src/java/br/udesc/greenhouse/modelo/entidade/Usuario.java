@@ -13,7 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,30 +27,30 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column
-    private int usuarioid;
+    @Column(name = "usuarioid")
+    private long usuarioid;
 
-    @Column
+    @Column(nullable = false)
     private String nome;
 
-    @Column
+    @Column(nullable = false)
     private String senha;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String cpf;
 
     @Column
     private boolean administrador;
 
+    @ManyToMany
     @JoinColumn
-    @OneToMany
     private List<Periodo> periodos;
 
-    @JoinColumn
-    @OneToMany
+    @ManyToMany
+    @JoinTable(name = "usuario_oficina", joinColumns = @JoinColumn(name = "usuarioid"), inverseJoinColumns = @JoinColumn(name = "oficinaid"))
     private List<Oficina> oficinas;
 
     public Usuario() {
@@ -57,11 +58,11 @@ public class Usuario implements Serializable {
         oficinas = new ArrayList<>();
     }
 
-    public int getUsuarioid() {
+    public long getUsuarioid() {
         return usuarioid;
     }
 
-    public void setUsuarioid(int usuarioid) {
+    public void setUsuarioid(long usuarioid) {
         this.usuarioid = usuarioid;
     }
 
@@ -121,9 +122,6 @@ public class Usuario implements Serializable {
         this.oficinas = oficinas;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "usuarioid=" + usuarioid + ", nome=" + nome + ", senha=" + senha + ", email=" + email + ", cpf=" + cpf + ", administrador=" + administrador + ", periodos=" + periodos + ", oficinas=" + oficinas + '}';
-    }
+   
 
 }

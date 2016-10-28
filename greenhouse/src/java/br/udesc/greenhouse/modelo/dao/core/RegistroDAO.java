@@ -18,9 +18,9 @@ public interface RegistroDAO {
 
     public void editar(Registro a);
 
-    public void remover(int id);
+    public void remover(long id);
 
-    public Registro pesquisar(int id);
+    public Registro pesquisar(long id);
 
     public List<Registro> listar();
     

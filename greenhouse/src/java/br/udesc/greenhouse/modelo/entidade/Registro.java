@@ -5,15 +5,16 @@
  */
 package br.udesc.greenhouse.modelo.entidade;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -21,60 +22,37 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "registros")
-public class Registro {
+public class Registro implements Serializable {
 
     @Id
     @GeneratedValue
     @Column
-    private int registroid;
+    private long registroid;
 
-    @Column
-    private String dia;
+    @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date data;
 
-    @Column
-    private String mes;
-
-    @Column
+    @Column(nullable = false)
     private String descricao;
 
-    @Column
-    private int ano;
-
+    @ManyToOne
     @JoinColumn
-    @OneToMany
-    private List<Usuario> usuarios;
+    private Usuario usuario;
 
+    @ManyToOne
     @JoinColumn
-    @OneToMany
-    private List<Oficina> oficinas;
+    private Oficina oficina;
 
     public Registro() {
-        usuarios = new ArrayList<>();
-        oficinas = new ArrayList<>();
     }
 
-    public int getRegistroid() {
+    public long getRegistroid() {
         return registroid;
     }
 
-    public void setRegistroid(int registroid) {
+    public void setRegistroid(long registroid) {
         this.registroid = registroid;
-    }
-
-    public String getDia() {
-        return dia;
-    }
-
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
-
-    public String getMes() {
-        return mes;
-    }
-
-    public void setMes(String mes) {
-        this.mes = mes;
     }
 
     public String getDescricao() {
@@ -85,30 +63,28 @@ public class Registro {
         this.descricao = descricao;
     }
 
-    public int getAno() {
-        return ano;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
+    public Oficina getOficina() {
+        return oficina;
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setOficina(Oficina oficina) {
+        this.oficina = oficina;
     }
 
-    public List<Oficina> getOficinas() {
-        return oficinas;
+    public Date getData() {
+        return data;
     }
 
-    public void setOficinas(List<Oficina> oficinas) {
-        this.oficinas = oficinas;
+    public void setData(Date data) {
+        this.data = data;
     }
-    
-    
 
 }

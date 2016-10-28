@@ -18,9 +18,9 @@ public interface NoticiaDAO {
 
     public void editar(Noticia a);
 
-    public void remover(int id);
+    public void remover(long id);
 
-    public Noticia pesquisar(int id);
+    public Noticia pesquisar(long id);
 
     public List<Noticia> listar();
     

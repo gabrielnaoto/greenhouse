@@ -18,9 +18,9 @@ public interface PeriodoDAO {
 
     public void editar(Periodo a);
 
-    public void remover(int id);
+    public void remover(long id);
 
-    public Periodo pesquisar(int id);
+    public Periodo pesquisar(long id);
 
     public List<Periodo> listar();
     

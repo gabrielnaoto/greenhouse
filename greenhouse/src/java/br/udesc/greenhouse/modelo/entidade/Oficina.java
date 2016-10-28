@@ -5,6 +5,7 @@
  */
 package br.udesc.greenhouse.modelo.entidade;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -12,7 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,20 +22,20 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "oficinas")
-public class Oficina {
+public class Oficina implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column
-    private int oficinaid;
+    @Column(name = "oficinaid")
+    private long oficinaid;
 
-    @Column
-    private int capacidade;
+    @Column(nullable = false)
+    private long capacidade;
 
-    @Column
+    @Column(nullable = false)
     private String nome;
 
-    @Column
+    @Column(nullable = false)
     private String descricao;
 
     @Column
@@ -46,12 +47,12 @@ public class Oficina {
     @Column
     private List<String> videos;
 
+    @ManyToMany
     @JoinColumn
-    @OneToMany
     private List<Periodo> periodos;
 
+    @ManyToMany(mappedBy = "oficinas")
     @JoinColumn
-    @OneToMany
     private List<Usuario> usuarios;
 
     public Oficina() {
@@ -62,19 +63,19 @@ public class Oficina {
 
     }
 
-    public int getOficinaid() {
+    public long getOficinaid() {
         return oficinaid;
     }
 
-    public void setOficinaid(int oficinaid) {
+    public void setOficinaid(long oficinaid) {
         this.oficinaid = oficinaid;
     }
 
-    public int getCapacidade() {
+    public long getCapacidade() {
         return capacidade;
     }
 
-    public void setCapacidade(int capacidade) {
+    public void setCapacidade(long capacidade) {
         this.capacidade = capacidade;
     }
 

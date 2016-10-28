@@ -18,9 +18,9 @@ public interface UsuarioDAO {
 
     public void editar(Usuario a);
 
-    public void remover(int id);
+    public void remover(long id);
 
-    public Usuario pesquisar(int id);
+    public Usuario pesquisar(long id);
 
     public List<Usuario> listar();
 

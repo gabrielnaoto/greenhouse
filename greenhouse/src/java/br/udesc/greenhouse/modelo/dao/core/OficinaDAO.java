@@ -18,9 +18,9 @@ public interface OficinaDAO {
 
     public void editar(Oficina a);
 
-    public void remover(int id);
+    public void remover(long id);
 
-    public Oficina pesquisar(int id);
+    public Oficina pesquisar(long id);
 
     public List<Oficina> listar();
     

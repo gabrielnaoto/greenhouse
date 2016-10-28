@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
@@ -44,6 +45,7 @@ public class UsuarioBean implements Serializable {
         System.out.println("inseri aqui");
         if (gerenciador.inserir(novo)) {
             novo = new Usuario();
+            RequestContext.getCurrentInstance().execute("PF('dlg1').hide();");
             notificar("Sucesso", "Usuário inserido com sucesso!");
         } else {
             notificar("Falha", "Erro ao inserir usuário!");
@@ -52,22 +54,32 @@ public class UsuarioBean implements Serializable {
     }
 
     public void editar(ActionEvent actionEvent) {
-        System.out.println("editei aqui");
-        if (gerenciador.editar(selecionado)) {
-            notificar("Sucesso", "Usuário editado com sucesso!");
+        if (selecionado != null) {
+            System.out.println("editei aqui");
+            if (gerenciador.editar(selecionado)) {
+                RequestContext.getCurrentInstance().execute("PF('dlg2').hide();");
+                notificar("Sucesso", "Usuário editado com sucesso!");
+            } else {
+                notificar("Falha", "Erro ao editar usuário!");
+            }
+            listar();
+            selecionado = null;
         } else {
-            notificar("Falha", "Erro ao editar usuário!");
+            notificar("Falha", "É necessário selecionar um usuário para editar.");
         }
-        listar();
     }
 
     public void remover(ActionEvent actionEvent) {
-        if (gerenciador.remover(selecionado.getUsuarioid())) {
-            notificar("Sucesso", "Usuário removido com sucesso!");
+        if (selecionado == null) {
+            notificar("Falha", "É necessário selecionar um usuário antes de excluir.");
         } else {
-            notificar("Falha", "Erro ao remover usuário!");
+            if (gerenciador.remover(selecionado.getUsuarioid())) {
+                notificar("Sucesso", "Usuário removido com sucesso!");
+            } else {
+                notificar("Falha", "Erro ao remover usuário!");
+            }
+            listar();
         }
-        listar();
     }
 
     public void listar() {

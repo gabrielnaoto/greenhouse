@@ -43,7 +43,7 @@ public class GerenciarUsuariosUC {
 
     }
 
-    public boolean remover(int id) {
+    public boolean remover(long id) {
         try {
             usuarioDAO.remover(id);
             return true;
@@ -52,7 +52,7 @@ public class GerenciarUsuariosUC {
         }
     }
 
-    public Usuario pesquisar(int id) {
+    public Usuario pesquisar(long id) {
         return usuarioDAO.pesquisar(id);
     }
 

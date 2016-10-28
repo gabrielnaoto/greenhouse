@@ -57,7 +57,7 @@ public class JPAUsuarioDAO implements UsuarioDAO {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = a.getUsuarioid();
+                long id = a.getUsuarioid();
                 if (pesquisar(id) == null) {
                     System.out.println("The noticia with id " + id + " no longer exists.");
                 }
@@ -71,7 +71,7 @@ public class JPAUsuarioDAO implements UsuarioDAO {
     }
 
     @Override
-    public void remover(int id) {
+    public void remover(long id) {
          EntityManager em = null;
         try {
             em = getEntityManager();
@@ -93,7 +93,7 @@ public class JPAUsuarioDAO implements UsuarioDAO {
     }
 
     @Override
-    public Usuario pesquisar(int id) {
+    public Usuario pesquisar(long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Usuario.class, id);

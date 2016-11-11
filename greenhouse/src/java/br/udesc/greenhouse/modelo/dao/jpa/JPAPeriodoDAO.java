@@ -33,7 +33,7 @@ public class JPAPeriodoDAO implements PeriodoDAO {
 
     @Override
     public void inserir(Periodo a) {
-        EntityManager em = null;
+         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -72,7 +72,7 @@ public class JPAPeriodoDAO implements PeriodoDAO {
 
     @Override
     public void remover(long id) {
-        EntityManager em = null;
+         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();

@@ -6,6 +6,7 @@
 package br.udesc.greenhouse.modelo.entidade;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,13 +31,13 @@ public class Noticia implements Serializable {
     @Column
     private String foto;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String titulo;
 
     @Column
     private boolean fixada;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10000)
     private String descricao;
 
     @Column
@@ -44,6 +45,7 @@ public class Noticia implements Serializable {
     private Date data;
 
     public Noticia() {
+        data = Calendar.getInstance().getTime();
     }
 
     public Noticia(long noticiaid, String foto, String titulo, boolean fixada, String descricao, Date data) {

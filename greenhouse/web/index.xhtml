@@ -90,15 +90,19 @@
 
 
 
-                            <!--                                                        <div class='cd-timeline-block'>
-                                                                                        <div class='cd-timeline-img cd-picture'>
-                                                                                            <img src='images/first-icon.png' alt='Picture'></img>
-                                                                                        </div>
-                                                                                        <div class='cd-timeline-content service-box-content'>
-                                                                                            <h2>title</h2>
-                                                                                            <p>content</p>
-                                                                                        </div>
-                                                                                    </div>-->
+<!--                            <div class='cd-timeline-block'>
+                                <div class='cd-timeline-img cd-picture'>
+                                    <img src='images/first-icon.png' alt='Picture'></img>
+                                </div>
+                                <div class='cd-timeline-content service-box-content'>
+                                    <h2>Udesc Ibirama apresenta projeto de extensão sobre estudos ambientais para comunidade nesta terça</h2>
+                                    <p>25/06/2016</p>
+                                    <p>As ações do projeto de extensão Green House - Laboratório de Estudos Ambientais, do Centro de Educação Superior do Alto Vale do Itajaí (Ceavi), da Universidade do Estado de Santa Catarina (Udesc), serão apresentadas à comunidade acadêmica e externa nesta terça-feira, 14, a partir das 16h30, na casa de enxaimel localizada na sede da unidade, em Ibirama.
+foto
+
+</p>
+                                </div>
+                            </div>-->
 
 
                             <!--                            <div class="cd-timeline-block">
@@ -395,12 +399,10 @@
             var json = #{indexBean.jsonList};
 
             $.each(json, function (idx, obj) {
-                inserir(obj.nome, obj.email);
+                inserir(obj.titulo, obj.data, obj.descricao);
             });
-          
-                
-           
-            function inserir(titulo, conteudo) {
+                    
+            function inserir(titulo, data, conteudo) {
                 var div = $("#cd-timeline");
                 var block = document.createElement("div");
                 var img = document.createElement("div");
@@ -414,6 +416,7 @@
                 $(block).append(img);
                 $(text).addClass("cd-timeline-content service-box-content");
                 $(text).append("<h2>" + titulo + "</h2>");
+                $(text).append("<p>" + data + "</p>");
                 $(text).append("<p>" + conteudo + "</p>");
                 $(block).append(text);
                 $(div).append(block);

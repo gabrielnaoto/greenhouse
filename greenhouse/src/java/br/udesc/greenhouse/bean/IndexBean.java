@@ -5,8 +5,8 @@
  */
 package br.udesc.greenhouse.bean;
 
-import br.udesc.greenhouse.modelo.entidade.Usuario;
-import br.udesc.greenhouse.uc.GerenciarUsuariosUC;
+import br.udesc.greenhouse.modelo.entidade.Noticia;
+import br.udesc.greenhouse.uc.GerenciarNoticiasUC;
 import com.google.gson.Gson;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -21,22 +21,22 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class IndexBean {
 
-    private List<Usuario> usuarios;
-    private GerenciarUsuariosUC gerenciador;
+    private List<Noticia> usuarios;
+    private GerenciarNoticiasUC gerenciador;
     private Gson g;
 
     @PostConstruct
     public void init() {
         g = new Gson();
-        gerenciador = new GerenciarUsuariosUC();
+        gerenciador = new GerenciarNoticiasUC();
         usuarios = gerenciador.listar();
     }
 
-    public List<Usuario> getUsuarios() {
+    public List<Noticia> getNoticias() {
         return usuarios;
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
+    public void setNoticias(List<Noticia> usuarios) {
         this.usuarios = usuarios;
     }
 

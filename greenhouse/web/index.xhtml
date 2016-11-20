@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Green House - Página Inicial</title>
         <meta name="description" content=""></meta>
@@ -90,19 +91,19 @@
 
 
 
-<!--                            <div class='cd-timeline-block'>
-                                <div class='cd-timeline-img cd-picture'>
-                                    <img src='images/first-icon.png' alt='Picture'></img>
-                                </div>
-                                <div class='cd-timeline-content service-box-content'>
-                                    <h2>Udesc Ibirama apresenta projeto de extensão sobre estudos ambientais para comunidade nesta terça</h2>
-                                    <p>25/06/2016</p>
-                                    <p>As ações do projeto de extensão Green House - Laboratório de Estudos Ambientais, do Centro de Educação Superior do Alto Vale do Itajaí (Ceavi), da Universidade do Estado de Santa Catarina (Udesc), serão apresentadas à comunidade acadêmica e externa nesta terça-feira, 14, a partir das 16h30, na casa de enxaimel localizada na sede da unidade, em Ibirama.
-foto
-
-</p>
-                                </div>
-                            </div>-->
+                            <!--                            <div class='cd-timeline-block'>
+                                                            <div class='cd-timeline-img cd-picture'>
+                                                                <img src='images/first-icon.png' alt='Picture'></img>
+                                                            </div>
+                                                            <div class='cd-timeline-content service-box-content'>
+                                                                <h2>Udesc Ibirama apresenta projeto de extensão sobre estudos ambientais para comunidade nesta terça</h2>
+                                                                <p>25/06/2016</p>
+                                                                <p>As ações do projeto de extensão Green House - Laboratório de Estudos Ambientais, do Centro de Educação Superior do Alto Vale do Itajaí (Ceavi), da Universidade do Estado de Santa Catarina (Udesc), serão apresentadas à comunidade acadêmica e externa nesta terça-feira, 14, a partir das 16h30, na casa de enxaimel localizada na sede da unidade, em Ibirama.
+                            foto
+                            
+                            </p>
+                                                            </div>
+                                                        </div>-->
 
 
                             <!--                            <div class="cd-timeline-block">
@@ -301,27 +302,50 @@ foto
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <form class="form">
+                        <h:form class="form">
+                            
                             <div class="row">
                                 <div class="name col-md-4">
-                                    <input type="text" name="name" id="name" placeholder="Nome" />
+                                    <p:message for="name" />
+                                </div>
+                                <div class="name col-md-4">
+                                    <p:message for="email" />
+                                </div>
+                                <div class="name col-md-4">
+                                    <p:message for="subject" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="name col-md-4">
+                                    <p:inputText id="name" placeholder="Nome" value="#{indexBean.nome}" required="true" requiredMessage="Campo Obrigatório." label="Name"/>
+
                                 </div>
                                 <div class="email col-md-4">
-                                    <input type="text" name="email" id="email" placeholder="Email" />
+                                    <p:inputText id="email" placeholder="Email" value="#{indexBean.emailOrigem}" required="true" requiredMessage="Campo Obrigatório." label="Name"/>
+
                                 </div>
                                 <div class="subject col-md-4">
-                                    <input type="text" name="subject" id="subject" placeholder="Assunto" />
+                                    <p:inputText id="subject" placeholder="Assunto" value="#{indexBean.assunto}" required="true" requiredMessage="Campo Obrigatório." label="Name"/>
                                 </div> 
                             </div>
-                            <div class="row">        
+                            <div class="row">     
                                 <div class="text col-md-12">
-                                    <textarea name="text" placeholder="Menssagem"></textarea>
+                                    <p:message for="corpo" />
+                                </div>
+                            </div>                              
+
+                            <div class="row">     
+                                <div class="text col-md-12">
+                                    <p:inputTextarea id="corpo" rows="6" cols="33" value="#{indexBean.corpo}" required="true" requiredMessage="Campo Obrigatório." label="Name"/>
+
                                 </div>   
                             </div>                              
                             <div class="submit">
-                                <input type="submit" value="Enviar" />
+                                <p:commandButton value="Enviar" action="#{indexBean.sendEmail}" ajax="false"/>
+
                             </div>
-                        </form>
+                        </h:form>
                     </div>
                     <div class="col-md-4">
                         <div class="contact-discription">
@@ -401,7 +425,7 @@ foto
             $.each(json, function (idx, obj) {
                 inserir(obj.titulo, obj.data, obj.descricao);
             });
-                    
+
             function inserir(titulo, data, conteudo) {
                 var div = $("#cd-timeline");
                 var block = document.createElement("div");

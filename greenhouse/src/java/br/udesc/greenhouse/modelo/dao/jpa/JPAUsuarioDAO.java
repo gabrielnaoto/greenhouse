@@ -33,7 +33,7 @@ public class JPAUsuarioDAO implements UsuarioDAO {
 
     @Override
     public void inserir(Usuario a) {
-         EntityManager em = null;
+        EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -72,7 +72,7 @@ public class JPAUsuarioDAO implements UsuarioDAO {
 
     @Override
     public void remover(long id) {
-         EntityManager em = null;
+        EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -113,6 +113,17 @@ public class JPAUsuarioDAO implements UsuarioDAO {
         } finally {
             em.close();
         }
+    }
+
+    @Override
+    public Usuario autenticar(String email, String senha) {
+        EntityManager em = getEntityManager();
+        Query consulta = em.createQuery("select u from Usuario u "
+                + "where u.email = :email and u.senha = :senha");
+        consulta.setParameter("email", email);
+        consulta.setParameter("senha", senha);
+        List<Usuario> usuarios = consulta.getResultList();
+        return usuarios.isEmpty() ? null: usuarios.get(0);
     }
 
 }

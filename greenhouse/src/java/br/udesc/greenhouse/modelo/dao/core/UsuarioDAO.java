@@ -24,4 +24,7 @@ public interface UsuarioDAO {
 
     public List<Usuario> listar();
 
+    public Usuario autenticar(String email, String senha);
 }
+
+

@@ -65,15 +65,17 @@ public class IndexBean {
         return (config == null) ? "" : g.toJson(config);
     }
 
-    public void sendEmail() {
+    public String sendEmail() {
         try {
             FormularioMensagemUC fm = new FormularioMensagemUC();
             fm.enviarEmail(assunto, corpo, nome, emailOrigem);
-            saveMessage("Sucesso!", "E-mail enviado com sucesso!");
+            SessionUtil.saveMessage("Sucesso!", "E-mail enviado com sucesso!");
         } catch (Exception e) {
-            saveMessage("Erro ao enviar e-mail", ", Por favor, tente novamente mais tarde.");
+            SessionUtil.saveMessage("Erro ao enviar e-mail", ", Por favor, tente novamente mais tarde.");
+            return null;
         }
         limpar();
+        return "index.jsf#third-section";
     }
 
     public List<Noticia> getUsuarios() {
@@ -132,10 +134,7 @@ public class IndexBean {
         this.emailOrigem = emailOrigem;
     }
 
-    public void saveMessage(String title, String msg) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(title, msg));
-    }
+    
 
     public void limpar() {
         assunto = "";

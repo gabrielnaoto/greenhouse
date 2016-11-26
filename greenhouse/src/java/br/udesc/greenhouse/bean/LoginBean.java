@@ -5,10 +5,66 @@
  */
 package br.udesc.greenhouse.bean;
 
+import br.udesc.greenhouse.modelo.entidade.Usuario;
+import br.udesc.greenhouse.uc.LoginUC;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author ignoi
  */
+@ManagedBean
+@ViewScoped
 public class LoginBean {
-    
+
+    private String usuario;
+    private String senha;
+    private Usuario user;
+    private LoginUC uc;
+
+    @PostConstruct
+    public void init() {
+        uc = new LoginUC();
+        usuario = "";
+        senha = "";
+    }
+
+    public String login() {
+        user = uc.getUser(usuario, senha);
+        if (user != null) {
+            System.out.println(user);
+            SessionUtil.setParam("usuario", user.getCpf());
+            return "index.jsf";
+        } else {
+            SessionUtil.saveMessage("Problemas ao efetuar login", "Confira seus dados e tente novamente!");
+            return null;
+        }
+    }
+
+    public String logout() {
+        SessionUtil.invalidate();
+        return "../index.jsf";
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
 }

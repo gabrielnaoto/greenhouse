@@ -3,9 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Green House - Página Inicial</title>
+        <title>Green House - Início</title>
         <meta name="description" content=""></meta>
         <meta name="author" content=""></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
@@ -42,7 +43,7 @@
                         </div>
                         <div class="collapse navbar-collapse" id="main-menu">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><span></span><a href="#top" class="home">Página Inicial</a></li>
+                                <li><span></span><a href="#top" class="home">Início</a></li>
                                 <li><span></span><a href="#first-section" class="about">Notícias</a></li>
                                 <li><span></span><a href="#second-section" class="portfolio">Oficinas</a></li>
                                 <li><span></span><a href="#map" class="map">Localização</a></li>
@@ -308,19 +309,8 @@
                 <div class="row">
                     <div class="col-md-8">
                         <h:form class="form" >
-                            <p:growl id="growl" showDetail="true" sticky="false" />  
+                            <p:growl id="ig" showDetail="true" sticky="false" />  
 
-                            <div class="row  input">
-                                <div class="col-md-4 input">
-                                    <p:inputText id="name" placeholder="Nome" value="#{indexBean.nome}" required="true" requiredMessage="Campo obrigatório" label="Name" styleClass="borderless"/>
-                                </div>
-                                <div class="col-md-4  input">
-                                    <p:inputText id="email" placeholder="Email" value="#{indexBean.emailOrigem}" required="true" requiredMessage="Campo obrigatório" label="Email" styleClass="borderless"/>
-                                </div>
-                                <div class="col-md-4  input">
-                                    <p:inputText id="subject" placeholder="Assunto" value="#{indexBean.assunto}" required="true" requiredMessage="Campo obrigatório" label="Assunto" styleClass="borderless"/>
-                                </div> 
-                            </div>
                             <div class="row input">
                                 <div class="name col-md-4">
                                     <p:message for="name" />
@@ -332,23 +322,35 @@
                                     <p:message for="subject" />
                                 </div>
                             </div>
-                            <div class="row">     
-                                <div class="text col-md-12">
-                                    <p:inputTextarea id="corpo" rows="6" cols="33" value="#{indexBean.corpo}" required="true" requiredMessage="Campo obrigatório" label="Name" styleClass="borderless"/>
-
-                                </div>   
-                            </div>    
+                            <div class="row  input">
+                                <div class="col-md-4 input">
+                                    <h:inputText id="name" a:placeholder="Nome" value="#{indexBean.nome}" required="true" requiredMessage="Campo obrigatório" label="Name" styleClass="borderless"/>
+                                </div>
+                                <div class="col-md-4  input">
+                                    <h:inputText id="email" a:placeholder="E-mail" value="#{indexBean.emailOrigem}" required="true" requiredMessage="Campo obrigatório" label="Email" styleClass="borderless"/>
+                                </div>
+                                <div class="col-md-4  input">
+                                    <h:inputText id="subject" a:placeholder="Assunto" value="#{indexBean.assunto}" required="true" requiredMessage="Campo obrigatório" label="Assunto" styleClass="borderless"/>
+                                </div> 
+                            </div>
                             <div class="row">     
                                 <div class="text col-md-12">
                                     <p:message for="corpo" />
                                 </div>
                             </div>  
+                            <div class="row">     
+                                <div class="text col-md-12">
+                                    <h:inputTextarea id="corpo" rows="6" cols="33" value="#{indexBean.corpo}" required="true" requiredMessage="Campo obrigatório" label="Name" styleClass="borderless"/>
+
+                                </div>   
+                            </div>    
+
                             <div class="submit">
                                 <!--<input type="submit" value="Enviar" onclick="# {indexBean.sendEmail()}"/>-->
-                                <f:ajax render="form" execute="firn">
-                                    <h:commandButton value="Enviar" action="#{indexBean.sendEmail()}" type="submit"> </h:commandButton>
 
-                                </f:ajax>
+                                <h:commandButton value="Enviar" action="#{indexBean.sendEmail()}" type="submit"> </h:commandButton>
+
+
                             </div>
                         </h:form>
                     </div>

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Green House - Página Inicial</title>
         <meta name="description" content=""></meta>
@@ -14,13 +15,17 @@
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"></link>
         <link rel="stylesheet" type="text/css" href="css/templatemo-style.css"></link>
 
+
+
         <!-- JavaScripts -->
+        <script src="javax.faces/jsf.js"></script>
         <script src="js/vendor/jquery-1.10.2.min.js"></script>
         <script src="js/vendor/modernizr.min.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM">
         </script>
     </h:head>
     <h:body>
+
         <header class="site-header" id="top">
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
@@ -39,7 +44,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li><span></span><a href="#top" class="home">Página Inicial</a></li>
                                 <li><span></span><a href="#first-section" class="about">Notícias</a></li>
-                                <li><span></span><a href="#second-section" class="portfolio">Projetos</a></li>
+                                <li><span></span><a href="#second-section" class="portfolio">Oficinas</a></li>
                                 <li><span></span><a href="#map" class="map">Localização</a></li>
                                 <li><span></span><a href="#third-section" class="contact">Contato</a></li>
                                 <li><span></span><a href="admin/login.jsf" class="home">Entrar</a></li>
@@ -56,9 +61,9 @@
                 <div class="row">
                     <div class="col-md-12 col-xs-12">
                         <ul class="main-icons">
-                            <li><a href="#"><i class="fa fa-university"></i>A UNIVERSIDADE</a></li>
-                            <li><a href="#"><i class="fa fa-bullseye"></i>OS OBJETIVOS DO PROJETO</a></li>
-                            <li><a href="#"><i class="fa fa-tasks"></i>AS DESCRIÇÕES DAS AÇÕES</a></li>
+                            <li><a href="http://udesc.br/"><i class="fa fa-university"></i>A UNIVERSIDADE</a></li>
+                            <li><a href="http://ceavi.udesc.br/"><i class="fa fa-cubes"></i>CENTRO DE EDUCAÇÃO DO ALTO VALE DO ITAJAÍ</a></li>
+                            <li><a href="http://www.ceavi.udesc.br/?id=1009"><i class="fa fa-bullseye"></i>O PROJETO</a></li>
                         </ul>
                     </div>
                 </div>
@@ -164,7 +169,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4>Projetos</h4>
+                        <h4>Oficinas</h4>
                         <p>O que fazemos</p>
                     </div>   
                 </div>
@@ -302,9 +307,21 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <h:form class="form">
-                            
-                            <div class="row">
+                        <h:form class="form" >
+                            <p:growl id="growl" showDetail="true" sticky="false" />  
+
+                            <div class="row  input">
+                                <div class="col-md-4 input">
+                                    <p:inputText id="name" placeholder="Nome" value="#{indexBean.nome}" required="true" requiredMessage="Campo obrigatório" label="Name" styleClass="borderless"/>
+                                </div>
+                                <div class="col-md-4  input">
+                                    <p:inputText id="email" placeholder="Email" value="#{indexBean.emailOrigem}" required="true" requiredMessage="Campo obrigatório" label="Email" styleClass="borderless"/>
+                                </div>
+                                <div class="col-md-4  input">
+                                    <p:inputText id="subject" placeholder="Assunto" value="#{indexBean.assunto}" required="true" requiredMessage="Campo obrigatório" label="Assunto" styleClass="borderless"/>
+                                </div> 
+                            </div>
+                            <div class="row input">
                                 <div class="name col-md-4">
                                     <p:message for="name" />
                                 </div>
@@ -315,51 +332,37 @@
                                     <p:message for="subject" />
                                 </div>
                             </div>
+                            <div class="row">     
+                                <div class="text col-md-12">
+                                    <p:inputTextarea id="corpo" rows="6" cols="33" value="#{indexBean.corpo}" required="true" requiredMessage="Campo obrigatório" label="Name" styleClass="borderless"/>
 
-                            <div class="row">
-                                <div class="name col-md-4">
-                                    <p:inputText id="name" placeholder="Nome" value="#{indexBean.nome}" required="true" requiredMessage="Campo Obrigatório." label="Name"/>
-
-                                </div>
-                                <div class="email col-md-4">
-                                    <p:inputText id="email" placeholder="Email" value="#{indexBean.emailOrigem}" required="true" requiredMessage="Campo Obrigatório." label="Name"/>
-
-                                </div>
-                                <div class="subject col-md-4">
-                                    <p:inputText id="subject" placeholder="Assunto" value="#{indexBean.assunto}" required="true" requiredMessage="Campo Obrigatório." label="Name"/>
-                                </div> 
-                            </div>
+                                </div>   
+                            </div>    
                             <div class="row">     
                                 <div class="text col-md-12">
                                     <p:message for="corpo" />
                                 </div>
-                            </div>                              
-
-                            <div class="row">     
-                                <div class="text col-md-12">
-                                    <p:inputTextarea id="corpo" rows="6" cols="33" value="#{indexBean.corpo}" required="true" requiredMessage="Campo Obrigatório." label="Name"/>
-
-                                </div>   
-                            </div>                              
+                            </div>  
                             <div class="submit">
-                                <p:commandButton value="Enviar" action="#{indexBean.sendEmail}" ajax="false"/>
+                                <!--<input type="submit" value="Enviar" onclick="# {indexBean.sendEmail()}"/>-->
+                                <f:ajax render="form" execute="firn">
+                                    <h:commandButton value="Enviar" action="#{indexBean.sendEmail()}" type="submit"> </h:commandButton>
 
+                                </f:ajax>
                             </div>
                         </h:form>
                     </div>
                     <div class="col-md-4">
                         <div class="contact-discription">
                             <h4>Mais sobre nós</h4>
-                            <p>Suspendisse sit amet tincidunt dolor, at elementum augue. In non diam nulla. Nulla sit amet ipsum finibus purus tempor pellentesque.
-                                <br/><br/>
-                                <strong>Mailing Address:</strong><br/>
-                                No 123, New street, Sed sit amet arcu ut quam, 10550.
-                                <br/><br/>
-                                Tel: 010 020 0340<br/>
-                                Email: info@company.com
-                                <br/><br/>
-                                Morbi tincidunt nibh ante, ut lacinia turpis euismod vel. Nam suscipit justo sit amet vehicula elementum.
-                            </p>
+                            <div id="texto">
+
+                            </div>
+                            <p><strong>Endereço:</strong><br/></p>
+                            <div id="endereco">
+                            </div>
+                            <br/><br/>
+
                         </div>
                     </div>
                 </div>
@@ -374,7 +377,7 @@
                         <div class="col-md-12">
                             <div class="col-md-4">
                                 <div class="copyright-text">
-                                    <p>Copyright &copy; 2016 <a href="#">Green House | CEAVI - UDESC</a></p>
+                                    <p>Copyright &copy; 2016 Green House | CEAVI - UDESC</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -386,9 +389,9 @@
                                 <div class="social-icons">
                                     <ul>
                                         <li><a href="#" class="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" class="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" class="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#" class="#"><i class="fa fa-rss"></i></a></li>
+                                        <!--                                        <li><a href="#" class="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                <li><a href="#" class="#"><i class="fa fa-linkedin"></i></a></li>
+                                                                                <li><a href="#" class="#"><i class="fa fa-rss"></i></a></li>-->
                                     </ul>
                                 </div>
                             </div>
@@ -401,12 +404,11 @@
 
         <!-- Javascripts -->
         <script>
-            function initialize()
-            {
+            function initialize() {
                 var mapProp = {
                     center: new google.maps.LatLng(40.7828839, -73.9652425),
                     zoom: 15,
-                    scrollwheel: false,
+                    scrollwheel: true,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
                 var map = new google.maps.Map(document.getElementById("templatemo-map")
@@ -419,7 +421,7 @@
                 map.setCenter(center);
             });
         </script>
-        <script>
+        <script >
             var json = #{indexBean.jsonList};
 
             $.each(json, function (idx, obj) {
@@ -444,6 +446,21 @@
                 $(text).append("<p>" + conteudo + "</p>");
                 $(block).append(text);
                 $(div).append(block);
+            }
+        </script>
+        <script >
+            var conf = #{indexBean.jsonConfig};
+
+            inserir(conf.sobre, conf.endereco);
+
+            function inserir(sobre, endereco) {
+                var div = $("#texto");
+                $(div).append("<p>" + sobre + "</p>");
+
+
+                var end = $("#endereco");
+                $(end).append("<p>" + endereco + "</p>");
+
             }
         </script>
         <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>

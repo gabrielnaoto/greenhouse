@@ -5,6 +5,7 @@
  */
 package br.udesc.greenhouse.modelo.dao.jpa;
 
+import br.udesc.greenhouse.modelo.dao.core.ConfiguracaoDAO;
 import br.udesc.greenhouse.modelo.dao.core.FactoryDAO;
 import br.udesc.greenhouse.modelo.dao.core.NoticiaDAO;
 import br.udesc.greenhouse.modelo.dao.core.OficinaDAO;
@@ -41,6 +42,11 @@ public class JPAFactoryDAO extends FactoryDAO {
     @Override
     public UsuarioDAO getUsuarioDAO() {
         return new JPAUsuarioDAO();
+    }
+
+    @Override
+    public ConfiguracaoDAO getConfiguracaoDAO() {
+        return new JPAConfiguracaoDAO();
     }
 
 }

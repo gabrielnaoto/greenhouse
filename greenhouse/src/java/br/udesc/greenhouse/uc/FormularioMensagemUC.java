@@ -1,10 +1,14 @@
 /*
-UC007 Formulários de mensagem da página inicialo.
-https://www.google.com/settings/u/1/security/lesssecureapps
-Para este formulario funcionar deve ser acessado o link acima para ativar as lesssecureapps;
+ UC007 Formulários de mensagem da página inicialo.
+ https://www.google.com/settings/u/1/security/lesssecureapps
+ Para este formulario funcionar deve ser acessado o link acima para ativar as lesssecureapps;
  */
 package br.udesc.greenhouse.uc;
 
+import br.udesc.greenhouse.modelo.dao.core.ConfiguracaoDAO;
+import br.udesc.greenhouse.modelo.dao.core.FactoryDAO;
+import br.udesc.greenhouse.modelo.entidade.Configuracao;
+import com.sun.faces.config.WebConfiguration;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -19,8 +23,17 @@ import javax.mail.internet.MimeMessage;
  * @author sila
  */
 public class FormularioMensagemUC {
+    
+    private Configuracao configuracao;
+    private ConfiguracaoDAO cdao;
 
-    public void enviarEmail(String assunto, String corpo, String nome,String emailOrigem) {
+    public FormularioMensagemUC() {
+        cdao = FactoryDAO.getFactoryDAO().getConfiguracaoDAO();
+        configuracao = cdao.listar().get(0);
+    }
+    
+
+    public void enviarEmail(String assunto, String corpo, String nome, String emailOrigem) throws MessagingException {
         System.out.println("Email sending method");
         Properties props = new Properties();
 
@@ -32,27 +45,23 @@ public class FormularioMensagemUC {
         props.put("mail.smtp.starttls.enable", "true");
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("greenhouseproject192@gmail.com", "greenhouse123");
-            }
-        });
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("greenhouseproject192@gmail.com", "greenhouse123");
+                    }
+                });
 
-        try {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(emailOrigem));
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(configuracao.getEmail()));
+        message.setSubject("[via web] " + assunto);
+        message.setText("Remetente:\n" + nome + "\n\nE-mail:\n" + emailOrigem + "\n\nConteúdo: \n" + corpo);
 
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(emailOrigem));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("sila.siebert@gmail.com"));
-            message.setSubject(assunto);
-            message.setText("Email enviado por:"+ nome+"\nConteudo: \n"+corpo);
+        Transport.send(message);
 
-            Transport.send(message);
+        System.out.println("Done");
 
-            System.out.println("Done");
-
-        } catch (MessagingException e) {
-            System.out.println(e);
-        }
     }
 }
+

@@ -705,15 +705,39 @@ form {
     margin-left: 15px;
 }
 
-input, textarea {
-    font-family: 'Dosis';
-    font-size: 13px;
-    padding: 10px;
-    border: 3px solid #eee;
-    width: 100%;
+.ui-inputfield.borderless *{
+    margin-bottom: 25px !important;
+}
+
+.borderless{
+    margin-bottom: 25px !important;
+    background-color:  red;
+}
+
+
+.ui-inputfield.borderless input,
+.ui-inputfield.borderless textarea{
+    margin-bottom: 25px !important;
+}
+
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield {
+    margin-bottom: 25px !important;
+    background-color:  blue;
+}
+.ui-inputtextarea-resizable{
+    margin-bottom: 25px !important;
+}
+
+.input, .textarea {
+    background-color:  yellow;
+    /*    font-family: 'Dosis';
+        font-size: 13px;*/
+    /*padding: 10px;*/
+    /*    border: 3px solid #eee;*/
+    /*width: 100%;*/
     margin-bottom: 25px;
-    background-color: #fff;
-    outline: none;
+    /*    background-color: #fff;
+        outline: none;*/
 }
 
 textarea {

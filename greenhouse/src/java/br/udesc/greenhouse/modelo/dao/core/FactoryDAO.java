@@ -12,8 +12,8 @@ import br.udesc.greenhouse.modelo.dao.jpa.JPAFactoryDAO;
  * @author ignoi
  */
 public abstract class FactoryDAO {
-    
-    public static FactoryDAO getFactoryDAO(){
+
+    public static FactoryDAO getFactoryDAO() {
         return new JPAFactoryDAO();
     }
 
@@ -26,5 +26,7 @@ public abstract class FactoryDAO {
     public abstract RegistroDAO getRegistroDAO();
 
     public abstract UsuarioDAO getUsuarioDAO();
+    
+    public abstract ConfiguracaoDAO getConfiguracaoDAO();
 
 }

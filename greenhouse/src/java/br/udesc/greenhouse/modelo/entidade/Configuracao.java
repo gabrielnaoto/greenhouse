@@ -5,6 +5,8 @@
  */
 package br.udesc.greenhouse.modelo.entidade;
 
+import com.sun.istack.internal.Nullable;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,20 +17,20 @@ import javax.persistence.Id;
  * @author ignoi
  */
 @Entity
-public class Configuracao {
+public class Configuracao implements Serializable {
 
     @Id
     @GeneratedValue
     @Column
     private long id;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String sobre;
 
-    @Column
+    @Column(nullable = false)
     private String endereco;
 
     public Configuracao() {

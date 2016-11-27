@@ -39,7 +39,7 @@ public class IndexBean {
     public void init() {
         cdao = FactoryDAO.getFactoryDAO().getConfiguracaoDAO();
         if (cdao.listar().isEmpty()) {
-            cdao.inserir(new Configuracao("naoto.ymai@gmail.com", "Aqui deve constar o texto sobre nós", "Aqui deve constar o endereço do projeto"));
+            cdao.inserir(new Configuracao("email@email.com", "Aqui deve constar o texto sobre nós", "Aqui deve constar o endereço do projeto"));
         }
         config = cdao.listar().get(0);
         g = new Gson();
@@ -69,9 +69,10 @@ public class IndexBean {
         try {
             FormularioMensagemUC fm = new FormularioMensagemUC();
             fm.enviarEmail(assunto, corpo, nome, emailOrigem);
-            SessionUtil.saveMessage("Sucesso!", "E-mail enviado com sucesso!");
+            saveMessage("Sucesso!", "E-mail enviado com sucesso!");
         } catch (Exception e) {
-            SessionUtil.saveMessage("Erro ao enviar e-mail", ", Por favor, tente novamente mais tarde.");
+            System.out.println(e.getMessage());
+            saveMessage("Erro ao enviar e-mail", "Por favor, tente novamente mais tarde.");
             return null;
         }
         limpar();
@@ -141,6 +142,11 @@ public class IndexBean {
         corpo = "";
         nome = "";
         emailOrigem = "";
+    }
+    
+     public static void saveMessage(String title, String msg) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(title, msg));
     }
 
 }

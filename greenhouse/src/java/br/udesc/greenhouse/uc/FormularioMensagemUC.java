@@ -54,7 +54,7 @@ public class FormularioMensagemUC {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(emailOrigem));
         message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse(configuracao.getEmail()));
+                InternetAddress.parse(configuracao.getEmail().trim()));
         message.setSubject("[via web] " + assunto);
         message.setText("Remetente:\n" + nome + "\n\nE-mail:\n" + emailOrigem + "\n\nConteúdo: \n" + corpo);
 

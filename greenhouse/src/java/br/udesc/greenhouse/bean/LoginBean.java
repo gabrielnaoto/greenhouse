@@ -8,6 +8,7 @@ package br.udesc.greenhouse.bean;
 import br.udesc.greenhouse.modelo.entidade.Usuario;
 import br.udesc.greenhouse.uc.LoginUC;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
@@ -41,7 +42,7 @@ public class LoginBean {
             SessionUtil.setParam("usuario", user.getCpf());
             return "index.jsf";
         } else {
-            SessionUtil.saveMessage("Problemas ao efetuar login", "Confira seus dados e tente novamente!");
+            saveMessage("Problemas ao efetuar login", "Confira seus dados e tente novamente!");
             return null;
         }
     }
@@ -65,6 +66,11 @@ public class LoginBean {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+     public static void saveMessage(String title, String msg) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(title, msg));
     }
 
 }

@@ -94,9 +94,9 @@
                         <section id="cd-timeline" class="cd-container">
 
 
+<!--
 
-
-<!--                                                        <div class='cd-timeline-block'>
+                                                        <div class='cd-timeline-block'>
                                                             <div class='cd-timeline-img cd-picture'>
                                                                 <img src='images/first-icon.png' alt='Picture'></img>
                                                             </div>
@@ -443,8 +443,12 @@
                 var text = document.createElement("div");
                 $(block).addClass("cd-timeline-block");
                 $(img).addClass("cd-timeline-img cd-picture");
+                
+                //para colocar lápizes nas notícias descomente as 2 linhas abaixo
                 $(i).attr("src", "images/first-icon.png");
                 $(i).attr("alt", "foto");
+         
+
                 $(img).append(i);
                 $(block).append(img);
                 $(text).addClass("cd-timeline-content service-box-content");
@@ -454,8 +458,9 @@
                 $(h2).append(" " + titulo);
                  $(text).append(h2);
                 
+                var date = new Date(data);
+                $(text).append("<p>" + date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear() + "</p>");
                 
-                $(text).append("<p>" + data + "</p>");
                 $(text).append("<p>" + conteudo + "</p>");
                 $(block).append(text);
                 $(div).append(block);

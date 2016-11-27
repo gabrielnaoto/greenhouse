@@ -41,18 +41,18 @@
                 </nav>
             </div>
             <div class="templatemo-content col-1 light-gray-bg">
-<!--                <div class="templatemo-top-nav-container">
-                    <div class="row">
-                        <nav class="templatemo-top-nav col-lg-12 col-md-12">
-                            <ul class="text-uppercase">
-                                <li><a href="" class="active">Admin panel</a></li>
-                                <li><a href="">Dashboard</a></li>
-                                <li><a href="">Overview</a></li>
-                                <li><a href="">Sign in form</a></li>
-                            </ul>  
-                        </nav> 
-                    </div>
-                </div>-->
+                <!--                <div class="templatemo-top-nav-container">
+                                    <div class="row">
+                                        <nav class="templatemo-top-nav col-lg-12 col-md-12">
+                                            <ul class="text-uppercase">
+                                                <li><a href="" class="active">Admin panel</a></li>
+                                                <li><a href="">Dashboard</a></li>
+                                                <li><a href="">Overview</a></li>
+                                                <li><a href="">Sign in form</a></li>
+                                            </ul>  
+                                        </nav> 
+                                    </div>
+                                </div>-->
                 <div class="templatemo-content-container">
                     <div class="templatemo-content-widget white-bg">
                         <h2 class="margin-bottom-10">Gerenciar Usuários</h2>
@@ -108,8 +108,14 @@
 
                                     <p:outputLabel value="É administrador?" styleClass="margin-bottom-10 margin-right-15"/>
                                     <p:selectBooleanButton styleClass="margin-bottom-10" id="value1" value="#{usuarioBean.novo.administrador}" onLabel="Sim" offLabel="Não" style="width:60px" />
+
+                                    <p:outputLabel value="Períodos:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:pickList id="pickpe" value="#{usuarioBean.periodos}" var="cities" itemLabel="#{cities}" itemValue="#{cities}" styleClass="margin-bottom-10 margin-right-15" />
+
+
                                 </h:panelGrid>
-                                <p:commandButton id="salvar" value="Salvar"  icon="ui-icon-disk" actionListener="#{usuarioBean.inserir}" update="dlg1Form, form"/>
+                                <p:commandButton id="salvar" value="Salvar"  icon="ui-icon-disk" actionListener="#{usuarioBean.inserir}" update="dlg1Form, form" />
+                                <p:commandButton id="inclur" value="Incluir períoodo" icon="ui-icon-plus" type="button" onclick="PF('incluir').show()" />
                             </h:form>
                         </p:dialog> 
                         <p:dialog header="Editar Usuário" widgetVar="dlg2" modal="true" resizable="false">
@@ -132,6 +138,31 @@
                                     <p:selectBooleanButton styleClass="margin-bottom-10" id="value1" value="#{usuarioBean.selecionado.administrador}" onLabel="Sim" offLabel="Não" style="width:60px" />
                                 </h:panelGrid>
                                 <p:commandButton id="salvara" value="Salvar Alterações" icon="ui-icon-disk" actionListener="#{usuarioBean.editar}" update="dlg2Form, form" />
+                            </h:form>
+                        </p:dialog> 
+                        <p:dialog header="Incluir período" widgetVar="incluir" modal="true" resizable="false">
+                            <h:form>
+                                <p:growl id="incluirg" showDetail="true" life="2000"  />  
+                                <h:panelGrid columns="2" styleClass="margin-10">
+                                    <p:outputLabel value="Dia da semana:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:selectOneMenu id="console" value="#{usuarioBean.periodo.diaDaSemana}" style="width:125px" styleClass="margin-bottom-10 margin-right-15">
+                                        <f:selectItem itemLabel="domingo" itemValue="domingo" />
+                                        <f:selectItem itemLabel="segunda-feira" itemValue="segunda-feira" />
+                                        <f:selectItem itemLabel="terça-feira" itemValue="terça-feira" />
+                                        <f:selectItem itemLabel="quarta-feira" itemValue="quarta-feira" />
+                                        <f:selectItem itemLabel="quinta-feira" itemValue="quinta-feira" />
+                                        <f:selectItem itemLabel="sexta-feira" itemValue="sexta-feira" />
+                                        <f:selectItem itemLabel="sábado" itemValue="sábado" />
+                                    </p:selectOneMenu>
+                                    
+                                    <p:outputLabel value="Hora início:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:calendar id="inicio" value="#{usuarioBean.periodo.horaInicio}" pattern="HH:mm" timeOnly="true"  styleClass="margin-bottom-10 margin-right-15"/>
+                                    
+                                    <p:outputLabel value="Hora fim:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:calendar id="fim" value="#{usuarioBean.periodo.horaFim}" pattern="HH:mm" timeOnly="true" styleClass="margin-bottom-10 margin-right-15"/>
+                                    
+                                </h:panelGrid>
+                                <p:commandButton id="incluirb" value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioBean.incluir}" update="dlg1Form, dlg2Form, dlg1Form:pickpe" ajax="true"/>
                             </h:form>
                         </p:dialog> 
                     </div>  

@@ -6,11 +6,17 @@
 package br.udesc.greenhouse.modelo.entidade;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -29,19 +35,14 @@ public class Periodo implements Serializable {
     private String diaDaSemana;
 
     @Column(nullable = false)
-    private String horaInicio;
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date horaInicio;
 
     @Column(nullable = false)
-    private String horaFim;
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date horaFim;
 
     public Periodo() {
-    }
-
-    public Periodo(long periodoid, String diaDaSemana, String horaInicio, String horaFim) {
-        this.periodoid = periodoid;
-        this.diaDaSemana = diaDaSemana;
-        this.horaInicio = horaInicio;
-        this.horaFim = horaFim;
     }
 
     public long getPeriodoid() {
@@ -60,20 +61,30 @@ public class Periodo implements Serializable {
         this.diaDaSemana = diaDaSemana;
     }
 
-    public String getHoraInicio() {
+    public Date getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(String horaInicio) {
+    public void setHoraInicio(Date horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public String getHoraFim() {
+    public Date getHoraFim() {
         return horaFim;
     }
 
-    public void setHoraFim(String horaFim) {
+    public void setHoraFim(Date horaFim) {
         this.horaFim = horaFim;
+    }
+
+    @Override
+    public String toString() {
+        return diaDaSemana + " - " + extrairData(horaInicio) + " às " + extrairData(horaFim);
+    }
+
+    private String extrairData(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        return sdf.format(date);
     }
 
 }

@@ -5,9 +5,12 @@
  */
 package br.udesc.greenhouse.bean;
 
+import br.udesc.greenhouse.modelo.entidade.Oficina;
+import br.udesc.greenhouse.modelo.entidade.Periodo;
 import br.udesc.greenhouse.modelo.entidade.Usuario;
 import br.udesc.greenhouse.uc.GerenciarUsuariosUC;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -17,7 +20,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.TransferEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.model.DualListModel;
 
 /**
  *
@@ -33,12 +38,22 @@ public class UsuarioBean implements Serializable {
     private Usuario selecionado;
     private Usuario novo;
     private GerenciarUsuariosUC gerenciador;
+    private DualListModel<Periodo> periodos;
+    private Periodo periodo;
+    private List<Periodo> source;
 
     @PostConstruct
     public void init() {
+
         gerenciador = new GerenciarUsuariosUC();
-        novo = new Usuario();
+
         listar();
+
+        novo = new Usuario();
+        periodo = new Periodo();
+
+        periodos = new DualListModel<>(source, novo.getPeriodos());
+
     }
 
     public void inserir(ActionEvent actionEvent) {
@@ -85,6 +100,7 @@ public class UsuarioBean implements Serializable {
     public void listar() {
         System.out.println("listei aqui");
         this.usuarios = gerenciador.listar();
+        this.source = gerenciador.listarPeriodos();
     }
 
     public void onRowSelect(SelectEvent event) {
@@ -138,6 +154,62 @@ public class UsuarioBean implements Serializable {
 
     public void setFiltrados(List<Usuario> filtrados) {
         this.filtrados = filtrados;
+    }
+
+    public DualListModel<Periodo> getPeriodos() {
+        return periodos;
+    }
+
+    public void setPeriodos(DualListModel<Periodo> periodos) {
+        this.periodos = periodos;
+    }
+
+    public void onTransfer(TransferEvent event) {
+        StringBuilder builder = new StringBuilder();
+        for (Object item : event.getItems()) {
+            builder.append(((Periodo) item).getDiaDaSemana()).append("<br />");
+        }
+
+        FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("Items Transferred");
+        msg.setDetail(builder.toString());
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public void onSelect(SelectEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item Selected", event.getObject().toString()));
+    }
+
+    public void onUnselect(UnselectEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item Unselected", event.getObject().toString()));
+    }
+
+    public void onReorder() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "List Reordered", null));
+    }
+
+    public Periodo getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(Periodo periodo) {
+        this.periodo = periodo;
+    }
+
+    public void incluir() {
+        if (gerenciador.incluir(periodo)) {
+            periodo = new Periodo();
+            RequestContext.getCurrentInstance().execute("PF('incluir').hide();");
+            notificar("Sucesso", "Período inserido com sucesso!");
+        } else {
+            notificar("Erro", "Hora inicial não pode ser maior que final.");
+        }
+        listar();
     }
 
 }

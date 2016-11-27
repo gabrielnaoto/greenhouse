@@ -6,7 +6,11 @@
 package br.udesc.greenhouse.uc;
 
 import br.udesc.greenhouse.modelo.dao.core.FactoryDAO;
+import br.udesc.greenhouse.modelo.dao.core.OficinaDAO;
+import br.udesc.greenhouse.modelo.dao.core.PeriodoDAO;
 import br.udesc.greenhouse.modelo.dao.core.UsuarioDAO;
+import br.udesc.greenhouse.modelo.entidade.Oficina;
+import br.udesc.greenhouse.modelo.entidade.Periodo;
 import br.udesc.greenhouse.modelo.entidade.Usuario;
 import java.util.List;
 
@@ -17,10 +21,11 @@ import java.util.List;
 public class GerenciarUsuariosUC {
 
     private UsuarioDAO usuarioDAO;
+    private PeriodoDAO periodoDAO;
 
     public GerenciarUsuariosUC() {
         this.usuarioDAO = FactoryDAO.getFactoryDAO().getUsuarioDAO();
-
+        this.periodoDAO = FactoryDAO.getFactoryDAO().getPeridoDAO();
     }
 
     public boolean inserir(Usuario u) {
@@ -58,6 +63,15 @@ public class GerenciarUsuariosUC {
 
     public List<Usuario> listar() {
         return usuarioDAO.listar();
+    }
+
+    public boolean incluir(Periodo p) {
+        try {
+            periodoDAO.inserir(p);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

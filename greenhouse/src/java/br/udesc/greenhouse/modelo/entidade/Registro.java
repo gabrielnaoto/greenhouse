@@ -33,7 +33,7 @@ public class Registro implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String descricao;
 
     @ManyToOne

@@ -126,16 +126,17 @@
                                     <p:inputText size="50" styleClass="margin-bottom-10" value="#{noticiaBean.selecionado.titulo}" required="true" requiredMessage="É necessário informar um nome"/>
 
                                     <p:outputLabel value="Data:" styleClass="margin-bottom-10 margin-right-15"/>
-                                    <p:calendar size="50" styleClass="margin-bottom-10" value="#{noticiaBean.selecionado.data}" readonly="true"  pattern="dd/MM/yyyy" locale="pt"/>
+                                    <p:calendar size="50" styleClass="margin-bottom-10" value="#{noticiaBean.selecionado.data}" readonly="true"  pattern="dd/MM/yyyy" locale="pt" disabled="true"/>
 
-                                    <p:outputLabel value="Descrição:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:outputLabel value="Descrição:" styleClass=" margin-right-15"/>
                                     <p:inputTextarea styleClass="margin-bottom-10" rows="5" cols="45" counter="display" maxlength="10000" counterTemplate="{0} caracteres restantes." autoResize="false" value="#{noticiaBean.selecionado.descricao}" required="true" requiredMessage="É necessário informar uma descrição" />
 
                                     <h:outputLabel></h:outputLabel>
-                                    <h:outputText id="display" />
+                                    <h:outputText id="display" styleClass="margin-bottom-10" />
 
                                     <p:outputLabel value="Fixada?" styleClass="margin-bottom-10 margin-right-15" />
                                     <p:selectBooleanButton styleClass="margin-bottom-10" id="value1" value="#{noticiaBean.selecionado.fixada}" onLabel="Sim" offLabel="Não" style="width:60px" />
+                                    
 
                                 </h:panelGrid>
                                 <p:commandButton id="salvara" value="Salvar Alterações" icon="ui-icon-disk" actionListener="#{noticiaBean.editar}" update="ndlg2Form, form" />

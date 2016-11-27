@@ -7,7 +7,6 @@ package br.udesc.greenhouse.modelo.dao.jpa;
 
 import br.udesc.greenhouse.modelo.dao.core.NoticiaDAO;
 import br.udesc.greenhouse.modelo.entidade.Noticia;
-import br.udesc.greenhouse.modelo.entidade.Noticia;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,12 +14,13 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
  * @author ignoi
  */
-public class JPANoticiaDAO implements NoticiaDAO{
+public class JPANoticiaDAO implements NoticiaDAO {
 
     private EntityManagerFactory emf = null;
 
@@ -34,7 +34,7 @@ public class JPANoticiaDAO implements NoticiaDAO{
 
     @Override
     public void inserir(Noticia a) {
-         EntityManager em = null;
+        EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -73,7 +73,7 @@ public class JPANoticiaDAO implements NoticiaDAO{
 
     @Override
     public void remover(long id) {
-         EntityManager em = null;
+        EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -108,14 +108,13 @@ public class JPANoticiaDAO implements NoticiaDAO{
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Noticia.class));
+            Root<Noticia> c = cq.from(Noticia.class);
+            cq.select(cq.from(Noticia.class)).orderBy(em.getCriteriaBuilder().desc(c.get("fixada")), em.getCriteriaBuilder().desc(c.get("data")));
             Query q = em.createQuery(cq);
             return q.getResultList();
         } finally {
             em.close();
         }
     }
-    
-    
-    
+
 }

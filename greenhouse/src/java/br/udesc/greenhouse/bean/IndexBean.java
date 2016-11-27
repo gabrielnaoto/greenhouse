@@ -57,6 +57,7 @@ public class IndexBean {
     }
 
     public String getJsonList() {
+        System.out.println(g.toJson(usuarios));
         return (usuarios == null) ? "" : g.toJson(usuarios);
     }
 

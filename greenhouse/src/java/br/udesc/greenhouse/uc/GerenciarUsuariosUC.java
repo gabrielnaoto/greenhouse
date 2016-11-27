@@ -65,10 +65,18 @@ public class GerenciarUsuariosUC {
         return usuarioDAO.listar();
     }
 
+    public List<Periodo> listarPeriodos() {
+        return periodoDAO.listar();
+    }
+
     public boolean incluir(Periodo p) {
         try {
-            periodoDAO.inserir(p);
-            return true;
+            if (p.getHoraInicio().before(p.getHoraFim())) {
+                periodoDAO.inserir(p);
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception e) {
             return false;
         }

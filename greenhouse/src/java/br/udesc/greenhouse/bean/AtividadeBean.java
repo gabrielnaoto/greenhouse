@@ -5,8 +5,12 @@
  */
 package br.udesc.greenhouse.bean;
 
-import br.udesc.greenhouse.modelo.entidade.Noticia;
-import br.udesc.greenhouse.uc.GerenciarNoticiasUC;
+import br.udesc.greenhouse.modelo.dao.core.FactoryDAO;
+import br.udesc.greenhouse.modelo.entidade.Oficina;
+import br.udesc.greenhouse.modelo.entidade.Registro;
+import br.udesc.greenhouse.modelo.entidade.Usuario;
+import br.udesc.greenhouse.uc.GerenciarRegistrosUC;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -26,27 +30,35 @@ import org.primefaces.event.UnselectEvent;
 @ViewScoped
 public class AtividadeBean {
 
-    private List<Noticia> noticias;
-    private List<Noticia> selecionados;
-    private List<Noticia> filtrados;
-    private Noticia selecionado;
-    private Noticia novo;
-    private GerenciarNoticiasUC gerenciador;
+    private List<Registro> registros;
+    private List<Registro> selecionados;
+    private List<Registro> filtrados;
+    private Registro selecionado;
+    private Registro novo;
+    private GerenciarRegistrosUC gerenciador;
+    private Usuario usuario;
+    private List<Oficina> oficinas;
 
     @PostConstruct
     public void init() {
-        gerenciador = new GerenciarNoticiasUC();
-        novo = new Noticia();
+
+        usuario = FactoryDAO.getFactoryDAO().getUsuarioDAO().pesquisar(9);
+
+        gerenciador = new GerenciarRegistrosUC();
+
+        oficinas = gerenciador.getOficinas();
+
+        criar();
         listar();
     }
 
     public void inserir(ActionEvent actionEvent) {
         if (gerenciador.inserir(novo)) {
-            novo = new Noticia();
+            criar();
             RequestContext.getCurrentInstance().execute("PF('ndlg1').hide();");
-            notificar("Sucesso", "Notícia inserida com sucesso!");
+            notificar("Sucesso", "Atividade inserida com sucesso!");
         } else {
-            notificar("Falha", "Erro ao inserir notícia!");
+            notificar("Falha", "Erro ao inserir atividade!");
         }
         listar();
     }
@@ -55,25 +67,25 @@ public class AtividadeBean {
         if (selecionado != null) {
             if (gerenciador.editar(selecionado)) {
                 RequestContext.getCurrentInstance().execute("PF('ndlg2').hide();");
-                notificar("Sucesso", "Notícia editada com sucesso!");
+                notificar("Sucesso", "Atividade editada com sucesso!");
             } else {
-                notificar("Falha", "Erro ao editar notícia!");
+                notificar("Falha", "Erro ao editar atividade!");
             }
             listar();
             selecionado = null;
         } else {
-            notificar("Falha", "É necessário selecionar uma notícia para editar.");
+            notificar("Falha", "É necessário selecionar uma atividade para editar.");
         }
     }
 
     public void remover(ActionEvent actionEvent) {
         if (selecionado == null) {
-            notificar("Falha", "É necessário selecionar uma notícia antes de excluir.");
+            notificar("Falha", "É necessário selecionar uma atividade antes de excluir.");
         } else {
-            if (gerenciador.remover(selecionado.getNoticiaid())) {
+            if (gerenciador.remover(selecionado.getRegistroid())) {
                 notificar("Sucesso", "Notícia removida com sucesso!");
             } else {
-                notificar("Falha", "Erro ao remover notícia!");
+                notificar("Falha", "Erro ao remover atividade!");
             }
             listar();
         }
@@ -81,11 +93,11 @@ public class AtividadeBean {
 
     public void listar() {
         System.out.println("listei aqui");
-        this.noticias = gerenciador.listar();
+        this.registros = gerenciador.getRegistros();
     }
 
     public void onRowSelect(SelectEvent event) {
-        selecionado = ((Noticia) event.getObject());
+        selecionado = ((Registro) event.getObject());
         System.out.println(selecionado.toString() + " aqui");
     }
 
@@ -93,19 +105,19 @@ public class AtividadeBean {
         selecionado = null;
     }
 
-    public List<Noticia> getNoticias() {
-        return noticias;
+    public List<Registro> getRegistros() {
+        return registros;
     }
 
-    public void setNoticias(List<Noticia> noticias) {
-        this.noticias = noticias;
+    public void setRegistros(List<Registro> registros) {
+        this.registros = registros;
     }
 
-    public Noticia getSelecionado() {
+    public Registro getSelecionado() {
         return selecionado;
     }
 
-    public void setSelecionado(Noticia selecionado) {
+    public void setSelecionado(Registro selecionado) {
         this.selecionado = selecionado;
     }
 
@@ -113,28 +125,41 @@ public class AtividadeBean {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(title, msg));
     }
 
-    public List<Noticia> getSelecionados() {
+    public List<Registro> getSelecionados() {
         return selecionados;
     }
 
-    public void setSelecionados(List<Noticia> selecionados) {
+    public void setSelecionados(List<Registro> selecionados) {
         this.selecionados = selecionados;
     }
 
-    public Noticia getNovo() {
+    public Registro getNovo() {
         return novo;
     }
 
-    public void setNovo(Noticia novo) {
+    public void setNovo(Registro novo) {
         this.novo = novo;
     }
 
-    public List<Noticia> getFiltrados() {
+    public List<Registro> getFiltrados() {
         return filtrados;
     }
 
-    public void setFiltrados(List<Noticia> filtrados) {
+    public void setFiltrados(List<Registro> filtrados) {
         this.filtrados = filtrados;
+    }
+
+    private void criar() {
+        novo = new Registro();
+        novo.setUsuario(usuario);
+    }
+
+    public List<Oficina> getOficinas() {
+        return oficinas;
+    }
+
+    public void setOficinas(List<Oficina> oficinas) {
+        this.oficinas = oficinas;
     }
 
 }

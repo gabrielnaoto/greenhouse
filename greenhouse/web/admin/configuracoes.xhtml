@@ -88,8 +88,8 @@
                             <br/>
                             <h5>Contato</h5>
                             <hr/>
-                            <h:panelGrid columns="1" styleClass="width-100 ">
-                                <p:row>
+                            <h:panelGrid columns="1" styleClass="width-100 margin-bottom-10">
+                                <p:row styleClass="margin-bottom-10">
                                     <p:column>
                                         <h:outputLabel value="E-mail:" styleClass="margin-bottom-10" ></h:outputLabel>
                                     </p:column>
@@ -97,11 +97,23 @@
                                         <p:inputText id="email" value="#{configuracoesBean.configuracao.email}" styleClass="margin-bottom-10 width-100"  required="true" title="Este será o e-mail para onde serão enviados os formulários preenchidos na página inicial." maxlength="255" requiredMessage="Campo obrigatório" >
                                             <f:validator validatorId="custom.emailValidator" />
                                         </p:inputText>
-                                        <p:tooltip id="toolTipFocus" for="email" showEvent="focus" hideEvent="blur"  trackMouse="true"/>
+                                        <p:tooltip id="toolTipFocus" for="email" showEvent="focus" hideEvent="blur"  trackMouse="true" styleClass="margin-bottom-10"/>
                                     </p:column>
                                 </p:row>
-                            </h:panelGrid>
 
+                            </h:panelGrid>
+<!--                            <h:panelGrid columns="1" styleClass="width-100 margin-bottom-10">
+
+                                <p:row >
+                                    <p:column>
+                                        <h:outputLabel value="Página do facebook:" styleClass="margin-bottom-10" ></h:outputLabel>
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputText id="face" value="# {configuracoesBean.configuracao.facebook}" styleClass="margin-bottom-10 width-100">
+                                        </p:inputText>
+                                    </p:column>
+                                </p:row>
+                            </h:panelGrid>-->
                             <br/>
                             <p:commandButton value="Salvar" action="#{configuracoesBean.salvar()}" ajax="false"></p:commandButton>
                         </h:form>

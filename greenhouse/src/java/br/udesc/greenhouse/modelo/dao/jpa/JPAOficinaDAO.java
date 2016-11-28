@@ -7,7 +7,6 @@ package br.udesc.greenhouse.modelo.dao.jpa;
 
 import br.udesc.greenhouse.modelo.dao.core.OficinaDAO;
 import br.udesc.greenhouse.modelo.entidade.Oficina;
-import br.udesc.greenhouse.modelo.entidade.Oficina;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,7 +19,7 @@ import javax.persistence.criteria.CriteriaQuery;
  *
  * @author ignoi
  */
-public class JPAOficinaDAO implements OficinaDAO{
+public class JPAOficinaDAO implements OficinaDAO {
 
     private EntityManagerFactory emf = null;
 
@@ -34,7 +33,7 @@ public class JPAOficinaDAO implements OficinaDAO{
 
     @Override
     public void inserir(Oficina a) {
-         EntityManager em = null;
+        EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -73,7 +72,7 @@ public class JPAOficinaDAO implements OficinaDAO{
 
     @Override
     public void remover(long id) {
-         EntityManager em = null;
+        EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
@@ -104,6 +103,24 @@ public class JPAOficinaDAO implements OficinaDAO{
     }
 
     @Override
+    public Oficina pesquisar(String nome) {
+        EntityManager em = getEntityManager();
+        try {
+            Query consulta = em.createQuery("select p from Oficina p where p.nome = :off");
+            consulta.setParameter("off", nome);
+            List<Oficina> oficinas = consulta.getResultList();
+            System.out.println(oficinas.get(0) + "tagdepesquisa");
+            if (oficinas.size() >= 1){
+                return oficinas.get(0);
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
     public List<Oficina> listar() {
         EntityManager em = getEntityManager();
         try {
@@ -115,7 +132,5 @@ public class JPAOficinaDAO implements OficinaDAO{
             em.close();
         }
     }
-    
-    
-    
+
 }

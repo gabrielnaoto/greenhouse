@@ -8,6 +8,7 @@ package br.udesc.greenhouse.modelo.entidade;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Oficina implements Serializable {
     @Column(nullable = false)
     private long capacidade;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nome;
 
     @Column(nullable = false)
@@ -51,7 +52,7 @@ public class Oficina implements Serializable {
     @JoinColumn
     private List<Periodo> periodos;
 
-    @ManyToMany(mappedBy = "oficinas")
+    @ManyToMany(mappedBy = "oficinas", cascade = CascadeType.MERGE)
     @JoinColumn
     private List<Usuario> usuarios;
 
@@ -141,6 +142,11 @@ public class Oficina implements Serializable {
 
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
 
 }

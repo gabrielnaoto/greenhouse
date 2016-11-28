@@ -33,6 +33,9 @@ public class Configuracao implements Serializable {
     @Column(nullable = false)
     private String endereco;
 
+    @Column
+    private String facebook;
+
     public Configuracao() {
     }
 
@@ -72,6 +75,14 @@ public class Configuracao implements Serializable {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
     }
 
 }

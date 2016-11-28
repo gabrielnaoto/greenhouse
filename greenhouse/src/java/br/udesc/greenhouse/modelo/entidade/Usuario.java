@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,11 +47,11 @@ public class Usuario implements Serializable {
     @Column
     private boolean administrador;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinColumn
     private List<Periodo> periodos;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "usuario_oficina", joinColumns = @JoinColumn(name = "usuarioid"), inverseJoinColumns = @JoinColumn(name = "oficinaid"))
     private List<Oficina> oficinas;
 

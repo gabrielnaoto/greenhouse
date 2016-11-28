@@ -706,17 +706,17 @@ form {
     margin-left: 15px;
 }
 
-.ui-inputfield.borderless *{
+/*.ui-inputfield.borderless *{
     margin-bottom: 25px !important;
-}
+}*/
 
 .borderless{
     margin-bottom: 25px !important;
-    background-color:  red;
+    /*background-color:  red;*/
 }
 
 
-.ui-inputfield.borderless input,
+/*.ui-inputfield.borderless input,
 .ui-inputfield.borderless textarea{
     margin-bottom: 25px !important;
 }
@@ -727,18 +727,18 @@ form {
 }
 .ui-inputtextarea-resizable{
     margin-bottom: 25px !important;
-}
+}*/
 
 .input, .textarea {
-    background-color:  yellow;
-    /*    font-family: 'Dosis';
-        font-size: 13px;*/
-    /*padding: 10px;*/
-    /*    border: 3px solid #eee;*/
-    /*width: 100%;*/
+    /*background-color:  yellow;*/
+    font-family: 'Dosis';
+    font-size: 13px;
+    padding: 10px;
+    border: 3px solid #eee;
+    width: 100%;
     margin-bottom: 25px;
-    /*    background-color: #fff;
-        outline: none;*/
+    background-color: #fff;
+    outline: none;
 }
 
 textarea {

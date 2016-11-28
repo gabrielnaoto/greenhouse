@@ -6,7 +6,9 @@
 package br.udesc.greenhouse.modelo.entidade;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,15 +38,16 @@ public class Registro implements Serializable {
     @Column(nullable = false, length = 1000)
     private String descricao;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn
     private Usuario usuario;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn
     private Oficina oficina;
 
     public Registro() {
+        data = Calendar.getInstance().getTime();
     }
 
     public long getRegistroid() {

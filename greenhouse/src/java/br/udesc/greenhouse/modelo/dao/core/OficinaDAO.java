@@ -21,6 +21,8 @@ public interface OficinaDAO {
     public void remover(long id);
 
     public Oficina pesquisar(long id);
+    
+    public Oficina pesquisar(String nome);
 
     public List<Oficina> listar();
     

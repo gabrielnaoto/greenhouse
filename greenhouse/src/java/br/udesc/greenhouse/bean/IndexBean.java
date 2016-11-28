@@ -39,6 +39,7 @@ public class IndexBean {
     public void init() {
         cdao = FactoryDAO.getFactoryDAO().getConfiguracaoDAO();
         if (cdao.listar().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("banco vazio", "criando banco"));
             cdao.inserir(new Configuracao("email@email.com", "Aqui deve constar o texto sobre nós", "Aqui deve constar o endereço do projeto"));
         }
         config = cdao.listar().get(0);
@@ -136,16 +137,14 @@ public class IndexBean {
         this.emailOrigem = emailOrigem;
     }
 
-    
-
     public void limpar() {
         assunto = "";
         corpo = "";
         nome = "";
         emailOrigem = "";
     }
-    
-     public static void saveMessage(String title, String msg) {
+
+    public static void saveMessage(String title, String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(title, msg));
     }

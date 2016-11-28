@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -48,7 +49,7 @@ public class Usuario implements Serializable {
     private boolean administrador;
 
     @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinColumn
+    @JoinTable(name = "usuario_periodo", joinColumns = @JoinColumn(name = "usuarioid"), inverseJoinColumns = @JoinColumn(name = "periodoid"))
     private List<Periodo> periodos;
 
     @ManyToMany(cascade = CascadeType.MERGE)

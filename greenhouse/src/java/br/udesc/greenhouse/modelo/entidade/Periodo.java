@@ -6,15 +6,16 @@
 package br.udesc.greenhouse.modelo.entidade;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -42,7 +43,15 @@ public class Periodo implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIME)
     private Date horaFim;
 
+    @ManyToMany(mappedBy = "periodos", cascade = CascadeType.MERGE)
+    private List<Usuario> usuarios;
+
+    @ManyToMany(mappedBy = "periodos", cascade = CascadeType.MERGE)
+    private List<Oficina> oficinas;
+
     public Periodo() {
+        usuarios = new ArrayList<>();
+        oficinas = new ArrayList<>();
     }
 
     public long getPeriodoid() {
@@ -76,15 +85,38 @@ public class Periodo implements Serializable {
     public void setHoraFim(Date horaFim) {
         this.horaFim = horaFim;
     }
+    
+    public void addUsuario(Usuario u){
+        usuarios.add(u);
+    }
+    
+    public void addOficina(Oficina o){
+        oficinas.add(o);
+    }
 
     @Override
     public String toString() {
-        return diaDaSemana + " - " + extrairData(horaInicio) + " às " + extrairData(horaFim);
+        return diaDaSemana + " - " + extrairHora(horaInicio) + " às " + extrairHora(horaFim);
     }
 
-    private String extrairData(Date date) {
+    private String extrairHora(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         return sdf.format(date);
     }
 
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<Oficina> getOficinas() {
+        return oficinas;
+    }
+
+    public void setOficinas(List<Oficina> oficinas) {
+        this.oficinas = oficinas;
+    }
 }

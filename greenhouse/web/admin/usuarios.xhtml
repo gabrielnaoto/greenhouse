@@ -60,7 +60,7 @@
                         <h:form id="form">
                             <h:panelGrid columns="3" styleClass="margin-bottom-10" >
                                 <p:commandButton id="inserir" value="Inserir"  icon="ui-icon-plus" type="button" onclick="PF('dlg1').show()" />
-                                <p:commandButton id="editar" value="Editar" type="button" icon="ui-icon-pencil" onclick="PF('dlg2').show()"/>
+                                <p:commandButton id="editar" value="Editar" icon="ui-icon-pencil" actionListener="#{usuarioBean.editar1()}" ajax="false"/>
                                 <p:commandButton value="Remover" icon="ui-icon-closethick" actionListener="#{usuarioBean.remover}" update="form">
                                     <p:confirm header="Excluir Usuário" message="Você tem certeza que gostaria de excluir o usuário? Esta operação não pode ser desfeita."/>
                                 </p:commandButton>
@@ -136,8 +136,12 @@
 
                                     <p:outputLabel value="É administrador?" styleClass="margin-bottom-10 margin-right-15"/>
                                     <p:selectBooleanButton styleClass="margin-bottom-10" id="value1" value="#{usuarioBean.selecionado.administrador}" onLabel="Sim" offLabel="Não" style="width:60px" />
+                                    
+                                    <p:outputLabel value="Períodos:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:pickList id="pickpe" value="#{usuarioBean.periodosE}" var="cities" itemLabel="#{cities}" itemValue="#{cities}" styleClass="margin-bottom-10 margin-right-15" />
                                 </h:panelGrid>
                                 <p:commandButton id="salvara" value="Salvar Alterações" icon="ui-icon-disk" actionListener="#{usuarioBean.editar}" update="dlg2Form, form" />
+                                <p:commandButton id="inclur2" value="Incluir períoodo" icon="ui-icon-plus" type="button" onclick="PF('incluir').show()" />
                             </h:form>
                         </p:dialog> 
                         <p:dialog header="Incluir período" widgetVar="incluir" modal="true" resizable="false">
@@ -162,7 +166,7 @@
                                     <p:calendar id="fim" value="#{usuarioBean.periodo.horaFim}" pattern="HH:mm" timeOnly="true" styleClass="margin-bottom-10 margin-right-15"/>
                                     
                                 </h:panelGrid>
-                                <p:commandButton id="incluirb" value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioBean.incluir}" update="dlg1Form, dlg2Form, dlg1Form:pickpe" ajax="true"/>
+                                <p:commandButton id="incluirb" value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioBean.incluir}" update="dlg1Form, dlg2Form, dlg1Form:pickpe, incluirg" ajax="true"/>
                             </h:form>
                         </p:dialog> 
                     </div>  

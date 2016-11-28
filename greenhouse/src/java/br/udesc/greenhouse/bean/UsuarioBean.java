@@ -41,22 +41,35 @@ public class UsuarioBean implements Serializable {
     private DualListModel<Periodo> periodos;
     private Periodo periodo;
     private List<Periodo> source;
+    private List<Periodo> target;
+
+    private DualListModel<Periodo> periodosE;
+    private List<Periodo> source1;
+    private List<Periodo> target1;
 
     @PostConstruct
     public void init() {
 
         gerenciador = new GerenciarUsuariosUC();
 
+        target = new ArrayList<>();
+        target1 = new ArrayList<>();
+        source1 = new ArrayList<>();
+
         listar();
 
         novo = new Usuario();
         periodo = new Periodo();
 
-        periodos = new DualListModel<>(source, novo.getPeriodos());
+        periodosE = new DualListModel<>(source1, target1);
 
     }
 
     public void inserir(ActionEvent actionEvent) {
+        // mudei pra target
+        novo.setPeriodos(periodos.getTarget());
+    
+        System.out.println(novo);
         System.out.println("inseri aqui");
         if (gerenciador.inserir(novo)) {
             novo = new Usuario();
@@ -71,6 +84,7 @@ public class UsuarioBean implements Serializable {
     public void editar(ActionEvent actionEvent) {
         if (selecionado != null) {
             System.out.println("editei aqui");
+            selecionado.setPeriodos(periodosE.getTarget());
             if (gerenciador.editar(selecionado)) {
                 RequestContext.getCurrentInstance().execute("PF('dlg2').hide();");
                 notificar("Sucesso", "Usuário editado com sucesso!");
@@ -97,10 +111,28 @@ public class UsuarioBean implements Serializable {
         }
     }
 
+    public void editar1() {
+        try {
+            source1 = gerenciador.listarPeriodos();
+
+            target1 = selecionado.getPeriodos();
+
+            source1.removeAll(target1);
+            periodosE = new DualListModel<>(source1, target1);
+            RequestContext.getCurrentInstance().execute("PF('dlg2').show();");
+        } catch (NullPointerException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro!", "É necessário selecionar um usuário para editar"));
+        }
+
+    }
+
     public void listar() {
         System.out.println("listei aqui");
         this.usuarios = gerenciador.listar();
         this.source = gerenciador.listarPeriodos();
+
+        periodos = new DualListModel<>(source, target);
+        periodosE = new DualListModel<>(source, target);
     }
 
     public void onRowSelect(SelectEvent event) {
@@ -203,13 +235,23 @@ public class UsuarioBean implements Serializable {
 
     public void incluir() {
         if (gerenciador.incluir(periodo)) {
+            System.out.println("vou resetar o perído");
             periodo = new Periodo();
+          
             RequestContext.getCurrentInstance().execute("PF('incluir').hide();");
             notificar("Sucesso", "Período inserido com sucesso!");
         } else {
             notificar("Erro", "Hora inicial não pode ser maior que final.");
         }
         listar();
+    }
+
+    public DualListModel<Periodo> getPeriodosE() {
+        return periodosE;
+    }
+
+    public void setPeriodosE(DualListModel<Periodo> periodosE) {
+        this.periodosE = periodosE;
     }
 
 }

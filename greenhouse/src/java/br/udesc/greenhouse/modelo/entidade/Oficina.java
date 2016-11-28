@@ -14,7 +14,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -48,12 +50,11 @@ public class Oficina implements Serializable {
     @Column
     private List<String> videos;
 
-    @ManyToMany
-    @JoinColumn
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "oficina_periodo", joinColumns = @JoinColumn(name = "oficinaid"), inverseJoinColumns = @JoinColumn(name = "periodoid"))
     private List<Periodo> periodos;
 
     @ManyToMany(mappedBy = "oficinas", cascade = CascadeType.MERGE)
-    @JoinColumn
     private List<Usuario> usuarios;
 
     public Oficina() {

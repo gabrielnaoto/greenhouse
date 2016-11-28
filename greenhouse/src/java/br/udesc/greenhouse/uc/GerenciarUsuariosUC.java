@@ -33,6 +33,7 @@ public class GerenciarUsuariosUC {
             usuarioDAO.inserir(u);
             return true;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
 
@@ -43,6 +44,7 @@ public class GerenciarUsuariosUC {
             usuarioDAO.editar(u);
             return true;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
 

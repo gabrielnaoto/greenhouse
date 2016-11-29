@@ -22,6 +22,8 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "noticias")
 public class Noticia implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue

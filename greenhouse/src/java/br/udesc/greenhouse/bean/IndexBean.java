@@ -9,6 +9,7 @@ import br.udesc.greenhouse.modelo.dao.core.ConfiguracaoDAO;
 import br.udesc.greenhouse.modelo.dao.core.FactoryDAO;
 import br.udesc.greenhouse.modelo.entidade.Configuracao;
 import br.udesc.greenhouse.modelo.entidade.Noticia;
+import br.udesc.greenhouse.modelo.entidade.Oficina;
 import br.udesc.greenhouse.uc.FormularioMensagemUC;
 import br.udesc.greenhouse.uc.GerenciarNoticiasUC;
 import com.google.gson.Gson;
@@ -18,7 +19,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 
 /**
  *
@@ -29,6 +29,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 public class IndexBean {
 
     private List<Noticia> usuarios;
+    private List<Oficina> oficinas;
     private GerenciarNoticiasUC gerenciador;
     private Gson g;
     private String assunto, corpo, nome, emailOrigem;
@@ -39,13 +40,13 @@ public class IndexBean {
     public void init() {
         cdao = FactoryDAO.getFactoryDAO().getConfiguracaoDAO();
         if (cdao.listar().isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("banco vazio", "criando banco"));
             cdao.inserir(new Configuracao("email@email.com", "Aqui deve constar o texto sobre nós", "Aqui deve constar o endereço do projeto"));
         }
         config = cdao.listar().get(0);
         g = new Gson();
         gerenciador = new GerenciarNoticiasUC();
         usuarios = gerenciador.listar();
+        oficinas = FactoryDAO.getFactoryDAO().getOficinaDAO().listar();
         limpar();
     }
 
@@ -60,6 +61,11 @@ public class IndexBean {
     public String getJsonList() {
         System.out.println(g.toJson(usuarios));
         return (usuarios == null) ? "" : g.toJson(usuarios);
+    }
+
+    public String getJsonOficinas() {
+        System.out.println(g.toJson(oficinas) + "tagggggggggg");
+        return (oficinas == null) ? "" : g.toJson(oficinas);
     }
 
     public String getJsonConfig() {
@@ -147,6 +153,14 @@ public class IndexBean {
     public static void saveMessage(String title, String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(title, msg));
+    }
+
+    public List<Oficina> getOficinas() {
+        return oficinas;
+    }
+
+    public void setOficinas(List<Oficina> oficinas) {
+        this.oficinas = oficinas;
     }
 
 }

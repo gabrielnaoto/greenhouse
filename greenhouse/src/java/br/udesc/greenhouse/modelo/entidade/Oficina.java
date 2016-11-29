@@ -5,6 +5,7 @@
  */
 package br.udesc.greenhouse.modelo.entidade;
 
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -26,6 +28,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "oficinas")
 public class Oficina implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -41,14 +45,14 @@ public class Oficina implements Serializable {
     @Column(nullable = false)
     private String descricao;
 
-    @Column
-    private String fotoDestaque;
+    @Column(length = 1000000000)
+    private byte[] fotoDestaque;
 
     @Column
-    private List<String> fotos;
+    private List<byte[]> fotos;
 
     @Column
-    private List<String> videos;
+    private String video;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "oficina_periodo", joinColumns = @JoinColumn(name = "oficinaid"), inverseJoinColumns = @JoinColumn(name = "periodoid"))
@@ -59,7 +63,6 @@ public class Oficina implements Serializable {
 
     public Oficina() {
         fotos = new ArrayList<>();
-        videos = new ArrayList<>();
         periodos = new ArrayList<>();
         usuarios = new ArrayList<>();
 
@@ -97,36 +100,32 @@ public class Oficina implements Serializable {
         this.descricao = descricao;
     }
 
-    public String getFotoDestaque() {
+    public byte[] getFotoDestaque() {
         return fotoDestaque;
     }
 
-    public void setFotoDestaque(String fotoDestaque) {
+    public void setFotoDestaque(byte[] fotoDestaque) {
         this.fotoDestaque = fotoDestaque;
     }
 
-    public List<String> getFotos() {
+    public List<byte[]> getFotos() {
         return fotos;
     }
 
-    public void setFotos(List<String> fotos) {
+    public void setFotos(List<byte[]> fotos) {
         this.fotos = fotos;
     }
 
-    public List<String> getVideos() {
-        return videos;
+    public String getVideo() {
+        return video;
     }
 
-    public void setVideos(List<String> videos) {
-        this.videos = videos;
+    public void setVideo(String videos) {
+        this.video = videos;
     }
 
-    private void addFoto(String url) {
+    public void addFoto(byte[] url) {
         fotos.add(url);
-    }
-
-    private void addVideo(String url) {
-        videos.add(url);
     }
 
     public List<Periodo> getPeriodos() {
@@ -149,5 +148,6 @@ public class Oficina implements Serializable {
     public String toString() {
         return nome;
     }
+
 
 }

@@ -28,5 +28,7 @@ public abstract class FactoryDAO {
     public abstract UsuarioDAO getUsuarioDAO();
     
     public abstract ConfiguracaoDAO getConfiguracaoDAO();
+    
+    public abstract ImagemDAO getImagemDAO();
 
 }

@@ -117,9 +117,14 @@
                                     <p:outputLabel value="Capacidade" styleClass="margin-right-15" />
                                     <p:spinner styleClass="margin-bottom-10" value="#{oficinaBean.novo.capacidade}" required="true" requiredMessage="É necessário informar a capacidade da oficina" />
 
+                                    
+                                    
                                     <p:outputLabel value="Foto em destaque:" styleClass="margin-right-15" />
                                     <p:fileUpload fileUploadListener="#{oficinaBean.handleFileUpload}" mode="advanced"
                                                   update="ndlg1Growl" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                    
+                                    <p:outputLabel />
+                                    <h:outputText value="A resolução ideal para fotos em destaque é: 400 x 250 px " styleClass="margin-bottom-30"/>
 
 
 

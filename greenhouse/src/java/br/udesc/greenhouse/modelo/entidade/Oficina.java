@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -42,14 +43,15 @@ public class Oficina implements Serializable {
     @Column(nullable = false, unique = true)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String descricao;
 
     @Column(length = 1000000000)
     private byte[] fotoDestaque;
 
-    @Column
-    private List<byte[]> fotos;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_categoria")
+    private List<Imagem> fotos;
 
     @Column
     private String video;
@@ -108,11 +110,11 @@ public class Oficina implements Serializable {
         this.fotoDestaque = fotoDestaque;
     }
 
-    public List<byte[]> getFotos() {
+    public List<Imagem> getFotos() {
         return fotos;
     }
 
-    public void setFotos(List<byte[]> fotos) {
+    public void setFotos(List<Imagem> fotos) {
         this.fotos = fotos;
     }
 
@@ -124,7 +126,7 @@ public class Oficina implements Serializable {
         this.video = videos;
     }
 
-    public void addFoto(byte[] url) {
+    public void addFoto(Imagem url) {
         fotos.add(url);
     }
 
@@ -148,6 +150,5 @@ public class Oficina implements Serializable {
     public String toString() {
         return nome;
     }
-
 
 }

@@ -5,6 +5,7 @@
  */
 package br.udesc.greenhouse.bean;
 
+import br.udesc.greenhouse.modelo.entidade.Imagem;
 import br.udesc.greenhouse.modelo.entidade.Oficina;
 import br.udesc.greenhouse.uc.GerenciarOficinasUC;
 import java.awt.image.BufferedImage;
@@ -52,9 +53,9 @@ public class OficinaBean {
 
     public void handleFilesUpload(FileUploadEvent event) {
         if (selecionado == null) {
-            novo.addFoto(event.getFile().getContents());
+            novo.addFoto(new Imagem(event.getFile().getContents()));
         } else {
-            selecionado.addFoto(event.getFile().getContents());
+            selecionado.addFoto(new Imagem(event.getFile().getContents()));
         }
         notificar("Sucesso!", "Foto " + event.getFile().getFileName() + " adicionada!");
     }

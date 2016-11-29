@@ -2,8 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Green House - Início</title>
         <meta name="description" content=""></meta>
@@ -94,9 +95,9 @@
                         <section id="cd-timeline" class="cd-container">
 
 
-                            <!--
                             
-                                                                                    <div class='cd-timeline-block'>
+                            
+<!--                                                                                    <div class='cd-timeline-block'>
                                                                                         <div class='cd-timeline-img cd-picture'>
                                                                                             <img src='images/first-icon.png' alt='Picture'></img>
                                                                                         </div>
@@ -108,10 +109,10 @@
                                                                                                
                                                                                             </p>
                                                                                         </div>
-                                                                                    </div>
+                                                                                    </div>-->
                                                         
                                                         
-                                                                                    <div class="cd-timeline-block">
+<!--                                                                                    <div class="cd-timeline-block">
                                                                                         <div class="cd-timeline-img cd-picture">
                                                                                             <img src="images/first-icon.png" alt="Picture"></img>
                                                                                         </div>
@@ -198,75 +199,86 @@
                 <div class="row">
                     <div class="col-md-12">
                         <section id="cd-timeline-2" class="cd-container">
+                            
+                            
                             <div class="cd-timeline-block">
                                 <div class="cd-timeline-img cd-picture">
                                     <img src="images/camera-icon.png" alt="Picture"></img>
                                 </div>
 
                                 <div class="cd-timeline-content projects">
-                                    <img src="images/project-1.jpg" alt=""></img>
+                                    <p:graphicImage value="#{imageStreamer.image}" width="400px">
+                                        <f:param name="imageid" value="#{indexBean.teste.oficinaid}" />
+                                    </p:graphicImage>
                                     <div class="project-content">
-                                        <h2>Donec at scelerisque</h2>
-                                        <span>18 December 2084</span>
+                                        <p:lightBox iframe="true" id="lighbox3">
+                                            <h:outputLink value="oficina.jsf" >
+                                                <h2>  <h:outputText value="#{indexBean.teste.nome}" /></h2>
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                        <span>#{indexBean.teste.capacidade} participantes</span>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="cd-timeline-block">
-                                <div class="cd-timeline-img cd-picture">
-                                    <img src="images/camera-icon.png" alt="Picture"></img>
-                                </div>
-
-                                <div class="cd-timeline-content projects">
-                                    <img src="images/project-2.jpg" alt=""></img>
-                                    <div class="project-content">
-                                        <h2>Nullam hendrerit ultrices</h2>
-                                        <span>12 December 2084</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="cd-timeline-block">
-                                <div class="cd-timeline-img cd-picture">
-                                    <img src="images/camera-icon.png" alt="Picture"></img>
-                                </div>
-
-                                <div class="cd-timeline-content projects">
-                                    <img src="images/project-3.jpg" alt=""></img>
-                                    <div class="project-content">
-                                        <h2>Quisque mollis diam</h2>
-                                        <span>10 December 2084</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="cd-timeline-block">
-                                <div class="cd-timeline-img cd-picture">
-                                    <img src="images/camera-icon.png" alt="Picture"></img>
-                                </div>
-
-                                <div class="cd-timeline-content projects">
-                                    <img src="images/project-4.jpg" alt=""></img>
-                                    <div class="project-content">
-                                        <h2>Etiam a ultricies</h2>
-                                        <span>30 November 2084</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="cd-timeline-block">
-                                <div class="cd-timeline-img cd-picture">
-                                    <img src="images/camera-icon.png" alt="Picture"></img>
-                                </div>
-
-                                <div class="cd-timeline-content projects">
-                                    <img src="images/project-5.jpg" alt=""></img>
-                                    <div class="project-content">
-                                        <h2>Curabitur interdum</h2>
-                                        <span>22 November 2084</span>
-                                    </div>
-                                </div>
-                            </div>
+                            </div><!--
+                            
+                            
+                            
+                                                        <div class="cd-timeline-block">
+                                                            <div class="cd-timeline-img cd-picture">
+                                                                <img src="images/camera-icon.png" alt="Picture"></img>
+                                                            </div>
+                            
+                                                            <div class="cd-timeline-content projects">
+                                                                <img src="images/project-2.jpg" alt=""></img>
+                                                                <div class="project-content">
+                                                                    <h2>Nullam hendrerit ultrices</h2>
+                                                                    <span>12 December 2084</span>
+                                                                </div>
+                            
+                                                            </div>
+                                                        </div>
+                            
+                                                        <div class="cd-timeline-block">
+                                                            <div class="cd-timeline-img cd-picture">
+                                                                <img src="images/camera-icon.png" alt="Picture"></img>
+                                                            </div>
+                            
+                                                            <div class="cd-timeline-content projects">
+                                                                <img src="images/project-3.jpg" alt=""></img>
+                                                                <div class="project-content">
+                                                                    <h2>Quisque mollis diam</h2>
+                                                                    <span>10 December 2084</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                            
+                                                        <div class="cd-timeline-block">
+                                                            <div class="cd-timeline-img cd-picture">
+                                                                <img src="images/camera-icon.png" alt="Picture"></img>
+                                                            </div>
+                            
+                                                            <div class="cd-timeline-content projects">
+                                                                <img src="images/project-4.jpg" alt=""></img>
+                                                                <div class="project-content">
+                                                                    <h2>Etiam a ultricies</h2>
+                                                                    <span>30 November 2084</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                            
+                                                        <div class="cd-timeline-block">
+                                                            <div class="cd-timeline-img cd-picture">
+                                                                <img src="images/camera-icon.png" alt="Picture"></img>
+                                                            </div>
+                            
+                                                            <div class="cd-timeline-content projects">
+                                                                <img src="images/project-5.jpg" alt=""></img>
+                                                                <div class="project-content">
+                                                                    <h2>Curabitur interdum</h2>
+                                                                    <span>22 November 2084</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
                         </section>
                     </div>
                 </div>
@@ -310,6 +322,9 @@
                 <div class="row">
                     <div class="col-md-8">
                         <h:form class="form" >
+
+
+
                             <p:growl id="ig" showDetail="true" sticky="false" />  
 
                             <div class="row">
@@ -468,15 +483,15 @@
         </script>
         <script >
             var conf = #{indexBean.jsonConfig};
-            
+
 
 
             inserir(conf.sobre, conf.endereco);
 
             function inserir(sobre, endereco) {
-                
-         
-                
+
+
+
                 var div = $("#texto");
                 $(div).append("<p>" + sobre + "</p>");
 
@@ -484,7 +499,61 @@
                 var end = $("#endereco");
                 $(end).append("<p>" + endereco + "</p>");
 
+
+
+            }
+        </script>
+        <script >
+            var oficinas = #{indexBean.jsonOficinas};
+
+            $.each(oficinas, function (idx, obj) {
+                inserir(obj.titulo, obj.data, obj.descricao, obj.fixada);
+            });
+
+            inserir(oficinas.id, oficinas.nome, oficinas.descricao);
+
+            function inserir(id, nome, descricao) {
+                var sec = $("cd-timeline-2");
                 
+                var block = document.createElement("div");
+                $(block).addClass("cd-timeline-block");
+                
+                var picture = document.createElement("div");
+                $(picture).addClass("cd-timeline-img cd-picture");
+                
+                var img = document.createElement("img");
+                $(img).attr("src", "images/camera-icon.png");
+                
+                $(picture).append(img);
+                
+                var project = document.createElement("div");
+                $(project).addClass("cd-timeline-content projects");
+                
+                var gi = document.createElement("p:graphicImage");
+                $(gi).attr("value", "# {imageStreamer.image}");
+                $(gi).attr("width", "400px");
+                
+                var param = document.createElement("f:param");
+                $(param).attr("name", imageid);
+                $(param).attr("value", id);
+                
+                $(gi).append(param);
+                
+                $(project).append(gi);
+                
+                $(block).append(project);
+                
+//                var content = document.createElement("div");
+//                
+//                var lightbox = document.createElement("p:lightBox");
+//                $(lightbox).attr("iframe", "true");
+//                $(lightbox).attr("id", "lightbox3");
+//                
+//                var output = document.createElement("h:houtput")
+                
+
+
+
 
             }
         </script>
@@ -494,6 +563,9 @@
         <script type="text/javascript" src="js/json_parse.js"></script>
         <script type="text/javascript" src="js/json_parse_state.js"></script>
         <script type="text/javascript" src="js/json2.js"></script>
+
+
+    
     </h:body>
 </html>
 

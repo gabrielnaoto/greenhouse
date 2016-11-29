@@ -36,6 +36,8 @@ public class IndexBean {
     private Configuracao config;
     private ConfiguracaoDAO cdao;
 
+    private Oficina teste;
+
     @PostConstruct
     public void init() {
         cdao = FactoryDAO.getFactoryDAO().getConfiguracaoDAO();
@@ -47,6 +49,7 @@ public class IndexBean {
         gerenciador = new GerenciarNoticiasUC();
         usuarios = gerenciador.listar();
         oficinas = FactoryDAO.getFactoryDAO().getOficinaDAO().listar();
+        teste = oficinas.get(0);
         limpar();
     }
 
@@ -161,6 +164,14 @@ public class IndexBean {
 
     public void setOficinas(List<Oficina> oficinas) {
         this.oficinas = oficinas;
+    }
+
+    public Oficina getTeste() {
+        return teste;
+    }
+
+    public void setTeste(Oficina teste) {
+        this.teste = teste;
     }
 
 }

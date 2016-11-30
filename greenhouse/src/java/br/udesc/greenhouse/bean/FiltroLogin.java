@@ -34,13 +34,16 @@ public class FiltroLogin implements Filter {
 //        Usuario usuario = (Usuario) session.getAttribute("usuario");
 //
 //        System.out.println(usuario + " " + this.getClass().getSimpleName());
-
         if ((session.getAttribute("usuario") != null)
                 || (requisicao.getRequestURI().endsWith("admin/login.jsf"))
                 || (requisicao.getRequestURI().endsWith("house/"))
+                || (requisicao.getRequestURI().endsWith("oficina.jsf") && !requisicao.getRequestURI().contains("admin"))
                 || (requisicao.getRequestURI().endsWith("index.jsf") && !requisicao.getRequestURI().contains("admin"))
                 || (requisicao.getRequestURI().contains("javax.faces.resource/"))) {
 
+            if ((session.getAttribute("usuario") != null) && (requisicao.getRequestURI().endsWith("login.jsf"))) {
+                redireciona("index.jsf", response);
+            }
             System.out.println("filtrando");
 //            System.out.println(usuario + " " + this.getClass().getSimpleName());
             chain.doFilter(request, response);

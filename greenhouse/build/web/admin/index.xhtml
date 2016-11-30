@@ -68,26 +68,32 @@
             </div>
             <!-- Main content --> 
             <div class="templatemo-content col-1 light-gray-bg">
-<!--                <div class="templatemo-top-nav-container">
+                <div class="templatemo-top-nav-container">
+
+
                     <div class="row">
+                        <div style="float: left;">
+                            <p class="text-uppercase" style="margin: 0px !important"><i class="fa fa-user"></i> Olá, <h:outputLabel value="#{loginBean.user.nome}" style="margin: 0px !important"/></p>
+                        </div>
+                        <div style="float: right;">
+                            <h:form>
+                                <h:commandLink action="#{loginBean.logout()}" styleClass="text-uppercase text-right">Sair <i class="fa fa-eject fa-fw"></i></h:commandLink>
+                            </h:form>
 
-
-
-
-
-
-
-                                                <nav class="templatemo-top-nav col-lg-12 col-md-12">
-                                                    <ul class="text-uppercase">
+                        </div>
+                        <!--                            <nav class="templatemo-top-nav col-lg-12 col-md-12">
+                                                        <ul class="text-uppercase">
                         
-                                                        <li><a href="" class="active">Admin panel</a></li>
-                                                        <li><a href="">Dashboard</a></li>
-                                                        <li><a href="">Overview</a></li>
-                                                        <li><a href="">Sign in form</a></li>
-                                                    </ul>  
-                                                </nav> 
+                                                            <li><a href="" class="active">Admin panel</a></li>
+                                                            <li><a href="">Dashboard</a></li>
+                                                            <li><a href="">Overview</a></li>
+                                                            <li><a href="">Sign in form</a></li>
+                                                        </ul>  
+                                                    </nav> -->
                     </div>
-                </div>-->
+                </div>
+
+
                 <div class="templatemo-content-container">
                     <div class="templatemo-content-widget white-bg">
                         <h2 class="margin-bottom-10">Visão Geral</h2>

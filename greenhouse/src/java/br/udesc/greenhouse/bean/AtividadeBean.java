@@ -42,7 +42,7 @@ public class AtividadeBean {
     @PostConstruct
     public void init() {
 
-        usuario = FactoryDAO.getFactoryDAO().getUsuarioDAO().pesquisar(9);
+        usuario = (Usuario)SessionUtil.getParam("usuario");
 
         gerenciador = new GerenciarRegistrosUC();
 

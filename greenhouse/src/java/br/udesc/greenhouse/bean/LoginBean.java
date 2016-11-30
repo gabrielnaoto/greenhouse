@@ -10,26 +10,27 @@ import br.udesc.greenhouse.uc.LoginUC;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ignoi
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class LoginBean {
 
     private String usuario;
     private String senha;
     private Usuario user;
+
     private LoginUC uc;
 
     @PostConstruct
     public void init() {
+        user = new Usuario();
         uc = new LoginUC();
         usuario = "";
         senha = "";
@@ -39,7 +40,7 @@ public class LoginBean {
         user = uc.getUser(usuario, senha);
         if (user != null) {
             System.out.println(user);
-            SessionUtil.setParam("usuario", user.getCpf());
+            SessionUtil.setParam("usuario", user);
             return "index.jsf";
         } else {
             saveMessage("Problemas ao efetuar login", "Confira seus dados e tente novamente!");
@@ -48,8 +49,9 @@ public class LoginBean {
     }
 
     public String logout() {
+        System.out.println("saindo");
         SessionUtil.invalidate();
-        return "../index.jsf";
+        return "/greenhouse/index.jsf";
     }
 
     public String getUsuario() {
@@ -67,10 +69,18 @@ public class LoginBean {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-     public static void saveMessage(String title, String msg) {
+
+    public static void saveMessage(String title, String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(title, msg));
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 
 }

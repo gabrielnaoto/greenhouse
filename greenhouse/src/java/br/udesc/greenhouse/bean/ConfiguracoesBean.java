@@ -40,6 +40,7 @@ public class ConfiguracoesBean {
 
     public void salvar() {
         try {
+
             uc.salvarConfiguracao(configuracao);
             saveMessage("Sucesso!", "Novas configurações aplicadas!");
         } catch (Exception e) {

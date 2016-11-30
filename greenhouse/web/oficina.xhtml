@@ -23,16 +23,17 @@
                     <p:outputLabel value="#{indexBean.teste.descricao}" styleClass="paragraph margin-bottom-30"></p:outputLabel>
 
 
-                    <p:galleria value="#{indexBean.teste.fotos}" var="image" panelWidth="400" panelHeight="250"  style=" left: 50%; margin-left: -200px; ">
+                    <p:galleria value="#{indexBean.teste.fotos}" var="image" panelWidth="400" panelHeight="250"  style=" left: 50%; margin-left: -200px;" styleClass="margin-bottom-10">
                         <p:graphicImage value="#{imageStreamer.img}">
                             <f:param name="imageid" value="#{image.id}" />
                         </p:graphicImage>
                     </p:galleria>
 
-                    <!--
-                                        <p:media value="# {indexBean.teste.video}" width="420" height="315" player="flash"/>-->
 
-               
+                    
+
+                    
+                                        <p:media value="#{indexBean.teste.video}" width="420" height="315" player="flash"/>
 
 
                 </h:panelGrid>

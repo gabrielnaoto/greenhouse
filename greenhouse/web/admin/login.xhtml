@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-                        <!--                        <input type="text" class="form-control" placeholder="js@email.com"></input>       -->
+                        <!--<input type="text" class="form-control" placeholder="js@email.com"></input>-->       
                         <h:inputText class="form-control" value="#{loginBean.usuario}" a:placeholder="usuario@email.com" ></h:inputText>
                     </div>	
                 </div>
@@ -42,43 +42,13 @@
                     </div>	
                 </div>	  
                 <div class="form-group">
-                    <!--<button type="button" class="templatemo-blue-button width-100" onclick="# {loginBean.login()}">Login</button>-->
-                    <!--<h:commandButton value="Login" action="#{loginBean.login()}" class="templatemo-blue-button width-100"></h:commandButton>-->
-                    <h:commandButton value="Login" action="index.jsf" class="templatemo-blue-button width-100"></h:commandButton>
-                            </div>
+                    <h:commandButton value="Login" action="#{loginBean.login()}" class="templatemo-blue-button width-100"></h:commandButton>
+                </div>
             </h:form>
-            <!--            <form action="index.jsf" class="templatemo-login-form">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-                                    <input type="text" class="form-control" placeholder="js@dashboard.com"></input>       
-                                </div>	
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>	        		
-                                    <input type="password" class="form-control" placeholder="******"></input>     
-                                </div>	
-                            </div>	  
-                                                            
-                                                    <div class="form-group">
-                                                                <div class="checkbox squaredTwo">
-                                                                    <input type="checkbox" id="c1" name="cc" />
-                                                                            <label for="c1"><span></span>Remember me</label>
-                                                                </div>				    
-                                                            </div>
-                            
-                            <div class="form-group">
-                                <button type="submit" class="templatemo-blue-button width-100">Login</button>
-                            </div>
-                        </form>-->
+           
         </div>
         <div class="templatemo-content-widget templatemo-login-widget templatemo-register-widget white-bg">
             <p><strong>Área reservada para participantes do projeto.</strong></p>
         </div>
-        <!--        <div class="templatemo-content-widget templatemo-login-widget templatemo-register-widget white-bg">
-                    <p>Participa do projeto e não tem senha?<strong><a href="#" class="blue-text"> Cadastre-se aqui!</a></strong></p>
-                </div>-->
     </h:body>
 </html>
-

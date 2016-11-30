@@ -28,7 +28,7 @@ public class OficinaConverter implements Converter {
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
         if (o != null) {
-            
+            o.toString();
         }
         return "";
     }

@@ -140,7 +140,7 @@
                                     <p:outputLabel for="car" value="Oficina: " />
                                     <p:selectOneMenu id="car" value="#{atividadeBean.novo.oficina}" converter="oficinaConverter">
                                         <f:selectItem itemLabel="selecione uma" itemValue="" />
-                                        <f:selectItems value="#{atividadeBean.oficinas}" />
+                                        <f:selectItems value="#{atividadeBean.oficinas}" itemValue="#{atividadeBean.oficinas}" />
                                     </p:selectOneMenu>
 
                                 </h:panelGrid>

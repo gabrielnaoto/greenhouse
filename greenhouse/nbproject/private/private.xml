@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ignoi/Documents/GitHub/projetointegrador3/greenhouse/src/java/br/udesc/greenhouse/bean/OficinaBean.java</file>
+            <file>file:/C:/Users/ignoi/Documents/GitHub/projetointegrador3/greenhouse/src/java/br/udesc/greenhouse/bean/LoginBean.java</file>
+            <file>file:/C:/Users/ignoi/Documents/GitHub/projetointegrador3/greenhouse/web/admin/configuracoes.xhtml</file>
+            <file>file:/C:/Users/ignoi/Documents/GitHub/projetointegrador3/greenhouse/web/admin/atividades.xhtml</file>
             <file>file:/C:/Users/ignoi/Documents/GitHub/projetointegrador3/greenhouse/web/admin/oficinas.xhtml</file>
-            <file>file:/C:/Users/ignoi/Documents/GitHub/projetointegrador3/greenhouse/src/java/br/udesc/greenhouse/modelo/entidade/Oficina.java</file>
+            <file>file:/C:/Users/ignoi/Documents/GitHub/projetointegrador3/greenhouse/web/admin/usuarios.xhtml</file>
+            <file>file:/C:/Users/ignoi/Documents/GitHub/projetointegrador3/greenhouse/web/admin/index.xhtml</file>
+            <file>file:/C:/Users/ignoi/Documents/GitHub/projetointegrador3/greenhouse/web/admin/noticia.xhtml</file>
         </group>
     </open-files>
 </project-private>

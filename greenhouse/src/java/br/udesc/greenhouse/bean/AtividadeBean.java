@@ -77,6 +77,9 @@ public class AtividadeBean {
 
     public void editar(ActionEvent actionEvent) {
         if (selecionado != null) {
+            if (usuario.equals(selecionado.getUsuario())) {
+                
+            
             if (gerenciador.editar(selecionado)) {
                 RequestContext.getCurrentInstance().execute("PF('ndlg2').hide();");
                 notificar("Sucesso", "Atividade editada com sucesso!");
@@ -85,6 +88,9 @@ public class AtividadeBean {
             }
             listar();
             selecionado = null;
+            }else{
+                notificar("Falha", "A atividade é de outro usuário!");
+            }
         } else {
             notificar("Falha", "É necessário selecionar uma atividade para editar.");
         }

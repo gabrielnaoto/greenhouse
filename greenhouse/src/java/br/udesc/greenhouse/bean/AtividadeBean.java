@@ -10,7 +10,6 @@ import br.udesc.greenhouse.modelo.entidade.Oficina;
 import br.udesc.greenhouse.modelo.entidade.Registro;
 import br.udesc.greenhouse.modelo.entidade.Usuario;
 import br.udesc.greenhouse.uc.GerenciarRegistrosUC;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -38,11 +37,12 @@ public class AtividadeBean {
     private GerenciarRegistrosUC gerenciador;
     private Usuario usuario;
     private List<Oficina> oficinas;
+    private Oficina oficina;
 
     @PostConstruct
     public void init() {
 
-        usuario = (Usuario)SessionUtil.getParam("usuario");
+        usuario = (Usuario) SessionUtil.getParam("usuario");
 
         gerenciador = new GerenciarRegistrosUC();
 
@@ -51,8 +51,20 @@ public class AtividadeBean {
         criar();
         listar();
     }
+    
+    private long idex;
+
+    public long getIdex() {
+        return idex;
+    }
+
+    public void setIdex(long idex) {
+        this.idex = idex;
+    }
 
     public void inserir(ActionEvent actionEvent) {
+        Oficina o = FactoryDAO.getFactoryDAO().getOficinaDAO().pesquisar(idex);
+        novo.setOficina(o);
         if (gerenciador.inserir(novo)) {
             criar();
             RequestContext.getCurrentInstance().execute("PF('ndlg1').hide();");
@@ -162,4 +174,12 @@ public class AtividadeBean {
         this.oficinas = oficinas;
     }
 
+    public Oficina getOficina() {
+        return oficina;
+    }
+
+    public void setOficina(Oficina oficina) {
+        this.oficina = oficina;
+    }
+    
 }

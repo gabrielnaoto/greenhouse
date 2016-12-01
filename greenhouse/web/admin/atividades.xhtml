@@ -163,9 +163,9 @@
                                     <p:calendar size="50" styleClass="margin-bottom-10" value="#{atividadeBean.novo.data}"   pattern="dd/MM/yyyy - HH:mm" locale="pt" disabled="true" />
 
                                     <p:outputLabel for="car" value="Oficina: " />
-                                    <p:selectOneMenu id="car" value="#{atividadeBean.novo.oficina}" converter="oficinaConverter">
+                                    <p:selectOneMenu id="car" value="#{atividadeBean.idex}">
                                         <f:selectItem itemLabel="selecione uma" itemValue="" />
-                                        <f:selectItems value="#{atividadeBean.oficinas}" itemValue="#{atividadeBean.oficinas}" />
+                                        <f:selectItems  value="#{atividadeBean.oficinas}" var="oficina"  itemValue="#{oficina.oficinaid}" itemLabel="#{oficina.nome}" />
                                     </p:selectOneMenu>
 
                                 </h:panelGrid>

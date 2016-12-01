@@ -51,7 +51,7 @@ public class AtividadeBean {
         criar();
         listar();
     }
-    
+
     private long idex;
 
     public long getIdex() {
@@ -78,17 +78,16 @@ public class AtividadeBean {
     public void editar(ActionEvent actionEvent) {
         if (selecionado != null) {
             if (usuario.equals(selecionado.getUsuario())) {
-                
-            
-            if (gerenciador.editar(selecionado)) {
-                RequestContext.getCurrentInstance().execute("PF('ndlg2').hide();");
-                notificar("Sucesso", "Atividade editada com sucesso!");
+
+                if (gerenciador.editar(selecionado)) {
+                    RequestContext.getCurrentInstance().execute("PF('ndlg2').hide();");
+                    notificar("Sucesso", "Atividade editada com sucesso!");
+                } else {
+                    notificar("Falha", "Erro ao editar atividade!");
+                }
+                listar();
+                selecionado = null;
             } else {
-                notificar("Falha", "Erro ao editar atividade!");
-            }
-            listar();
-            selecionado = null;
-            }else{
                 notificar("Falha", "A atividade é de outro usuário!");
             }
         } else {
@@ -100,10 +99,14 @@ public class AtividadeBean {
         if (selecionado == null) {
             notificar("Falha", "É necessário selecionar uma atividade antes de excluir.");
         } else {
-            if (gerenciador.remover(selecionado.getRegistroid())) {
-                notificar("Sucesso", "Atividade removida com sucesso!");
+            if (usuario.equals(selecionado.getUsuario())) {
+                if (gerenciador.remover(selecionado.getRegistroid())) {
+                    notificar("Sucesso", "Atividade removida com sucesso!");
+                } else {
+                    notificar("Falha", "Erro ao remover atividade!");
+                }
             } else {
-                notificar("Falha", "Erro ao remover atividade!");
+                notificar("Falha", "A atividade é de outro usuário!");
             }
             listar();
         }
@@ -187,5 +190,5 @@ public class AtividadeBean {
     public void setOficina(Oficina oficina) {
         this.oficina = oficina;
     }
-    
+
 }

@@ -51,7 +51,7 @@
                 </div>
                 <nav class="templatemo-left-nav">          
                     <ul>
-                        <li><a href="index.jsf" class="active"><i class="fa fa-home fa-fw"></i>Visão Geral</a></li>
+                        <li><a href="home.jsf" class="active"><i class="fa fa-home fa-fw"></i>Visão Geral</a></li>
                         <li><a href="usuarios.jsf" ><i class="fa fa-users fa-fw"></i>Gerenciar Usuários</a></li>
                         <li><a href="oficinas.jsf" ><i class="fa fa-wrench fa-fw"></i>Gerenciar Oficinas</a></li>
                         <li><a href="noticia.jsf" ><i class="fa fa-pencil fa-fw"></i>Gerenciar Noticias</a></li>
@@ -62,7 +62,7 @@
                                                 <li><a href="#"><i class="fa fa-map-marker fa-fw"></i>Mapas</a></li>
                                                 <li><a href="#"><i class="fa fa-users fa-fw"></i>Gerenciar Usuários</a></li>
                                                 <li><a href="#"><i class="fa fa-sliders fa-fw"></i>Preferências</a></li>
-                        --><li><a href="../index.jsf"><i class="fa fa-eject fa-fw"></i>Sair</a></li>
+                        -->
                     </ul>  
                 </nav>
             </div>
@@ -116,10 +116,18 @@
 
                         <h5>Gráficos</h5>
                         <hr/>
+                                                        <p:chart type="pie" model="#{geralBean.pieModel1}" style="width:400px;height:300px;margin-bottom: 30px;" />
                         <center>
+
+
+                                
+
+
+                            
+                            
                             <p:chart type="line" model="#{geralBean.areaModel}" style="height:300px; margin-bottom: 30px;"/>
 
-                            <p:chart type="pie" model="#{geralBean.pieModel1}" style="width:400px;height:300px;margin-bottom: 30px;" />
+                            
                         </center>
                         <!--            <p>Credit goes to <a href="https://google-developers.appspot.com/chart/" target="_parent">Google Charts</a></p>
                                     <div class="panel panel-default no-border">

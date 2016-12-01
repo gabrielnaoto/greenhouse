@@ -132,7 +132,7 @@ public class IndexBean {
             return null;
         }
         limpar();
-        return "index.jsf";
+        return "home.jsf";
     }
 
     public List<Noticia> getUsuarios() {

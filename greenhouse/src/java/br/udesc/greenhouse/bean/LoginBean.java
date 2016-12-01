@@ -7,12 +7,15 @@ package br.udesc.greenhouse.bean;
 
 import br.udesc.greenhouse.modelo.entidade.Usuario;
 import br.udesc.greenhouse.uc.LoginUC;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -41,17 +44,22 @@ public class LoginBean {
         if (user != null) {
             System.out.println(user);
             SessionUtil.setParam("usuario", user);
-            return "index.jsf";
+            return "home.jsf";
         } else {
             saveMessage("Problemas ao efetuar login", "Confira seus dados e tente novamente!");
             return null;
         }
     }
 
-    public String logout() {
+    public void logout() {
         System.out.println("saindo");
         SessionUtil.invalidate();
-        return "/greenhouse/index.jsf";
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        try {
+            response.sendRedirect("../index.jsf");
+        } catch (IOException ex) {
+            
+        }
     }
 
     public String getUsuario() {

@@ -5,6 +5,7 @@
  */
 package br.udesc.greenhouse.bean;
 
+import br.udesc.greenhouse.modelo.dao.core.FactoryDAO;
 import br.udesc.greenhouse.modelo.entidade.Oficina;
 import br.udesc.greenhouse.modelo.entidade.Periodo;
 import br.udesc.greenhouse.modelo.entidade.Usuario;
@@ -38,37 +39,51 @@ public class UsuarioBean implements Serializable {
     private Usuario selecionado;
     private Usuario novo;
     private GerenciarUsuariosUC gerenciador;
-    private DualListModel<Periodo> periodos;
+//    private DualListModel<Periodo> periodos;
     private Periodo periodo;
     private List<Periodo> source;
-    private List<Periodo> target;
+//    private List<Periodo> target;
+    private List<String> longs;
 
-    private DualListModel<Periodo> periodosE;
-    private List<Periodo> source1;
-    private List<Periodo> target1;
+    public List<String> getLongs() {
+        return longs;
+    }
 
+    public void setLongs(List<String> longs) {
+        this.longs = longs;
+    }
+
+//    public DualListModel<Periodo> getPeriodos() {
+//        return periodos;
+//    }
+//
+//    private DualListModel<Periodo> periodosE;
+//    private List<Periodo> source1;
+//    private List<Periodo> target1;
     @PostConstruct
     public void init() {
 
         gerenciador = new GerenciarUsuariosUC();
 
-        target = new ArrayList<>();
-        target1 = new ArrayList<>();
-        source1 = new ArrayList<>();
-
+//        target = new ArrayList<>();
+//        target1 = new ArrayList<>();
+//        source1 = new ArrayList<>();
         listar();
 
         novo = new Usuario();
         periodo = new Periodo();
 
-        periodosE = new DualListModel<>(source1, target1);
-
+//        periodosE = new DualListModel<>(source1, target1);
     }
 
     public void inserir(ActionEvent actionEvent) {
-        // mudei pra target
-        novo.setPeriodos(periodos.getTarget());
-    
+//        // mudei pra target
+//        novo.setPeriodos(periodos.getTarget());
+        List<Periodo> p = new ArrayList<>();
+        for (String l : longs) {
+            p.add(FactoryDAO.getFactoryDAO().getPeridoDAO().pesquisar(Long.parseLong(l)));
+        }
+        novo.setPeriodos(p);
         System.out.println(novo);
         System.out.println("inseri aqui");
         if (gerenciador.inserir(novo)) {
@@ -84,7 +99,12 @@ public class UsuarioBean implements Serializable {
     public void editar(ActionEvent actionEvent) {
         if (selecionado != null) {
             System.out.println("editei aqui");
-            selecionado.setPeriodos(periodosE.getTarget());
+            List<Periodo> p = new ArrayList<>();
+            for (String l : longs) {
+                p.add(FactoryDAO.getFactoryDAO().getPeridoDAO().pesquisar(Long.parseLong(l)));
+            }
+            selecionado.setPeriodos(p);
+//            selecionado.setPeriodos(periodosE.getTarget());
             if (gerenciador.editar(selecionado)) {
                 RequestContext.getCurrentInstance().execute("PF('dlg2').hide();");
                 notificar("Sucesso", "Usuário editado com sucesso!");
@@ -113,12 +133,17 @@ public class UsuarioBean implements Serializable {
 
     public void editar1() {
         try {
-            source1 = gerenciador.listarPeriodos();
-
-            target1 = selecionado.getPeriodos();
-
-            source1.removeAll(target1);
-            periodosE = new DualListModel<>(source1, target1);
+//            source1 = gerenciador.listarPeriodos();
+//
+//            target1 = selecionado.getPeriodos();
+//
+//            source1.removeAll(target1);
+//            periodosE = new DualListModel<>(source1, target1);
+            List<String> strings = new ArrayList();
+            for (Periodo p : selecionado.getPeriodos()) {
+                strings.add(p.toString());
+            }
+            longs = strings;
             RequestContext.getCurrentInstance().execute("PF('dlg2').show();");
         } catch (NullPointerException e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro!", "É necessário selecionar um usuário para editar"));
@@ -131,8 +156,8 @@ public class UsuarioBean implements Serializable {
         this.usuarios = gerenciador.listar();
         this.source = gerenciador.listarPeriodos();
 
-        periodos = new DualListModel<>(source, target);
-        periodosE = new DualListModel<>(source, target);
+//        periodos = new DualListModel<>(source, target);
+//        periodosE = new DualListModel<>(source, target);
     }
 
     public void onRowSelect(SelectEvent event) {
@@ -188,14 +213,9 @@ public class UsuarioBean implements Serializable {
         this.filtrados = filtrados;
     }
 
-    public DualListModel<Periodo> getPeriodos() {
-        return periodos;
-    }
-
-    public void setPeriodos(DualListModel<Periodo> periodos) {
-        this.periodos = periodos;
-    }
-
+//    public void setPeriodos(DualListModel<Periodo> periodos) {
+//        this.periodos = periodos;
+//    }
     public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();
         for (Object item : event.getItems()) {
@@ -237,7 +257,7 @@ public class UsuarioBean implements Serializable {
         if (gerenciador.incluir(periodo)) {
             System.out.println("vou resetar o perído");
             periodo = new Periodo();
-          
+
             RequestContext.getCurrentInstance().execute("PF('incluir').hide();");
             notificar("Sucesso", "Período inserido com sucesso!");
         } else {
@@ -246,12 +266,19 @@ public class UsuarioBean implements Serializable {
         listar();
     }
 
-    public DualListModel<Periodo> getPeriodosE() {
-        return periodosE;
+//    public DualListModel<Periodo> getPeriodosE() {
+//        return periodosE;
+//    }
+//
+//    public void setPeriodosE(DualListModel<Periodo> periodosE) {
+//        this.periodosE = periodosE;
+//    }
+    public List<Periodo> getSource() {
+        return source;
     }
 
-    public void setPeriodosE(DualListModel<Periodo> periodosE) {
-        this.periodosE = periodosE;
+    public void setSource(List<Periodo> source) {
+        this.source = source;
     }
 
 }

@@ -36,12 +36,12 @@
                         <li><a href="noticia.jsf" ><i class="fa fa-pencil fa-fw"></i>Gerenciar Noticias</a></li>
                         <li><a href="atividades.jsf" ><i class="fa fa-calendar-o fa-fw"></i>Registro de Atividades</a></li>
                         <li><a href="configuracoes.jsf" ><i class="fa fa-gear fa-fw"></i>Configurações</a></li>
-                        
+
                     </ul>  
                 </nav>
             </div>
             <div class="templatemo-content col-1 light-gray-bg">
-                
+
                 <div class="templatemo-top-nav-container">
 
 
@@ -135,7 +135,9 @@
                                     <p:selectBooleanButton styleClass="margin-bottom-10" id="value1" value="#{usuarioBean.novo.administrador}" onLabel="Sim" offLabel="Não" style="width:60px" />
 
                                     <p:outputLabel value="Períodos:" styleClass="margin-bottom-10 margin-right-15"/>
-                                    <p:pickList id="pickpe" value="#{usuarioBean.periodos}" var="cities" itemLabel="#{cities}" itemValue="#{cities}" styleClass="margin-bottom-10 margin-right-15" />
+                                    <p:selectManyMenu id="car" value="#{usuarioBean.longs}" scrollHeight="100" style="width: 350px;">
+                                        <f:selectItems  value="#{usuarioBean.source}" var="periodo"  itemValue="#{periodo.periodoid}" itemLabel="#{periodo}" />
+                                    </p:selectManyMenu>
 
 
                                 </h:panelGrid>
@@ -161,9 +163,11 @@
 
                                     <p:outputLabel value="É administrador?" styleClass="margin-bottom-10 margin-right-15"/>
                                     <p:selectBooleanButton styleClass="margin-bottom-10" id="value1" value="#{usuarioBean.selecionado.administrador}" onLabel="Sim" offLabel="Não" style="width:60px" />
-                                    
+
                                     <p:outputLabel value="Períodos:" styleClass="margin-bottom-10 margin-right-15"/>
-                                    <p:pickList id="pickpe" value="#{usuarioBean.periodosE}" var="cities" itemLabel="#{cities}" itemValue="#{cities}" styleClass="margin-bottom-10 margin-right-15" />
+                                    <p:selectManyMenu id="car" value="#{usuarioBean.longs}" scrollHeight="100" style="width: 350px;">
+                                        <f:selectItems  value="#{usuarioBean.source}" var="periodo"  itemValue="#{periodo.periodoid}" itemLabel="#{periodo}" />
+                                    </p:selectManyMenu>
                                 </h:panelGrid>
                                 <p:commandButton id="salvara" value="Salvar Alterações" icon="ui-icon-disk" actionListener="#{usuarioBean.editar}" update="dlg2Form, form" />
                                 <p:commandButton id="inclur2" value="Incluir períoodo" icon="ui-icon-plus" type="button" onclick="PF('incluir').show()" />
@@ -183,15 +187,15 @@
                                         <f:selectItem itemLabel="sexta-feira" itemValue="sexta-feira" />
                                         <f:selectItem itemLabel="sábado" itemValue="sábado" />
                                     </p:selectOneMenu>
-                                    
+
                                     <p:outputLabel value="Hora início:" styleClass="margin-bottom-10 margin-right-15"/>
                                     <p:calendar id="inicio" value="#{usuarioBean.periodo.horaInicio}" pattern="HH:mm" timeOnly="true"  styleClass="margin-bottom-10 margin-right-15"/>
-                                    
+
                                     <p:outputLabel value="Hora fim:" styleClass="margin-bottom-10 margin-right-15"/>
                                     <p:calendar id="fim" value="#{usuarioBean.periodo.horaFim}" pattern="HH:mm" timeOnly="true" styleClass="margin-bottom-10 margin-right-15"/>
-                                    
+
                                 </h:panelGrid>
-                                <p:commandButton id="incluirb" value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioBean.incluir}" update="dlg1Form, dlg2Form, dlg1Form:pickpe, incluirg" ajax="true"/>
+                                <p:commandButton id="incluirb" value="Salvar" icon="ui-icon-disk" actionListener="#{usuarioBean.incluir}" update="dlg1Form, dlg2Form,  incluirg" ajax="true"/>
                             </h:form>
                         </p:dialog> 
                     </div>  

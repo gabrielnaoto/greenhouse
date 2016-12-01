@@ -68,7 +68,7 @@
             </div>
             <!-- Main content --> 
             <div class="templatemo-content col-1 light-gray-bg">
-                
+
                 <div class="templatemo-top-nav-container">
 
 
@@ -163,37 +163,38 @@
                                     <p:calendar size="50" styleClass="margin-bottom-10" value="#{atividadeBean.novo.data}"   pattern="dd/MM/yyyy - HH:mm" locale="pt" disabled="true" />
 
                                     <p:outputLabel for="car" value="Oficina: " />
-                                    <p:selectOneMenu id="car" value="#{atividadeBean.novo.oficina}" converter="oficinaConverter">
+                                    <p:selectOneMenu id="car" value="#{atividadeBean.idex}">
                                         <f:selectItem itemLabel="selecione uma" itemValue="" />
-                                        <f:selectItems value="#{atividadeBean.oficinas}" itemValue="#{atividadeBean.oficinas}" />
+                                        <f:selectItems  value="#{atividadeBean.oficinas}" var="oficina"  itemValue="#{oficina.oficinaid}" itemLabel="#{oficina.nome}" />
                                     </p:selectOneMenu>
 
                                 </h:panelGrid>
                                 <p:commandButton id="salvar" value="Salvar"  icon="ui-icon-disk" actionListener="#{atividadeBean.inserir}" update="dlg1Form, form" />
                             </h:form>
                         </p:dialog> 
-                        <p:dialog header="Editar Usuário" widgetVar="dlg2" modal="true" resizable="false">
+                        <p:dialog header="Editar Atividade" widgetVar="dlg2" modal="true" resizable="false">
                             <h:form id="dlg2Form">
                                 <p:growl id="dlg2Growl" showDetail="true" life="2000"  />  
                                 <h:panelGrid columns="2" styleClass="margin-10">
                                     <p:outputLabel value="Usuário:" styleClass="margin-bottom-10 margin-right-15"/>
-                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{atividadeBean.novo.usuario.nome}" disabled="true"/>
+                                    <p:inputText size="50" styleClass="margin-bottom-10" value="#{atividadeBean.selecionado.usuario.nome}" disabled="true"/>
 
                                     <p:outputLabel value="Descrição da Atividade:" styleClass="margin-right-15" />
-                                    <p:inputTextarea styleClass="margin-bottom-10" value="#{atividadeBean.novo.descricao}" required="true" requiredMessage="É necessário informar a descrição da ativdade" counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes."/>
+                                    <p:inputTextarea styleClass="margin-bottom-10" value="#{atividadeBean.selecionado.descricao}" required="true" requiredMessage="É necessário informar a descrição da ativdade" counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes."/>
 
                                     <p:outputLabel />
                                     <h:outputText id="display" styleClass="margin-bottom-10 "/>
 
                                     <p:outputLabel value="Data:" styleClass="margin-bottom-10 margin-right-15"/>
-                                    <p:calendar size="50" styleClass="margin-bottom-10" value="#{atividadeBean.novo.data}"   pattern="dd/MM/yyyy - HH:mm" locale="pt" disabled="true" />
+                                    <p:calendar size="50" styleClass="margin-bottom-10" value="#{atividadeBean.selecionado.data}"   pattern="dd/MM/yyyy - HH:mm" locale="pt" disabled="true" />
 
                                     <p:outputLabel for="car" value="Oficina: " />
-                                    <p:selectOneMenu id="car" value="#{atividadeBean.novo.oficina}">
+                                    <p:selectOneMenu id="car" value="#{atividadeBean.idex}">
                                         <f:selectItem itemLabel="selecione uma" itemValue="" />
-                                        <f:selectItems value="#{atividadeBean.oficinas}" itemValue="#{atividadeBean.oficinas}" />
+                                        <f:selectItems  value="#{atividadeBean.oficinas}" var="oficina"  itemValue="#{oficina.oficinaid}" itemLabel="#{oficina.nome}" />
                                     </p:selectOneMenu>
-                                    
+
+
                                 </h:panelGrid>
                                 <p:commandButton id="salvara" value="Salvar Alterações" icon="ui-icon-disk" actionListener="#{atividadeBean.editar}" update="dlg2Form, form" />
                             </h:form>

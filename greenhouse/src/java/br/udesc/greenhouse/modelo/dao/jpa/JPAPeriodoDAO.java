@@ -114,5 +114,13 @@ public class JPAPeriodoDAO implements PeriodoDAO {
             em.close();
         }
     }
+      @Override
+    public List<Object[]> countPeriodos() {
+        EntityManager em = getEntityManager();
+        Query consulta = em.createNativeQuery("SELECT DIADASEMANA,COUNT(*) FROM greenhouse.periodos GROUP by DIADASEMANA;");
+        
+        return consulta.getResultList();
+    }
+
 
 }

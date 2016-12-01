@@ -8,6 +8,7 @@ package br.udesc.greenhouse.bean;
 import br.udesc.greenhouse.modelo.dao.core.FactoryDAO;
 import br.udesc.greenhouse.modelo.dao.core.NoticiaDAO;
 import br.udesc.greenhouse.modelo.dao.core.OficinaDAO;
+import br.udesc.greenhouse.modelo.dao.core.PeriodoDAO;
 import br.udesc.greenhouse.modelo.dao.core.UsuarioDAO;
 import br.udesc.greenhouse.modelo.entidade.Noticia;
 import java.util.List;
@@ -39,7 +40,7 @@ public class GeralBean {
     private UsuarioDAO usuariodao;
     private NoticiaDAO noticiadao;
     private OficinaDAO oficinadao;
-    
+    private PeriodoDAO periododao;
     
 
     private LineChartModel areaModel;
@@ -63,7 +64,7 @@ public class GeralBean {
         noticiadao = FactoryDAO.getFactoryDAO().getNoticiaDAO();
         oficinadao = FactoryDAO.getFactoryDAO().getOficinaDAO();
 
-        
+        periododao = FactoryDAO.getFactoryDAO().getPeridoDAO();
         not = noticiadao.listar();
         
         usuarios = usuariodao.listar().size();
@@ -111,12 +112,17 @@ public class GeralBean {
         colaboradores.setFill(true);
         colaboradores.setLabel("Colaboradores");
         
-        colaboradores.set("domingo", 0);
-        colaboradores.set("segunda-feira", 3);
-        colaboradores.set("quarta-feira", 5);
-        colaboradores.set("quinta-feira", 6);
-        colaboradores.set("sexta-feira", 2);
-        colaboradores.set("sábado", 1);
+        for (Object[] periodo : periododao.countPeriodos()) {
+//            if(periodo[0].equals("domingo")){
+                colaboradores.set(periodo[0], (Number) periodo[1]);
+//            }
+        }
+//        
+//        colaboradores.set("segunda-feira", 3);
+//        colaboradores.set("quarta-feira", 5);
+//        colaboradores.set("quinta-feira", 6);
+//        colaboradores.set("sexta-feira", 2);
+//        colaboradores.set("sábado", 1);
        
 
         areaModel.addSeries(colaboradores);

@@ -13,8 +13,8 @@ import java.util.List;
  * @author ignoi
  */
 public interface PeriodoDAO {
-    
-     public void inserir(Periodo a);
+
+    public void inserir(Periodo a);
 
     public void editar(Periodo a);
 
@@ -23,5 +23,7 @@ public interface PeriodoDAO {
     public Periodo pesquisar(long id);
 
     public List<Periodo> listar();
-    
+
+    public List<Object[]> countPeriodos();
+
 }

@@ -55,6 +55,9 @@ public class Oficina implements Serializable {
 
     @Column
     private String video;
+    
+    @Column
+    private String evento;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "oficina_periodo", joinColumns = @JoinColumn(name = "oficinaid"), inverseJoinColumns = @JoinColumn(name = "periodoid"))
@@ -150,5 +153,15 @@ public class Oficina implements Serializable {
     public String toString() {
         return nome;
     }
+
+    public String getEvento() {
+        return evento;
+    }
+
+    public void setEvento(String evento) {
+        this.evento = evento;
+    }
+    
+    
 
 }

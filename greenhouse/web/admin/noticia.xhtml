@@ -111,12 +111,12 @@
                                 <p:column headerText="Título" filterMatchMode="contains" filterBy="#{noticia.titulo}" filterStyle="display:none" >
                                     <h:outputText value="#{noticia.titulo}" />
                                 </p:column>
-                                <p:column headerText="Data" filterMatchMode="contains" filterBy="#{noticia.data}" filterStyle="display:none" >
-                                    <h:outputText value="#{noticia.data}" />
+                                <p:column headerText="Data" filterMatchMode="contains" filterBy="#{noticia.d}" filterStyle="display:none" >
+                                    <h:outputText value="#{noticia.d}" />
                                 </p:column>
-                                <p:column headerText="Descrição" filterMatchMode="contains" filterBy="#{noticia.descricao}" filterStyle="display:none" >
-                                    <h:outputText value="#{noticia.descricao}"/>
-                                </p:column>
+<!--                                <p:column headerText="Descrição" filterMatchMode="contains" filterBy="# {noticia.descricao}" filterStyle="display:none" >
+                                    <h:outputText value="# {noticia.descricao}"/>
+                                </p:column>-->
                             </p:dataTable> 
                         </h:form>
 

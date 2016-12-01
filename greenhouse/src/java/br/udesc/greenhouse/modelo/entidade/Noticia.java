@@ -6,6 +6,7 @@
 package br.udesc.greenhouse.modelo.entidade;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "noticias")
 public class Noticia implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -105,6 +106,20 @@ public class Noticia implements Serializable {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    private String extrairHora(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        return sdf.format(date);
+    }
+    
+    private String extrairData(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(date);
+    }
+    
+    public String getD(){
+        return extrairData(data);
     }
 
 }

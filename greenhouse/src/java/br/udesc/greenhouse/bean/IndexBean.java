@@ -121,18 +121,20 @@ public class IndexBean {
         return (config == null) ? "" : g.toJson(config);
     }
 
-    public String sendEmail() {
+    public void sendEmail() {
         try {
-            FormularioMensagemUC fm = new FormularioMensagemUC();
-            fm.enviarEmail(assunto, corpo, nome, emailOrigem);
-            saveMessage("Sucesso!", "E-mail enviado com sucesso!");
+            if (!emailOrigem.contains(" ")) {
+                FormularioMensagemUC fm = new FormularioMensagemUC();
+                fm.enviarEmail(assunto, corpo, nome, emailOrigem);
+                saveMessage("Sucesso!", "E-mail enviado com sucesso!");
+            } else {
+                saveMessage("Erro ao enviar e-mail", "O endereço de e-mail não deve conter espaços!");
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             saveMessage("Erro ao enviar e-mail", "Por favor, tente novamente mais tarde.");
-            return null;
         }
         limpar();
-        return "home.jsf";
     }
 
     public List<Noticia> getUsuarios() {
@@ -219,13 +221,12 @@ public class IndexBean {
         this.teste = teste;
     }
 
-    public void check(){
-        if (teste == null){
+    public void check() {
+        if (teste == null) {
             System.out.println("nulo");
         } else {
             System.out.println("not nulo");
         }
     }
-   
 
 }

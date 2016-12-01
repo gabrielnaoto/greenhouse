@@ -36,12 +36,12 @@
                         <li><a href="noticia.jsf" ><i class="fa fa-pencil fa-fw"></i>Gerenciar Noticias</a></li>
                         <li><a href="atividades.jsf" ><i class="fa fa-calendar-o fa-fw"></i>Registro de Atividades</a></li>
                         <li><a href="configuracoes.jsf" ><i class="fa fa-gear fa-fw"></i>Configurações</a></li>
-                        
+
                     </ul>  
                 </nav>
             </div>
             <div class="templatemo-content col-1 light-gray-bg">
-                
+
                 <div class="templatemo-top-nav-container">
 
 
@@ -117,9 +117,9 @@
                                 <p:column headerText="Nome" filterMatchMode="contains" filterBy="#{oficina.nome}" filterStyle="display:none" >
                                     <h:outputText value="#{oficina.nome}" />
                                 </p:column>
-                                <p:column headerText="Descrição" filterMatchMode="contains" filterBy="#{oficina.descricao}" filterStyle="display:none" >
-                                    <h:outputText value="#{oficina.descricao}" />
-                                </p:column>
+                                <!--                                <p:column headerText="Descrição" filterMatchMode="contains" filterBy="# {oficina.descricao}" filterStyle="display:none" >
+                                                                    <h:outputText value="# {oficina.descricao}" />
+                                                                </p:column>-->
                                 <p:column headerText="Capacidade" filterMatchMode="contains" filterBy="#{oficina.capacidade}" filterStyle="display:none" >
                                     <h:outputText value="#{oficina.capacidade}"/>
                                 </p:column>
@@ -134,34 +134,38 @@
                                     <p:inputText size="50" styleClass="margin-bottom-10" value="#{oficinaBean.novo.nome}" required="true" requiredMessage="É necessário informar um nome"/>
 
                                     <p:outputLabel value="Descrição da Atividade:" styleClass="margin-right-15" />
-                                    <p:inputTextarea styleClass="margin-bottom-10" value="#{oficinaBean.novo.descricao}" required="true" requiredMessage="É necessário informar a descrição da oficina" counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes."/>
+                                    <p:inputTextarea styleClass="margin-bottom-10" rows="5" cols="45" counter="display" maxlength="10000" counterTemplate="{0} caracteres restantes." autoResize="false" value="#{oficinaBean.novo.descricao}" required="true" requiredMessage="É necessário informar uma descrição" />
+
 
                                     <p:outputLabel />
                                     <h:outputText id="display" styleClass="margin-bottom-10 "/>
 
                                     <p:outputLabel value="Capacidade" styleClass="margin-right-15" />
-                                    <p:spinner styleClass="margin-bottom-10" value="#{oficinaBean.novo.capacidade}" required="true" requiredMessage="É necessário informar a capacidade da oficina" />
+                                    <p:spinner styleClass="margin-bottom-10" value="#{oficinaBean.novo.capacidade}" required="true" requiredMessage="É necessário informar a capacidade da oficina"  />
 
-                                    
-                                    
+
                                     <p:outputLabel value="Foto em destaque:" styleClass="margin-right-15" />
                                     <p:fileUpload fileUploadListener="#{oficinaBean.handleFileUpload}" mode="advanced"
                                                   update="ndlg1Growl" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-                                    
-                                    <p:outputLabel />
-                                    <h:outputText value="A resolução ideal para fotos em destaque é: 400 x 250 px " styleClass="margin-bottom-30"/>
-
-
 
                                     <p:outputLabel value="Fotos:" styleClass="margin-right-15" />
                                     <p:fileUpload fileUploadListener="#{oficinaBean.handleFilesUpload}" mode="advanced" dragDropSupport="false"
                                                   multiple="true" update="ndlg1Growl" sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="5"  />
 
+                                    <p:outputLabel />
+                                    <h:outputText value="A resolução ideal para fotos em destaque é: 400 x 250 px " style="margin-bottom: 30px !important;"/>
+
                                     <p:outputLabel value="URL vídeo YouTube:" styleClass="margin-bottom-10 margin-right-15"/>
-                                    <p:inputText id="video" size="50" styleClass="margin-bottom-10" value="#{oficinaBean.novo.video}" title="Coloque o link para um vídeo do YouTube se desejar"/>
+                                    <p:inputText id="video" size="50" styleClass="margin-bottom-10" value="#{oficinaBean.novo.video}" title="Coloque o link para um vídeo do YouTube se desejar" placeholder="https://www.youtube.com/watch?"/>
 
                                     <p:outputLabel />
                                     <p:tooltip id="toolTip" for="video" showEvent="focus" hideEvent="blur" trackMouse="true"/>
+
+                                    <p:outputLabel value="URL do evento:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:inputText id="evento" size="50" styleClass="margin-bottom-10" value="#{oficinaBean.novo.evento}" title="Coloque o link para o evento:" placeholder="https://www.eventbrite.com/e/"/>
+
+                                    <p:outputLabel />
+                                    <p:tooltip id="tt" for="evento" showEvent="focus" hideEvent="blur" trackMouse="true"/>
 
                                 </h:panelGrid>
                                 <p:commandButton id="salvar" value="Salvar"  icon="ui-icon-disk" actionListener="#{oficinaBean.inserir}" update="ndlg1Form, form"/>
@@ -176,13 +180,15 @@
                                     <p:inputText size="50" styleClass="margin-bottom-10" value="#{oficinaBean.selecionado.nome}" required="true" requiredMessage="É necessário informar um nome"/>
 
                                     <p:outputLabel value="Descrição da Atividade:" styleClass="margin-right-15" />
-                                    <p:inputTextarea styleClass="margin-bottom-10" value="#{oficinaBean.selecionado.descricao}" required="true" requiredMessage="É necessário informar a descrição da oficina" counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes."/>
+                                    <p:inputTextarea styleClass="margin-bottom-10" rows="5" cols="45" counter="display" maxlength="10000" counterTemplate="{0} caracteres restantes." autoResize="false" value="#{oficinaBean.selecionado.descricao}" required="true" requiredMessage="É necessário informar uma descrição" />
+
 
                                     <p:outputLabel />
                                     <h:outputText id="display" styleClass="margin-bottom-10 "/>
 
                                     <p:outputLabel value="Capacidade" styleClass="margin-right-15" />
-                                    <p:spinner styleClass="margin-bottom-10" value="#{oficinaBean.selecionado.capacidade}" required="true" requiredMessage="É necessário informar a capacidade da oficina" />
+                                    <p:spinner styleClass="margin-bottom-10" value="#{oficinaBean.selecionado.capacidade}" required="true" requiredMessage="É necessário informar a capacidade da oficina"  />
+
 
                                     <p:outputLabel value="Foto em destaque:" styleClass="margin-right-15" />
                                     <p:fileUpload fileUploadListener="#{oficinaBean.handleFileUpload}" mode="advanced"
@@ -190,13 +196,22 @@
 
                                     <p:outputLabel value="Fotos:" styleClass="margin-right-15" />
                                     <p:fileUpload fileUploadListener="#{oficinaBean.handleFilesUpload}" mode="advanced" dragDropSupport="false"
-                                                  multiple="true" update="ndlg1Growl" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="5"  />
+                                                  multiple="true" update="ndlg1Growl" sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="5"  />
+
+                                    <p:outputLabel />
+                                    <h:outputText value="A resolução ideal para fotos em destaque é: 400 x 250 px " style="margin-bottom: 30px !important;"/>s
 
                                     <p:outputLabel value="URL vídeo YouTube:" styleClass="margin-bottom-10 margin-right-15"/>
-                                    <p:inputText id="video" size="50" styleClass="margin-bottom-10" value="#{oficinaBean.selecionado.video}" title="Coloque o link para um vídeo do YouTube se desejar"/>
+                                    <p:inputText id="video" size="50" styleClass="margin-bottom-10" value="#{oficinaBean.selecionado.video}" title="Coloque o link para um vídeo do YouTube se desejar" placeholder="https://www.youtube.com/watch?"/>
 
                                     <p:outputLabel />
                                     <p:tooltip id="toolTip" for="video" showEvent="focus" hideEvent="blur" trackMouse="true"/>
+                                    
+                                    <p:outputLabel value="URL do evento:" styleClass="margin-bottom-10 margin-right-15"/>
+                                    <p:inputText id="evento" size="50" styleClass="margin-bottom-10" value="#{oficinaBean.selecionado.evento}" title="Coloque o link para o evento:" placeholder="https://www.eventbrite.com/e/"/>
+
+                                    <p:outputLabel />
+                                    <p:tooltip id="tt" for="evento" showEvent="focus" hideEvent="blur" trackMouse="true"/>
                                 </h:panelGrid>
                                 <p:commandButton id="salvara" value="Salvar Alterações" icon="ui-icon-disk" actionListener="#{oficinaBean.editar}" update="ndlg2Form, form" />
                             </h:form>

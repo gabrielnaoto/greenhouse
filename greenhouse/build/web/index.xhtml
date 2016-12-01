@@ -280,6 +280,14 @@
                                         <p:outputLabel value="#{indexBean.teste.descricao}" styleClass="paragraph margin-bottom-10" style="text-align: center; width: 100%"></p:outputLabel>
                                         <p:outputLabel value="Capacidade de #{indexBean.teste.capacidade} inscrições" styleClass="paragraph margin-bottom-30" style="text-align: center; width: 100%; font-weight: bold"></p:outputLabel>
 
+                                        <p:panel rendered="#{indexBean.teste.video != null}">
+                                            <iframe width="560" height="315" src="#{indexBean.teste.video}" frameborder="0"></iframe>
+                                        </p:panel>
+
+                                        <p:panel rendered="#{indexBean.teste.evento != null}">
+                                            <a href="#{indexBean.teste.evento}"><p:outputLabel value="Faça sua inscrição através deste link"  styleClass="paragraph margin-bottom-30" style="text-align: center; width: 100%; font-weight: bold"></p:outputLabel></a>        
+                                        </p:panel>
+
                                     </p:outputPanel>
                                 </p:dialog>
 

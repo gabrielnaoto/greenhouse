@@ -116,8 +116,11 @@
 
                         <h5>Gráficos</h5>
                         <hr/>
-                        <p:chart type="line" model="#{geralBean.areaModel}" style="height:300px" />
+                        <center>
+                            <p:chart type="line" model="#{geralBean.areaModel}" style="height:300px; margin-bottom: 30px;"/>
 
+                            <p:chart type="pie" model="#{geralBean.pieModel1}" style="width:400px;height:300px;margin-bottom: 30px;" />
+                        </center>
                         <!--            <p>Credit goes to <a href="https://google-developers.appspot.com/chart/" target="_parent">Google Charts</a></p>
                                     <div class="panel panel-default no-border">
                                       <div class="panel-heading border-radius-10">
@@ -299,7 +302,7 @@
         </div>
 
         <!-- JS -->
-      
+
     </h:body>
 </html>
 

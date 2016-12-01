@@ -9,6 +9,8 @@ import br.udesc.greenhouse.modelo.dao.core.FactoryDAO;
 import br.udesc.greenhouse.modelo.dao.core.NoticiaDAO;
 import br.udesc.greenhouse.modelo.dao.core.OficinaDAO;
 import br.udesc.greenhouse.modelo.dao.core.UsuarioDAO;
+import br.udesc.greenhouse.modelo.entidade.Noticia;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -17,6 +19,7 @@ import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
+import org.primefaces.model.chart.PieChartModel;
 
 /**
  *
@@ -30,27 +33,51 @@ public class GeralBean {
     private int noticias;
     private int oficinas;
 
+    private int fixadas;
+    private List<Noticia> not;
+    
     private UsuarioDAO usuariodao;
     private NoticiaDAO noticiadao;
     private OficinaDAO oficinadao;
+    
+    
 
     private LineChartModel areaModel;
+    
+    private PieChartModel pieModel1;
 
+    public PieChartModel getPieModel1() {
+        return pieModel1;
+    }
+    
     public LineChartModel getAreaModel() {
         return areaModel;
     }
 
     @PostConstruct
     public void init() {
+        
+        fixadas = 0;
+        
         usuariodao = FactoryDAO.getFactoryDAO().getUsuarioDAO();
         noticiadao = FactoryDAO.getFactoryDAO().getNoticiaDAO();
         oficinadao = FactoryDAO.getFactoryDAO().getOficinaDAO();
 
+        
+        not = noticiadao.listar();
+        
         usuarios = usuariodao.listar().size();
         oficinas = oficinadao.listar().size();
-        noticias = noticiadao.listar().size();
+        noticias = not.size();
+        
+        for (Noticia not1 : not) {
+            if (not1.isFixada()){
+                fixadas++;
+            }
+        }
         
         createAreaModel();
+        createPieModel1();
     }
 
     public int getUsuarios() {
@@ -107,6 +134,16 @@ public class GeralBean {
         
         yAxis.setMin(0);
         yAxis.setMax(10);
+    }
+    
+     private void createPieModel1() {
+        pieModel1 = new PieChartModel();
+         
+        pieModel1.set("Fixadas", fixadas);
+        pieModel1.set("Desfixadas", not.size() - fixadas);
+         
+        pieModel1.setTitle("Porcertagem de notícias fixadas");
+        pieModel1.setLegendPosition("w");
     }
 
 }

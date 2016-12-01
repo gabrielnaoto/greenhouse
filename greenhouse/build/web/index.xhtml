@@ -238,16 +238,16 @@
                                                 <f:param name="imageid" value="#{oficina.oficinaid}" />
                                             </p:graphicImage>
                                         </p:commandLink>
-<!--                                        <p:overlayPanel id="imgPanel" for="img" showEffect="fade" hideEffect="fade" showEvent="click" hideEvent="mouseover"
-                                                        dismissable="false" showCloseIcon="true" onShow="$(document.body).unbind('mousedown.ui-overlay')">
-                                            <p:imageSwitch effect="fade" style="width:400px;height:250px;">
-                                                <ui:repeat value="# {indexBean.teste.fotos}" var="image">
-                                                    <p:graphicImage value="# imageStreamer.img}" width="400px">
-                                                        <f:param name="imageid" value="# {image.id}" />
-                                                    </p:graphicImage>
-                                                </ui:repeat>
-                                            </p:imageSwitch>
-                                        </p:overlayPanel>-->
+                                        <!--                                        <p:overlayPanel id="imgPanel" for="img" showEffect="fade" hideEffect="fade" showEvent="click" hideEvent="mouseover"
+                                                                                                dismissable="false" showCloseIcon="true" onShow="$(document.body).unbind('mousedown.ui-overlay')">
+                                                                                    <p:imageSwitch effect="fade" style="width:400px;height:250px;">
+                                                                                        <ui:repeat value="# {indexBean.teste.fotos}" var="image">
+                                                                                            <p:graphicImage value="# imageStreamer.img}" width="400px">
+                                                                                                <f:param name="imageid" value="# {image.id}" />
+                                                                                            </p:graphicImage>
+                                                                                        </ui:repeat>
+                                                                                    </p:imageSwitch>
+                                                                                </p:overlayPanel>-->
 
                                         <!--                                        <p:commandLink update=":form:detalhes" oncomplete="PF('galeria').show()">
                                                                                     <f:setPropertyActionListener value="# {oficina}" target="# {indexBean.teste}" />
@@ -283,14 +283,14 @@
                                     </p:outputPanel>
                                 </p:dialog>
 
-                                <p:dialog header="Galeria" widgetVar="galeria" modal="true" showEffect="fade" hideEffect="fade" resizable="false" id="detalhes"   positionType="top, left" >
-
-                                    <p:galleria value="#{indexBean.teste.fotos}" var="image">
-                                        <p:graphicImage value="#{imageStreamer.img}" width="400px" height="250px">
-                                            <f:param name="imageid" value="#{image.id}" />
-                                        </p:graphicImage>
-                                    </p:galleria>
-
+                                <p:dialog header="Mais fotos" widgetVar="galeria" modal="true" showEffect="fade" hideEffect="fade" resizable="false" id="detalhes"  style="width: 500px !important; height: 500px !important;">
+                                    <center>
+                                        <p:galleria value="#{indexBean.teste.fotos}" var="image" style="width: 440px !important; height: 280px !important;">
+                                            <p:graphicImage value="#{imageStreamer.img}" width="400px" height="250px">
+                                                <f:param name="imageid" value="#{image.id}" />
+                                            </p:graphicImage>
+                                        </p:galleria>
+                                    </center>
                                 </p:dialog>
 
                             </h:form>

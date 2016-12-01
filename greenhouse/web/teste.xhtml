@@ -14,9 +14,13 @@
 
 
     </h:head>
-    <h:body>
+    <h:body style="background-color:  black;">
+        <p:galleria value="#{indexBean.teste.fotos}" var="image" style="width: 480px;">
+            <p:graphicImage value="#{imageStreamer.img}" >
+                <f:param name="imageid" value="#{image.id}" />
+            </p:graphicImage>
+        </p:galleria>
 
-        
 
     </h:body>
 </html>

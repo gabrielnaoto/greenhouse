@@ -55,7 +55,6 @@ public class IndexBean {
         gerenciador = new GerenciarNoticiasUC();
         usuarios = gerenciador.listar();
         oficinas = FactoryDAO.getFactoryDAO().getOficinaDAO().listar();
-        teste = oficinas.get(0);
         limpar();
 
 //        html = new HtmlPanelGroup();

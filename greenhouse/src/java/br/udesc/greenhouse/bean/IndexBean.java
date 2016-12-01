@@ -13,12 +13,18 @@ import br.udesc.greenhouse.modelo.entidade.Oficina;
 import br.udesc.greenhouse.uc.FormularioMensagemUC;
 import br.udesc.greenhouse.uc.GerenciarNoticiasUC;
 import com.google.gson.Gson;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.html.HtmlPanelGroup;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 /**
  *
@@ -51,6 +57,37 @@ public class IndexBean {
         oficinas = FactoryDAO.getFactoryDAO().getOficinaDAO().listar();
         teste = oficinas.get(0);
         limpar();
+
+//        html = new HtmlPanelGroup();
+//        html.setLayout("block");
+//
+//        FacesContext fc = FacesContext.getCurrentInstance();
+//        ImageStreamer is = new ImageStreamer();
+//
+//        GraphicImage imagem = new GraphicImage();
+//        try {
+//            imagem.setValue(is.getImage(teste));
+//        } catch (IOException ex) {
+//            System.out.println("DEU EXCEÇÂO");
+//        }
+//        imagem.setWidth("400px");
+////        
+//        
+//        
+//        HtmlOutputLink link = new HtmlOutputLink();
+//        link.setValue("oficinas.jsf");
+//        
+//        OutputLabel label = new OutputLabel();
+//        label.setValue(teste.getNome());
+//        
+//     
+//        link.getChildren().add(label);
+//        
+//        LightBox box = new LightBox();
+//        box.setIframe(true);
+//        box.getChildren().add(link);
+//
+//        html.getChildren().add(0, box);
     }
 
     public List<Noticia> getNoticias() {
@@ -59,6 +96,15 @@ public class IndexBean {
 
     public void setNoticias(List<Noticia> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public void onRowSelect(SelectEvent event) {
+        teste = ((Oficina) event.getObject());
+        System.out.println(teste.toString() + " aqui");
+    }
+
+    public void onRowUnselect(UnselectEvent event) {
+        teste = null;
     }
 
     public String getJsonList() {
@@ -87,7 +133,7 @@ public class IndexBean {
             return null;
         }
         limpar();
-        return "index.jsf#third-section";
+        return "index.jsf";
     }
 
     public List<Noticia> getUsuarios() {
@@ -173,5 +219,14 @@ public class IndexBean {
     public void setTeste(Oficina teste) {
         this.teste = teste;
     }
+
+    public void check(){
+        if (teste == null){
+            System.out.println("nulo");
+        } else {
+            System.out.println("not nulo");
+        }
+    }
+   
 
 }

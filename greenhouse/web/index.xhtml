@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Green House - Início</title>
         <meta name="description" content=""></meta>
@@ -20,8 +21,12 @@
 
         <!-- JavaScripts -->
         <script src="javax.faces/jsf.js"></script>
-        <script src="js/vendor/jquery-1.10.2.min.js"></script>
+
+
+        <!--<script src="js/vendor/jquery-1.10.2.min.js"></script>-->
         <script src="js/vendor/modernizr.min.js"></script>
+
+
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM">
         </script>
     </h:head>
@@ -95,71 +100,71 @@
                         <section id="cd-timeline" class="cd-container">
 
 
-                            
-                            
-<!--                                                                                    <div class='cd-timeline-block'>
-                                                                                        <div class='cd-timeline-img cd-picture'>
-                                                                                            <img src='images/first-icon.png' alt='Picture'></img>
-                                                                                        </div>
-                                                                                        <div class='cd-timeline-content service-box-content'>
-                                                                                            <h2> <i class="fa fa-star"></i> Udesc Ibirama apresenta projeto de extensão sobre estudos ambientais para comunidade nesta terça </h2>
-                                                                                            <p>25/06/2016</p>
-                                                                                            <p>As ações do projeto de extensão Green House - Laboratório de Estudos Ambientais, do Centro de Educação Superior do Alto Vale do Itajaí (Ceavi), da Universidade do Estado de Santa Catarina (Udesc), serão apresentadas à comunidade acadêmica e externa nesta terça-feira, 14, a partir das 16h30, na casa de enxaimel localizada na sede da unidade, em Ibirama.
-                                                                                                foto
-                                                                                               
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>-->
-                                                        
-                                                        
-<!--                                                                                    <div class="cd-timeline-block">
-                                                                                        <div class="cd-timeline-img cd-picture">
-                                                                                            <img src="images/first-icon.png" alt="Picture"></img>
-                                                                                        </div>
-                                                        
-                                                                                        <div class="cd-timeline-content service-box-content">
-                                                                                            <h2> <i class="fa fa-star-o"></i> Free Web Template</h2>
-                                                                                            <p>Aqui podemos colocar quantas histórias acreditarmos ser suficientes sobre o Green House.</p>
-                                                                                            <p>
-                                                                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                                                                            </p>
-                                                        
-                                                        
-                                                                                        </div>
-                                                                                    </div>
-                                                        
-                                                                                    <div class="cd-timeline-block">
-                                                                                        <div class="cd-timeline-img cd-movie">
-                                                                                            <img src="images/second-icon.png" alt="Picture"></img>
-                                                                                        </div>
-                                                        
-                                                                                        <div class="cd-timeline-content service-box-content">
-                                                                                            <h2>Top Icons</h2>
-                                                                                            <p>You can easily <strong>change top icons</strong> by looking at guidelines from <a rel="nofollow" href="http://fontawesome.info/font-awesome-icon-world-map/">Font Awesome</a>. Example: <strong>&lt;i class=&quot;fa fa-camera&quot;&gt;&lt;/i&gt;</strong></p>
-                                                                                        </div>
-                                                                                    </div>
-                                                        
-                                                                                    <div class="cd-timeline-block">
-                                                                                        <div class="cd-timeline-img cd-icon">
-                                                                                            <img src="images/third-icon.png" alt="Picture"></img>
-                                                                                        </div>
-                                                        
-                                                                                        <div class="cd-timeline-content service-box-content">
-                                                                                            <h2>Responsive Design</h2>
-                                                                                            <p>Vestibulum ante ipsum priminisieru in faucibus orci luctus et ultrices posuere cubilia Curae unserd Etiam nisl dui, commodo sit amet eget, vel turpis. Suspendisse at est purus.</p>
-                                                                                        </div>
-                                                                                    </div> 
-                                                        
-                                                                                    <div class="cd-timeline-block">
-                                                                                        <div class="cd-timeline-img cd-location">
-                                                                                            <img src="images/fourth-icon.png" alt="Picture"></img>
-                                                                                        </div>
-                                                        
-                                                                                        <div class="cd-timeline-content service-box-content">
-                                                                                            <h2>Communication</h2>
-                                                                                            <p>Phasellus lobortis vitae ipsum vitae luctus. Proin sodales mi a arcu iaculis, in dapibus nunc sodales. Maecenas auctor vel eros a dapibus.</p>
-                                                                                        </div>
-                                                                                    </div>-->
+
+
+                            <!--                                                                                    <div class='cd-timeline-block'>
+                                                                                                                    <div class='cd-timeline-img cd-picture'>
+                                                                                                                        <img src='images/first-icon.png' alt='Picture'></img>
+                                                                                                                    </div>
+                                                                                                                    <div class='cd-timeline-content service-box-content'>
+                                                                                                                        <h2> <i class="fa fa-star"></i> Udesc Ibirama apresenta projeto de extensão sobre estudos ambientais para comunidade nesta terça </h2>
+                                                                                                                        <p>25/06/2016</p>
+                                                                                                                        <p>As ações do projeto de extensão Green House - Laboratório de Estudos Ambientais, do Centro de Educação Superior do Alto Vale do Itajaí (Ceavi), da Universidade do Estado de Santa Catarina (Udesc), serão apresentadas à comunidade acadêmica e externa nesta terça-feira, 14, a partir das 16h30, na casa de enxaimel localizada na sede da unidade, em Ibirama.
+                                                                                                                            foto
+                                                                                                                           
+                                                                                                                        </p>
+                                                                                                                    </div>
+                                                                                                                </div>-->
+
+
+                            <!--                                                                                    <div class="cd-timeline-block">
+                                                                                                                    <div class="cd-timeline-img cd-picture">
+                                                                                                                        <img src="images/first-icon.png" alt="Picture"></img>
+                                                                                                                    </div>
+                                                                                    
+                                                                                                                    <div class="cd-timeline-content service-box-content">
+                                                                                                                        <h2> <i class="fa fa-star-o"></i> Free Web Template</h2>
+                                                                                                                        <p>Aqui podemos colocar quantas histórias acreditarmos ser suficientes sobre o Green House.</p>
+                                                                                                                        <p>
+                                                                                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                                                                                        </p>
+                                                                                    
+                                                                                    
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                    
+                                                                                                                <div class="cd-timeline-block">
+                                                                                                                    <div class="cd-timeline-img cd-movie">
+                                                                                                                        <img src="images/second-icon.png" alt="Picture"></img>
+                                                                                                                    </div>
+                                                                                    
+                                                                                                                    <div class="cd-timeline-content service-box-content">
+                                                                                                                        <h2>Top Icons</h2>
+                                                                                                                        <p>You can easily <strong>change top icons</strong> by looking at guidelines from <a rel="nofollow" href="http://fontawesome.info/font-awesome-icon-world-map/">Font Awesome</a>. Example: <strong>&lt;i class=&quot;fa fa-camera&quot;&gt;&lt;/i&gt;</strong></p>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                    
+                                                                                                                <div class="cd-timeline-block">
+                                                                                                                    <div class="cd-timeline-img cd-icon">
+                                                                                                                        <img src="images/third-icon.png" alt="Picture"></img>
+                                                                                                                    </div>
+                                                                                    
+                                                                                                                    <div class="cd-timeline-content service-box-content">
+                                                                                                                        <h2>Responsive Design</h2>
+                                                                                                                        <p>Vestibulum ante ipsum priminisieru in faucibus orci luctus et ultrices posuere cubilia Curae unserd Etiam nisl dui, commodo sit amet eget, vel turpis. Suspendisse at est purus.</p>
+                                                                                                                    </div>
+                                                                                                                </div> 
+                                                                                    
+                                                                                                                <div class="cd-timeline-block">
+                                                                                                                    <div class="cd-timeline-img cd-location">
+                                                                                                                        <img src="images/fourth-icon.png" alt="Picture"></img>
+                                                                                                                    </div>
+                                                                                    
+                                                                                                                    <div class="cd-timeline-content service-box-content">
+                                                                                                                        <h2>Communication</h2>
+                                                                                                                        <p>Phasellus lobortis vitae ipsum vitae luctus. Proin sodales mi a arcu iaculis, in dapibus nunc sodales. Maecenas auctor vel eros a dapibus.</p>
+                                                                                                                    </div>
+                                                                                                                </div>-->
 
 
                         </section>
@@ -198,87 +203,215 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <section id="cd-timeline-2" class="cd-container">
-                            
-                            
-                            <div class="cd-timeline-block">
-                                <div class="cd-timeline-img cd-picture">
-                                    <img src="images/camera-icon.png" alt="Picture"></img>
-                                </div>
+                        <!--<section id="cd-timeline-2" class="cd-container">-->
+                        <section style="margin-bottom: 50px;">  
 
-                                <div class="cd-timeline-content projects">
-                                    <p:graphicImage value="#{imageStreamer.image}" width="400px">
-                                        <f:param name="imageid" value="#{indexBean.teste.oficinaid}" />
-                                    </p:graphicImage>
-                                    <div class="project-content">
-                                        <p:lightBox iframe="true" id="lighbox3" >
-                                            <h:outputLink value="oficina.jsf" >
-                                                <h2>  <h:outputText value="#{indexBean.teste.nome}" /></h2>
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                        <span>#{indexBean.teste.capacidade} participantes</span>
-                                    </div>
-                                </div>
-                            </div><!--
+                            <h:form id="form"> 
+
+                                <p:growl id="growl" showDetail="true" />
+
+                                <ui:repeat value="#{indexBean.oficinas}" var="oficina">
+                                    <h:panelGrid columns="2" style="width:100%">
+
+
+
+
+                                        <p:panel style="float: left; width: 600px;" styleClass="cd-timeline-block">
+                                            <p:outputPanel >
+                                                <h:panelGrid columns="1" >
+                                                    <h:outputText value="#{oficina.nome}" style="font-weight: bold; text-align: left; width: 100%;  text-transform: uppercase;" styleClass="paragraph h4"/>
+                                                    <br/>
+                                                    <h:outputText value="#{oficina.descricao}"  style=" text-align: left; margin-bottom: 30px !important; width: 100%;" styleClass="paragraph ds"/>
+                                                    <br/>
+                                                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()">
+                                                        <f:setPropertyActionListener value="#{oficina}" target="#{indexBean.teste}" />
+                                                        <h:outputText value="Clique aqui para mais informações"  style=" text-align: left; margin-bottom: 30px !important; width: 100%;" styleClass="paragraph ds"/>
+                                                    </p:commandLink>
+                                                </h:panelGrid>
+                                            </p:outputPanel>
+                                        </p:panel>
+
+
+                                        <p:commandLink update=":form:detalhes" oncomplete="PF('galeria').show();">
+                                            <f:setPropertyActionListener value="#{oficina}" target="#{indexBean.teste}" />
+                                            <p:graphicImage value="#{imageStreamer.image}" height="200px" style="cursor: pointer" alt="#{oficina.nome}" id="img">  
+                                                <f:param name="imageid" value="#{oficina.oficinaid}" />
+                                            </p:graphicImage>
+                                        </p:commandLink>
+<!--                                        <p:overlayPanel id="imgPanel" for="img" showEffect="fade" hideEffect="fade" showEvent="click" hideEvent="mouseover"
+                                                        dismissable="false" showCloseIcon="true" onShow="$(document.body).unbind('mousedown.ui-overlay')">
+                                            <p:imageSwitch effect="fade" style="width:400px;height:250px;">
+                                                <ui:repeat value="# {indexBean.teste.fotos}" var="image">
+                                                    <p:graphicImage value="# imageStreamer.img}" width="400px">
+                                                        <f:param name="imageid" value="# {image.id}" />
+                                                    </p:graphicImage>
+                                                </ui:repeat>
+                                            </p:imageSwitch>
+                                        </p:overlayPanel>-->
+
+                                        <!--                                        <p:commandLink update=":form:detalhes" oncomplete="PF('galeria').show()">
+                                                                                    <f:setPropertyActionListener value="# {oficina}" target="# {indexBean.teste}" />
+                                                                                    <p:graphicImage value="# {imageStreamer.image}" height="200px" alt="# {oficina.nome}">  
+                                                                                        <f:param name="imageid" value="# {oficina.oficinaid}" />
+                                                                                    </p:graphicImage>
+                                        
+                                                                                </p:commandLink>-->
+
+
+
+
+
+
+
+
+                                    </h:panelGrid>
+
+                                    <hr/>
+                                </ui:repeat>
+
+                                <p:dialog  widgetVar="carDialog" modal="true"  resizable="false" id="carDetail">
+
+                                    <f:facet name="header">
+                                        <p:outputLabel value="#{indexBean.teste.nome}" styleClass="paragraph h4" style="text-align: center; width: 100%"></p:outputLabel>
+                                    </f:facet>
+
+                                    <p:outputPanel style="text-align:center; width: 600px;" >
+
+                                        <p:outputLabel value="#{indexBean.teste.descricao}" styleClass="paragraph margin-bottom-10" style="text-align: center; width: 100%"></p:outputLabel>
+                                        <p:outputLabel value="Capacidade de #{indexBean.teste.capacidade} inscrições" styleClass="paragraph margin-bottom-30" style="text-align: center; width: 100%; font-weight: bold"></p:outputLabel>
+
+                                    </p:outputPanel>
+                                </p:dialog>
+
+                                <p:dialog header="Galeria" widgetVar="galeria" modal="true" showEffect="fade" hideEffect="fade" resizable="false" id="detalhes"   positionType="top, left" >
+
+                                    <p:galleria value="#{indexBean.teste.fotos}" var="image">
+                                        <p:graphicImage value="#{imageStreamer.img}" width="400px" height="250px">
+                                            <f:param name="imageid" value="#{image.id}" />
+                                        </p:graphicImage>
+                                    </p:galleria>
+
+                                </p:dialog>
+
+                            </h:form>
+
+                            <!--                            <h:form id="form"> 
+                                                            <ui:repeat value="# {indexBean.oficinas}" var="oficina">
+                                                                <h:panelGrid columns="2" style="width:100%">
+                                                                    <p:commandLink update=":form:detalhe" oncomplete="PF('dialog').show()" >
+                                                                        <f:setPropertyActionListener value="# {oficina}" target="# {indexBean.teste}" />
+                                                                        <p:graphicImage value="# {imageStreamer.image}" height="200px" alt="# {oficina.nome}" >  
+                                                                            <f:param name="imageid" value="# {oficina.oficinaid}" />
+                                                                        </p:graphicImage>
+                                                                    </p:commandLink>
+                            
+                                                                    <p:outputPanel>
+                                                                        <h:panelGrid columns="1" style="padding: 5px !important">
+                                                                            <h:outputText value="# {oficina.nome}" style="font-weight: bold; text-align: left;" styleClass="paragraph ds"/>
+                                                                            <h:outputText value="# {oficina.descricao}"  style=" text-align: left;" styleClass="paragraph ds"/>
+                                                                        </h:panelGrid>
+                                                                    </p:outputPanel>
+                            
+                                                                </h:panelGrid>
                             
                             
+                                                            </ui:repeat>
                             
-                                                        <div class="cd-timeline-block">
-                                                            <div class="cd-timeline-img cd-picture">
-                                                                <img src="images/camera-icon.png" alt="Picture"></img>
-                                                            </div>
+                                                            <p:dialog widgetVar="dialog">
+                                                                <p:panel footer="Capacidade: # {indexBean.teste.capacidade}" styleClass="paragraph" id="detalhe">
+                                                                    <f:facet name="header">
+                                                                        <h:outputText value="# {indexBean.teste.nome}" styleClass="header4"></h:outputText>
+                                                                    </f:facet>
+                                                                    <center>
+                                                                        <h:panelGrid columns="1" cellpadding="10">
+                                                                            <p:outputLabel value="# {indexBean.teste.descricao}" styleClass="paragraph margin-bottom-30" style="text-align: center; width: 100%"></p:outputLabel>
+                                                                            <p:galleria value="# {indexBean.teste.fotos}" var="image" panelWidth="400" panelHeight="250"  style=" left: 50%; margin-left: -200px;" styleClass="margin-bottom-10">
+                                                                                <p:graphicImage value="# {imageStreamer.img}">
+                                                                                    <f:param name="imageid" value="# {image.id}" />
+                                                                                </p:graphicImage>
+                                                                            </p:galleria>
+                                                                            <p:media value="# {indexBean.teste.video}" width="420" height="315" player="flash"/>
                             
-                                                            <div class="cd-timeline-content projects">
-                                                                <img src="images/project-2.jpg" alt=""></img>
-                                                                <div class="project-content">
-                                                                    <h2>Nullam hendrerit ultrices</h2>
-                                                                    <span>12 December 2084</span>
-                                                                </div>
-                            
-                                                            </div>
-                                                        </div>
-                            
-                                                        <div class="cd-timeline-block">
-                                                            <div class="cd-timeline-img cd-picture">
-                                                                <img src="images/camera-icon.png" alt="Picture"></img>
-                                                            </div>
-                            
-                                                            <div class="cd-timeline-content projects">
-                                                                <img src="images/project-3.jpg" alt=""></img>
-                                                                <div class="project-content">
-                                                                    <h2>Quisque mollis diam</h2>
-                                                                    <span>10 December 2084</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                            
-                                                        <div class="cd-timeline-block">
-                                                            <div class="cd-timeline-img cd-picture">
-                                                                <img src="images/camera-icon.png" alt="Picture"></img>
-                                                            </div>
-                            
-                                                            <div class="cd-timeline-content projects">
-                                                                <img src="images/project-4.jpg" alt=""></img>
-                                                                <div class="project-content">
-                                                                    <h2>Etiam a ultricies</h2>
-                                                                    <span>30 November 2084</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                            
-                                                        <div class="cd-timeline-block">
-                                                            <div class="cd-timeline-img cd-picture">
-                                                                <img src="images/camera-icon.png" alt="Picture"></img>
-                                                            </div>
-                            
-                                                            <div class="cd-timeline-content projects">
-                                                                <img src="images/project-5.jpg" alt=""></img>
-                                                                <div class="project-content">
-                                                                    <h2>Curabitur interdum</h2>
-                                                                    <span>22 November 2084</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>-->
+                                                                        </h:panelGrid>
+                                                                    </center>
+                                                                </p:panel>
+                                                            </p:dialog>
+                                                        </h:form>-->
+
+                            <!--                                                        <div class="cd-timeline-block">
+                                                                                        <div class="cd-timeline-img cd-picture">
+                                                                                            <img src="images/camera-icon.png" alt="Picture"></img>
+                                                                                        </div>
+                                                        
+                                                                                        <div class="cd-timeline-content projects">
+                                                                                            <p:graphicImage value="# {imageStreamer.image}" width="400px">
+                                                                                                <f:param name="imageid" value="# {indexBean.teste.oficinaid}" />
+                                                                                            </p:graphicImage>
+                                                                                            <div class="project-content">
+                                                                                                
+                                                                                                <span># {indexBean.teste.capacidade} participantes</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                                                <div class="cd-timeline-block">
+                                                                                                                    <div class="cd-timeline-img cd-picture">
+                                                                                                                        <img src="images/camera-icon.png" alt="Picture"></img>
+                                                                                                                    </div>
+                                                                                    
+                                                                                                                    <div class="cd-timeline-content projects">
+                                                                                                                        <img src="images/project-2.jpg" alt=""></img>
+                                                                                                                        <div class="project-content">
+                                                                                                                            <h2>Nullam hendrerit ultrices</h2>
+                                                                                                                            <span>12 December 2084</span>
+                                                                                                                        </div>
+                                                                                    
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                    
+                                                                                                                <div class="cd-timeline-block">
+                                                                                                                    <div class="cd-timeline-img cd-picture">
+                                                                                                                        <img src="images/camera-icon.png" alt="Picture"></img>
+                                                                                                                    </div>
+                                                                                    
+                                                                                                                    <div class="cd-timeline-content projects">
+                                                                                                                        <img src="images/project-3.jpg" alt=""></img>
+                                                                                                                        <div class="project-content">
+                                                                                                                            <h2>Quisque mollis diam</h2>
+                                                                                                                            <span>10 December 2084</span>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                    
+                                                                                                                <div class="cd-timeline-block">
+                                                                                                                    <div class="cd-timeline-img cd-picture">
+                                                                                                                        <img src="images/camera-icon.png" alt="Picture"></img>
+                                                                                                                    </div>
+                                                                                    
+                                                                                                                    <div class="cd-timeline-content projects">
+                                                                                                                        <img src="images/project-4.jpg" alt=""></img>
+                                                                                                                        <div class="project-content">
+                                                                                                                            <h2>Etiam a ultricies</h2>
+                                                                                                                            <span>30 November 2084</span>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                    
+                                                                                                                <div class="cd-timeline-block">
+                                                                                                                    <div class="cd-timeline-img cd-picture">
+                                                                                                                        <img src="images/camera-icon.png" alt="Picture"></img>
+                                                                                                                    </div>
+                                                                                    
+                                                                                                                    <div class="cd-timeline-content projects">
+                                                                                                                        <img src="images/project-5.jpg" alt=""></img>
+                                                                                                                        <div class="project-content">
+                                                                                                                            <h2>Curabitur interdum</h2>
+                                                                                                                            <span>22 November 2084</span>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>-->
                         </section>
                     </div>
                 </div>
@@ -424,13 +557,22 @@
         <script>
             function initialize() {
                 var mapProp = {
-                    center: new google.maps.LatLng(40.7828839, -73.9652425),
+                    center: new google.maps.LatLng(-27.049563, -49.536237),
                     zoom: 15,
                     scrollwheel: true,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
+
                 };
                 var map = new google.maps.Map(document.getElementById("templatemo-map")
                         , mapProp);
+
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(-27.049563, -49.536237),
+                });
+
+                marker.setMap(map);
+
+
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
@@ -503,69 +645,18 @@
 
             }
         </script>
-        <script >
-            var oficinas = #{indexBean.jsonOficinas};
 
-            $.each(oficinas, function (idx, obj) {
-                inserir(obj.titulo, obj.data, obj.descricao, obj.fixada);
-            });
-
-            inserir(oficinas.id, oficinas.nome, oficinas.descricao);
-
-            function inserir(id, nome, descricao) {
-                var sec = $("cd-timeline-2");
-                
-                var block = document.createElement("div");
-                $(block).addClass("cd-timeline-block");
-                
-                var picture = document.createElement("div");
-                $(picture).addClass("cd-timeline-img cd-picture");
-                
-                var img = document.createElement("img");
-                $(img).attr("src", "images/camera-icon.png");
-                
-                $(picture).append(img);
-                
-                var project = document.createElement("div");
-                $(project).addClass("cd-timeline-content projects");
-                
-                var gi = document.createElement("p:graphicImage");
-                $(gi).attr("value", "# {imageStreamer.image}");
-                $(gi).attr("width", "400px");
-                
-                var param = document.createElement("f:param");
-                $(param).attr("name", imageid);
-                $(param).attr("value", id);
-                
-                $(gi).append(param);
-                
-                $(project).append(gi);
-                
-                $(block).append(project);
-                
-//                var content = document.createElement("div");
-//                
-//                var lightbox = document.createElement("p:lightBox");
-//                $(lightbox).attr("iframe", "true");
-//                $(lightbox).attr("id", "lightbox3");
-//                
-//                var output = document.createElement("h:houtput")
-                
-
-
-
-
-            }
-        </script>
         <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/custom.js"></script>
         <script type="text/javascript" src="js/cycle.js"></script>
+
+
         <script type="text/javascript" src="js/json_parse.js"></script>
         <script type="text/javascript" src="js/json_parse_state.js"></script>
         <script type="text/javascript" src="js/json2.js"></script>
 
 
-    
+
     </h:body>
 </html>
 

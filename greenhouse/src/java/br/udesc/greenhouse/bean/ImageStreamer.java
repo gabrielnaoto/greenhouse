@@ -36,7 +36,7 @@ public class ImageStreamer {
             return new DefaultStreamedContent(new ByteArrayInputStream(oficina.getFotoDestaque()));
         }
     }
-    
+
     public StreamedContent getImg() throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
 

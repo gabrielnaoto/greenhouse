@@ -11,35 +11,27 @@
         <link href="css/templatemo-style.css" rel="stylesheet"></link>
     </h:head>
     <h:body>
-        <p:panel footer="Capacidade: #{indexBean.teste.capacidade}" styleClass="paragraph">
-            <f:facet name="header">
-                <h:outputText value="#{indexBean.teste.nome}" styleClass="header4"></h:outputText>
-            </f:facet>
+        <f:facet name="header">
+            <h:outputText value="#{indexBean.teste.nome}" styleClass="header4"></h:outputText>
+        </f:facet>
 
-            <center>
+        <p:scrollPanel id="detalhe" >
+            <p:outputLabel value="#{indexBean.teste.descricao}" styleClass="paragraph margin-bottom-30" style="text-align: center; width: 100%"></p:outputLabel>
+            
+            <p:outputLabel value="#{indexBean.teste.capacidade}" styleClass="paragraph margin-bottom-30" style="text-align: center; width: 100%"></p:outputLabel>
 
+            <h:panelGrid columns="1" cellpadding="10">
 
-                <h:panelGrid columns="1" cellpadding="10">
-                    <p:outputLabel value="#{indexBean.teste.descricao}" styleClass="paragraph margin-bottom-30" style="text-align: center; width: 100%"></p:outputLabel>
+                <p:galleria value="#{indexBean.teste.fotos}" var="image" panelWidth="400" panelHeight="250"  style=" left: 50%; margin-left: -200px;" styleClass="margin-bottom-10">
+                    <p:graphicImage value="#{imageStreamer.img}">
+                        <f:param name="imageid" value="#{image.id}" />
+                    </p:graphicImage>
+                </p:galleria>
 
+                <p:media value="#{indexBean.teste.video}" width="420" height="315" player="flash"/>
+            </h:panelGrid>
 
-                    <p:galleria value="#{indexBean.teste.fotos}" var="image" panelWidth="400" panelHeight="250"  style=" left: 50%; margin-left: -200px;" styleClass="margin-bottom-10">
-                        <p:graphicImage value="#{imageStreamer.img}">
-                            <f:param name="imageid" value="#{image.id}" />
-                        </p:graphicImage>
-                    </p:galleria>
-
-
-
-
-
-                    <p:media value="#{indexBean.teste.video}" width="420" height="315" player="flash"/>
-
-
-                </h:panelGrid>
-
-            </center>
-        </p:panel>
+        </p:scrollPanel>
     </h:body>
 </html>
 

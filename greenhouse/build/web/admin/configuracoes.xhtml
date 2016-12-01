@@ -99,14 +99,14 @@
                                     </p:column>
                                 </p:row>
                             </h:panelGrid>
-                            <h:panelGrid columns="1" styleClass="width-100 ">
+                            <h:panelGrid columns="1" styleClass="width-100 margin-bottom-30">
                                 <p:row>
                                     <p:column>
                                         <h:outputLabel value="Endereço:" styleClass="margin-bottom-10   " ></h:outputLabel>
                                     </p:column>
                                     <p:column>
                                         <p:inputTextarea value="#{configuracoesBean.configuracao.endereco}" styleClass=" width-100" maxlength="255"  requiredMessage="Campo obrigatório" required="true" counter="display2" counterTemplate="{0} caracteres restantes."/>
-                                        <h:outputText id="display2" class="margin-bottom-10"/>
+                                        <h:outputText id="display2" />
                                     </p:column>
                                 </p:row>
                             </h:panelGrid>

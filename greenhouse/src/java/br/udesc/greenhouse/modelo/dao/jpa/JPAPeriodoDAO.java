@@ -117,7 +117,7 @@ public class JPAPeriodoDAO implements PeriodoDAO {
       @Override
     public List<Object[]> countPeriodos() {
         EntityManager em = getEntityManager();
-        Query consulta = em.createNativeQuery("SELECT DIADASEMANA,COUNT(*) FROM greenhouse.periodos GROUP by DIADASEMANA;");
+        Query consulta = em.createNativeQuery("SELECT DIADASEMANA,COUNT(*) FROM  greenhouse.usuario_periodo left join greenhouse.periodos on greenhouse.periodos.periodoid=greenhouse.usuario_periodo.periodoid GROUP by DIADASEMANA;");
         
         return consulta.getResultList();
     }

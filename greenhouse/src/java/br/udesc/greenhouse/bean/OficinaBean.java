@@ -86,7 +86,7 @@ public class OficinaBean {
                 RequestContext.getCurrentInstance().execute("PF('ndlg1').hide();");
                 notificar("Sucesso", "Notícia inserida com sucesso!");
             } else {
-                notificar("Falha", "Erro ao inserir notícia!");
+                notificar("Falha", "Erro ao inserir oficina!");
             }
         } else {
             if (novo.getVideo().startsWith("https://www.youtube.com/watch?")) {
@@ -96,12 +96,12 @@ public class OficinaBean {
                 if (gerenciador.inserir(novo)) {
                     novo = new Oficina();
                     RequestContext.getCurrentInstance().execute("PF('ndlg1').hide();");
-                    notificar("Sucesso", "Notícia inserida com sucesso!");
+                    notificar("Sucesso", "Oficina inserida com sucesso!");
                 } else {
-                    notificar("Falha", "Erro ao inserir notícia!");
+                    notificar("Falha", "Erro ao inserir oficina!");
                 }
             } else {
-                notificar("Falha", "Formato de URL inválida!s=");
+                notificar("Falha", "Formato de URL inválida!");
             }
         }
         
@@ -116,7 +116,7 @@ public class OficinaBean {
                     RequestContext.getCurrentInstance().execute("PF('ndlg2').hide();");
                     notificar("Sucesso", "Notícia editada com sucesso!");
                 } else {
-                    notificar("Falha", "Erro ao editar notícia!");
+                    notificar("Falha", "Erro ao editar oficina!");
                 }
             } else {
                 if (selecionado.getVideo().startsWith("https://www.youtube.com/watch?")) {
@@ -127,7 +127,7 @@ public class OficinaBean {
                         RequestContext.getCurrentInstance().execute("PF('ndlg2').hide();");
                         notificar("Sucesso", "Notícia editada com sucesso!");
                     } else {
-                        notificar("Falha", "Erro ao editar notícia!");
+                        notificar("Falha", "Erro ao editar oficina!");
                     }
                 } else {
                     notificar("Falha", "Formato de URL inválida!s=");
@@ -137,18 +137,18 @@ public class OficinaBean {
             listar();
             selecionado = null;
         } else {
-            notificar("Falha", "É necessário selecionar uma notícia para editar.");
+            notificar("Falha", "É necessário selecionar uma oficina para editar.");
         }
     }
     
     public void remover(ActionEvent actionEvent) {
         if (selecionado == null) {
-            notificar("Falha", "É necessário selecionar uma notícia antes de excluir.");
+            notificar("Falha", "É necessário selecionar uma oficina antes de excluir.");
         } else {
             if (gerenciador.remover(selecionado.getOficinaid())) {
                 notificar("Sucesso", "Notícia removida com sucesso!");
             } else {
-                notificar("Falha", "Erro ao remover notícia!");
+                notificar("Falha", "Erro ao remover oficina!");
             }
             listar();
         }

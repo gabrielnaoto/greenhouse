@@ -83,7 +83,7 @@ public class AtividadeBean {
             notificar("Falha", "É necessário selecionar uma atividade antes de excluir.");
         } else {
             if (gerenciador.remover(selecionado.getRegistroid())) {
-                notificar("Sucesso", "Notícia removida com sucesso!");
+                notificar("Sucesso", "Atividade removida com sucesso!");
             } else {
                 notificar("Falha", "Erro ao remover atividade!");
             }
